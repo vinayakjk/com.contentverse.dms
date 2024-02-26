@@ -15,6 +15,10 @@ public class CV_LoginPage {
 	@FindBy(xpath = "//img[@alt='Computhink']")
 	WebElement imgLogo;
 
+	@CacheLookup	
+	@FindBy(xpath = "//img[@alt='Computhink']")
+	WebElement imgLog01;
+	
 	@CacheLookup
 	@FindBy(xpath="//input[@id='userName']")
 	WebElement txtUsername;
@@ -78,7 +82,7 @@ public class CV_LoginPage {
 		txtUsername.sendKeys(uid);
 		txtPassword.sendKeys(pass);
 		
-		String option="CONTENTVERSE.DEMOROOM";
+		//String option="CONTENTVERSE.DEMOROOM";
 
 		//WebElement dropdown =driver.findElement(By.xpath("//select[@id='rooms'][contains(text(), '"+option+"')]"));
 		////select[@id='rooms']/option[contains(text(),'CONTENTVERSE.DEMOROOM')]
