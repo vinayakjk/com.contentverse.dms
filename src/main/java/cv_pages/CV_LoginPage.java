@@ -12,7 +12,7 @@ public class CV_LoginPage {
 
 public WebDriver gdriver;
 	
-	//Webelement - Rajendra Mane 28/02/2024
+//Webelement - Rajendra Mane 28/02/2024
 	@FindBy(id = "userName")
 	WebElement username;
 
@@ -43,7 +43,7 @@ public WebDriver gdriver;
 	@FindBy(xpath = "//span[@id='cvModelLoginValidationMessage']")
 	WebElement validationalert;
 
-  //Constructor Rajendra -28/02/2024 
+//Constructor Rajendra -28/02/2024 
 	public CV_LoginPage(WebDriver gdriver)
 	{
 		this.gdriver=gdriver;
