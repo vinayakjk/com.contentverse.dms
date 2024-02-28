@@ -4,6 +4,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CV_Search {
+	
+	public CV_Search() 
+	{
+	 System.out.println("COnstructor added");	
+	}
+	
+	//WebElement Added in CV_Search_Page on 28/02/2024 - Suresh
 	// Click on "Search"
 	@FindBy(xpath = "//a[@id='advSearchMenuBtn']")
 	WebElement ClickSearch;
