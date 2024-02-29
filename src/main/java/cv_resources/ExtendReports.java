@@ -5,6 +5,8 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 public class ExtendReports 
 {
+
+
 	//Changes Done by rajendra 28/02/2024
 	public static ExtentReports getReportObject() 
 		  {
@@ -18,7 +20,5 @@ public class ExtendReports
 				return extend; 
 				//extend.createTest(path);
 		  }
-
-
 	
 }
