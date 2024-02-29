@@ -27,7 +27,7 @@ public class CV_LoginPage {
 	WebElement txtPassword;
 
 	@FindBy(xpath="//select[@id='rooms']/option[contains(text(),'DMS-SERVER.SUNDYNE')]")
-	WebElement ddlRooms;
+	WebElement ddRooms;
 
 	@FindBy(xpath="//button[@id='submitid']")
 	WebElement btnSubmit;
@@ -81,18 +81,11 @@ public class CV_LoginPage {
 	{
 		txtUsername.sendKeys(uid);
 		txtPassword.sendKeys(pass);
-		
-		//String option="CONTENTVERSE.DEMOROOM";
-
-		//WebElement dropdown =driver.findElement(By.xpath("//select[@id='rooms'][contains(text(), '"+option+"')]"));
-		////select[@id='rooms']/option[contains(text(),'CONTENTVERSE.DEMOROOM')]
-		
-	//	WebElement dropdown =driver.findElement(By.xpath("//select[@id='rooms']/option[contains(text(),'CONTENTVERSE.DEMOROOM')]"));
-		System.out.println(ddlRooms);
-		ddlRooms.click();
+		ddRooms.click();
 		btnSubmit.click();
 		
-		//check logged in user name shows
+		//check logged in user name correctly after logging/Verify the logging username 
+		
 		if (imgLoggedInUsername.isDisplayed()==true)
 		{
 			System.out.println(imgLoggedInUsername.getText() + "logged in succeesfully.");
