@@ -2,16 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-02-22T16:49:23 IST" name="Default suite" finished-at="2024-02-22T16:49:23 IST" duration-ms="53">
+  <suite started-at="2024-02-28T16:54:09 IST" name="Default suite" finished-at="2024-02-28T16:54:16 IST" duration-ms="6720">
     <groups>
     </groups>
-    <test started-at="2024-02-22T16:49:23 IST" name="Default test" finished-at="2024-02-22T16:49:23 IST" duration-ms="53">
-      <class name="cv_pages.CV_LoginPage">
-        <test-method signature="demo()[pri:0, instance:cv_pages.CV_LoginPage@5656be13]" started-at="2024-02-22T16:49:23 IST" name="demo" finished-at="2024-02-22T16:49:23 IST" duration-ms="7" status="PASS">
+    <test started-at="2024-02-28T16:54:09 IST" name="Default test" finished-at="2024-02-28T16:54:16 IST" duration-ms="6720">
+      <class name="cv_testcases.CV_LoginTestCase">
+        <test-method signature="lg()[pri:0, instance:cv_testcases.CV_LoginTestCase@5eeedb60]" started-at="2024-02-28T16:54:09 IST" name="lg" finished-at="2024-02-28T16:54:15 IST" duration-ms="6495" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- demo -->
-      </class> <!-- cv_pages.CV_LoginPage -->
+        </test-method> <!-- lg -->
+        <test-method is-config="true" signature="quit()[pri:0, instance:cv_testcases.CV_LoginTestCase@5eeedb60]" started-at="2024-02-28T16:54:15 IST" name="quit" finished-at="2024-02-28T16:54:16 IST" duration-ms="191" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quit -->
+      </class> <!-- cv_testcases.CV_LoginTestCase -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
