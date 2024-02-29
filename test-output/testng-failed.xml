@@ -5,8 +5,12 @@
     <classes>
       <class name="cv_testcases.CV_LoginTestCase">
         <methods>
+<<<<<<< HEAD
           <include name="quit"/>
           <include name="lg"/>
+=======
+          <include name="checkValidUser"/>
+>>>>>>> vinayak-feature
         </methods>
       </class> <!-- cv_testcases.CV_LoginTestCase -->
     </classes>
