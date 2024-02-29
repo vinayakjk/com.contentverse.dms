@@ -16,120 +16,120 @@ public class CV_Search {
 	WebElement ClickSearch;
 
 	// Click on "Select Document location
-	@FindBy(xpath = "//div[@id='cvModel1']")
-	WebElement SelectFloderLocation;
+	@FindBy(xpath = "//input[@id='folderLocationForSearch']")
+	WebElement txtFloderLocationpath;
 
 	// Click on "Ok"
 	@FindBy(xpath = "//button[@id='navigatorTreeOk1']")
-	WebElement SearchLocOkBtn;
+	WebElement btnOkSearchLocation;
 
 	// Click on "Cancel"
 	@FindBy(xpath = "//button[@id='navigatorTreeCancle1']")
-	WebElement SearchLocCancelBtn;
+	WebElement btnCancelSearchLocation;
 
 	// Click on "Select search location X "
 	@FindBy(xpath = "//span[@id='navigatorModelClose1']")
-	WebElement SelectLocXBtn;
+	WebElement btnCloseSearchLocation;
 
 	// Click on "Refresh"
 	@FindBy(xpath = "//img[@id='searchfolderrefreshBtn']")
-	WebElement SelectLocRefreshBtn;
+	WebElement imgRefreshSearchLocation;
 
 	// Click on "labelSearchImage1"
-	@FindBy(xpath = "//img[@id='labelSearchImage1']")
-	WebElement ClicklabelSearchImage;
+	@FindBy(xpath = "//input[@id='searchLocateNode']")
+	WebElement imgSearchDocumentLocation;
 
 	// Click on "All of the words"
 	@FindBy(xpath = "//li[@id='indexOptionMenu_0']")
-	WebElement IndexContainAll;
+	WebElement listIndexOption;
 
 	// Click on "The exact phrase"
 	@FindBy(xpath = "//li[@id='indexOptionMenu_1']")
-	WebElement IndexContainexact;
+	WebElement list1IndexOption;
 
 	// Click on "At least one of the words"
 	@FindBy(xpath = "//li[@id='indexOptionMenu_2']")
-	WebElement IndexContainexatleast;
+	WebElement list2IndexOption;
 
 	// Click on Index Contain Text Area
 	@FindBy(id = "indexPhrase1")
-	WebElement ClickIndexTextArea;
+	WebElement txtIndexContain;
 
 	// Click on "All of the words"
 	@FindBy(xpath = "//li[@id='textOptionMenu_0']")
-	WebElement TextContainAll;
+	WebElement listTextContain;
 
 	// Click on "The exact phrase"
 	@FindBy(xpath = "//li[@id='textOptionMenu_1']")
-	WebElement TextContainExact;
+	WebElement list1TextContain;
 
 	// Click on "At least one of the words"
 	@FindBy(xpath = "//li[@id='textOptionMenu_2']")
-	WebElement TextContainAtLeast;
+	WebElement list2TextContain;
 
 	// Click on "Any part of the value"
 	@FindBy(xpath = "//li[@id='textOptionMenu_3']")
-	WebElement TextContainAny;
+	WebElement list3TextContain;
 
 	// Click on Text Contain Text Area
 	@FindBy(id = "indexPhrase2")
-	WebElement ClickTextContainArea;
+	WebElement txtTextContain;
 
 	// SelectDocumentType
 	@FindBy(xpath = "(//div[@class='e-multi-select-wrapper e-down-icon'])[1]")
-	WebElement SelectDocumentType;
+	WebElement ddDocumentType;
 
 	// Click on "Document types / indices"
 	@FindBy(xpath = "//img[@id='addIndicesBtn']")
-	WebElement ClickIndicesBtn;
+	WebElement imgIndices;
 
 	// Click on "Reset"
 	@FindBy(xpath = "//button[@id='navigatorTreeReset6']")
-	WebElement ClickResetBtn;
+	WebElement btnResetIndices;
 
 	// Click on "Ok"
 	@FindBy(xpath = "//button[@id='navigatorTreeOk6']")
-	WebElement ClickOkBtn;
+	WebElement btnOkIndices;
 
 	// Click on "Cancel"
 	@FindBy(xpath = "//button[@id='navigatorTreeCancle6']")
-	WebElement ClickCanBtn;
+	WebElement btnCancelIndices;
 
 	// Click on "Document Type / Indices ×"
 	@FindBy(xpath = "//span[@id='navigatorModelClose6']")
-	WebElement ClickCloseBtn;
+	WebElement btnCloseIndices;
 
 	// Click on "Document Type Refresh"
 	@FindBy(xpath = "//img[@id='refreshDocTypeBtn']")
-	WebElement DoctyperefreshBtn;
+	WebElement imgRefreshDocumentType;
 
 	// SelectDocumentCreator
 	@FindBy(xpath = "(//div[@class='e-multi-select-wrapper e-down-icon'])[2]")
-	WebElement SelectDocCreator;
+	WebElement ddDocumentCreator;
 
 	// CreatorrefreshBtn
 	@FindBy(xpath = "//img[@id='refreshCreatorBtn']")
-	WebElement CreatorrefreshBtn;
+	WebElement imgRefreshDocumentCreator;
 
 	// SelectWorkFlow
 	@FindBy(xpath = "(//span[@aria-label='dropdownlist'])[1]")
-	WebElement SelectWorkFlow;
+	WebElement ddWorkFlow;
 
 	// CalenderCreatedFrom
 	@FindBy(xpath = "//input[@id='createdDateFrom']")
-	WebElement CalCreatedFrom;
+	WebElement txtCreatedFrom;
 
 	// CalenderCreatedTo
 	@FindBy(xpath = "//input[@id='createdDateTo']")
-	WebElement CalCreatedTo;
+	WebElement txtCreatedTo;
 
 	// CalenderModifiedFrom
 	@FindBy(xpath = "//input[@id='ModifiedDateFrom']")
-	WebElement CalModFrom;
+	WebElement txtModifiesFrom;
 
 	// CalenderModifiedTo
 	@FindBy(xpath = "//input[@id='ModifiedDateTo']")
-	WebElement CalModTo;
+	WebElement txtModifiedTo;
 
 	// Checkbox All Versions
 	@FindBy(xpath = "//input[@id='allVersions']")
@@ -137,74 +137,74 @@ public class CV_Search {
 
 	// Checkbox Include Comment
 	@FindBy(xpath = "//input[@id='includeComment']")
-	WebElement ChkincComment;
+	WebElement ChkIncludeComment;
 
 	// Checkbox Append to hitlist
 	@FindBy(xpath = "//input[@id='appendToHitList']")
-	WebElement ChkappendToHitList;
+	WebElement ChkAppendToHitList;
 
 	// Checkbox Find inhitlist
 	@FindBy(xpath = "//input[@id='findInHitList']")
-	WebElement ChkfindInHitList;
+	WebElement ChkFindInHitList;
 
 	// Click on "Select saved search"
 	@FindBy(xpath = "(//select[@id='savedSearchName']")
-	WebElement SelectSaveSearch;
+	WebElement ddSaveSearch;
 
 	// Click on "Select saved search<New Search>
 	@FindBy(xpath = "//select[@id='savedSearchName'])[1]")
-	WebElement SelectnewSearch;
+	WebElement dd1NewSearch;
 
 	// select "Select saved Button
 	@FindBy(xpath = "//img[@id='saveBtnForSaveSearchName']")
-	WebElement SaveBtn;
+	WebElement imgSaveSearchName;
 
 	// select "Select Cancel Button
 	@FindBy(xpath = "//img[@id='cancelBtnForSaveSearchName']")
-	WebElement CancelBtn;
+	WebElement imgCancelSearchName;
 
 	// select "Select Refresh Button
 	@FindBy(xpath = "//img[@id='refreshBtnForSaveSearchName']")
-	WebElement RefreshSearch;
+	WebElement imgRefreshSearchName;
 
 	// Select Find Button
 	@FindBy(xpath = "//button[@id='advFindBtnLabel']")
-	WebElement findBtn;
+	WebElement btnFind;
 
 	// Select Clear Button
 	@FindBy(xpath = "//button[@id='clearSearchBtnLabel']")
-	WebElement ClearBtn;
+	WebElement btnClear;
 
 	// SearchDropdown Menu
 	@FindBy(xpath = "//ul[@id='customListdropdownmenu']")
-	WebElement cusColmndd;
+	WebElement ddSearchMenu;
 
 	// Select Custom Colmn
 	@FindBy(xpath = "//a[@id='culstomcolsearch']")
-	WebElement searchCusColmn;
+	WebElement dd1CustomColumn;
 
 	// Search Custom List
 	@FindBy(xpath = "//input[@id='searchInput']")
-	WebElement searchCustomList;
+	WebElement txtCustomList;
 
 	// Select Default Btn
 	@FindBy(xpath = "//button[@id='DefaultCustomList']")
-	WebElement defaultBtn;
+	WebElement btnDefaultCustomList;
 
 	// Select OK Btn
 	@FindBy(xpath = "//button[@id='CustomListOK']")
-	WebElement cusOkBtn;
+	WebElement btnOkCustomList;
 
 	// Select Cancel Btn
 	@FindBy(xpath = "//button[@id='CustomListCancel']")
-	WebElement cusCanBtn;
+	WebElement btnCancelCustomList;
 
 	// Select Close Btn
 	@FindBy(xpath = "//span[@id='customListModelClose']")
-	WebElement cusclosebtn;
+	WebElement btnCloseCustomList;
 
 	//
 	@FindBy(xpath = "//button[@id='resetColumsOk']")
-	WebElement resetColnOk;
+	WebElement dd2resetColums;
 
 }
