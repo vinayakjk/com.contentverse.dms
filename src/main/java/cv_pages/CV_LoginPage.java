@@ -1,15 +1,15 @@
 package cv_pages;
 
-import java.time.Duration;
-import org.openqa.selenium.By;
+//import java.time.Duration;
+//import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.testng.annotations.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
-import org.testng.asserts.SoftAssert;
+//import org.testng.annotations.Test;
+//import org.openqa.selenium.WebDriver;
+//import org.openqa.selenium.support.PageFactory;
+//import org.testng.asserts.SoftAssert;
 
 import cv_resources.Utility;
 
@@ -102,6 +102,7 @@ public class CV_LoginPage extends Utility {
 
 	}
 
+	/*
 	public void login(String User, String Pass) 
 	{
 		SoftAssert softAssert = new SoftAssert();
@@ -141,8 +142,8 @@ public class CV_LoginPage extends Utility {
 			System.out.println("Login failed with reason:- " + Msg);
 		}
 
-	
+	*/
 
 	}
 
-}
+
