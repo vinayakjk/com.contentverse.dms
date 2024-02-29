@@ -1,6 +1,6 @@
 package cv_resources;
 
-<<<<<<< HEAD
+
 import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -17,20 +17,24 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.ie.InternetExplorerDriver;
+//import org.openqa.selenium.firefox.FirefoxOptions;
+//import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+//import io.github.bonigarcia.wdm.WebDriverManager;
 
  // Method Added By Rajendra - 28/02/2024
 
-public class Utility 
-{
-
+public class Utility {
+	
+	
+	static WebDriver driver;
+	
+	/*
 	
 	public static WebDriver wd;
 	
@@ -41,7 +45,7 @@ public class Utility
 		 * Properties prop= new Properties(); FileInputStream fis=new
 		 * FileInputStream("/LTM/src/GlobalData.properties"); prop.load(fis); String
 		 * browsename=prop.getProperty("browser");
-		 */
+		 
 		if (browsename.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			//ChromeOptions options = new ChromeOptions();
@@ -65,8 +69,8 @@ public class Utility
 		new WebDriverWait(wd, Duration.ofSeconds(30));
 		wd.get(URL);
 		return wd;
-
-	}
+*/
+	
 
 	public void Dropdown(By drp_Ele, String visible) {
 		// WebElement myEleDp = wd.findElement(By.id(cat));
@@ -238,15 +242,15 @@ public class Utility
 	}
 
 	public void closebrowser() {
-		wd.close();
+		driver.close();
 	}
 
-	public static boolean isClickable(WebElement WebElement, WebDriver wd, long tm) {
+	public static boolean isClickable(WebElement WebElement, WebDriver driver, long tm) {
 		boolean isClickable = false;
 
 		try {
 
-			WebDriverWait wt = new WebDriverWait(wd, Duration.ofSeconds(3));
+			WebDriverWait wt = new WebDriverWait(driver, Duration.ofSeconds(3));
 			wt.until(ExpectedConditions.elementToBeClickable(WebElement));
 			isClickable = true;
 		} catch (Exception e)
@@ -263,7 +267,7 @@ public class Utility
 
 	public static boolean isClicked(WebElement element) {
 		try {
-			WebDriverWait wait = new WebDriverWait(wd, Duration.ofSeconds(15));
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 			wait.until(ExpectedConditions.elementToBeClickable(element));
 			element.click();
 			return true;
@@ -273,25 +277,20 @@ public class Utility
 	}
 
 	
-	public static boolean isAlertPresent(WebDriver wd) {
+	public static boolean isAlertPresent(WebDriver wd) 
+	{
 		try {
 			wd.switchTo().alert();
 			return true;
-		} catch (Exception e) {
+		} catch (Exception e) 
+		{
 			return false;
+			
 		}
 
-=======
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+		}
 
-public class Utility {
-	
-	
-	static WebDriver driver;
-	
+
 	public static WebDriver startBrowser(String browserName,String url)
 	{
 		if(browserName.equalsIgnoreCase("firefox"))
@@ -313,7 +312,7 @@ public class Utility {
 		
 		return driver;
 		
->>>>>>> vinayak-feature
+
 	}
 }
 
