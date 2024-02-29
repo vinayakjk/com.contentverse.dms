@@ -1,6 +1,5 @@
 package cv_resources;
 
-<<<<<<< HEAD
 import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -17,6 +16,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -32,16 +32,16 @@ public class Utility
 {
 
 	
-	public static WebDriver wd;
-	
+	public static WebDriver driver;
+	/*
 	public static WebDriver startBrowser(String browsename, String URL)
 
 	{
-		/*
+		
 		 * Properties prop= new Properties(); FileInputStream fis=new
 		 * FileInputStream("/LTM/src/GlobalData.properties"); prop.load(fis); String
 		 * browsename=prop.getProperty("browser");
-		 */
+		
 		if (browsename.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			//ChromeOptions options = new ChromeOptions();
@@ -232,7 +232,7 @@ public class Utility
 		{
 			e.printStackTrace();
 		}
-       */
+       
 		return isDisplayed;
 
 	}
@@ -290,7 +290,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class Utility {
 	
 	
-	static WebDriver driver;
+	 */
 	
 	public static WebDriver startBrowser(String browserName,String url)
 	{
@@ -301,7 +301,9 @@ public class Utility {
 		}
 		else if (browserName.equalsIgnoreCase("chrome"))
 		{
+			
 			driver=new ChromeDriver();
+			
 		}
 		else if (browserName.equalsIgnoreCase("edge"))
 		{
@@ -312,8 +314,7 @@ public class Utility {
 		driver.get(url);
 		
 		return driver;
-		
->>>>>>> vinayak-feature
+
 	}
 }
 

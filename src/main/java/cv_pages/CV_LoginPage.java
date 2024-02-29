@@ -102,7 +102,7 @@ public class CV_LoginPage extends Utility {
 
 	}
 
-	public void login(String User, String Pass) 
+	/*public void login(String User, String Pass) 
 	{
 		SoftAssert softAssert = new SoftAssert();
 		username.sendKeys(User);
@@ -143,6 +143,6 @@ public class CV_LoginPage extends Utility {
 
 	
 
-	}
+	}*/
 
 }
