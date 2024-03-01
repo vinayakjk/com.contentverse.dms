@@ -1,14 +1,15 @@
 package cv_pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CV_Search {
+import cv_resources.Utility;
+
+public class CV_Search extends Utility {
 	
-	public CV_Search() 
-	{
-	 System.out.println("COnstructor added");	
-	}
+	WebDriver driver;
+	
 	
 	//WebElement Added in CV_Search_Page on 28/02/2024 - Suresh
 	// Click on "Search"
@@ -205,6 +206,17 @@ public class CV_Search {
 
 	//
 	@FindBy(xpath = "//button[@id='resetColumsOk']")
-	WebElement dd2resetColums;
+	WebElement dd2ResetColums;
+	
+	public void CV_Search(WebDriver ldriver )
+	{
+		this.driver=ldriver;
+		
+	}
+	
+	public void Search_CV()
+	{
+		ClickSearch.click();;
+		
 
 }
