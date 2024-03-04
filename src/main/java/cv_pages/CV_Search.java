@@ -32,15 +32,15 @@ public class CV_Search extends Utility {
 	@FindBy(xpath = "//span[@id='navigatorModelClose1']")
 	WebElement btnCloseSearchLocation;
 
-	// Click on "Refresh"
+	// Click on "Refresh"--
 	@FindBy(xpath = "//img[@id='searchfolderrefreshBtn']")
 	WebElement imgRefreshSearchLocation;
 
-	// Click on "labelSearchImage1"
+	// Click on "labelSearchImage1"--
 	@FindBy(xpath = "//input[@id='searchLocateNode']")
 	WebElement imgSearchDocumentLocation;
 
-	// Click on "All of the words"
+	// Click on "All of the words"--
 	@FindBy(xpath = "//li[@id='indexOptionMenu_0']")
 	WebElement listIndexOption;
 
@@ -208,7 +208,7 @@ public class CV_Search extends Utility {
 	@FindBy(xpath = "//button[@id='resetColumsOk']")
 	WebElement dd2ResetColums;
 	
-	public void CV_Search(WebDriver ldriver )
+	public CV_Search(WebDriver ldriver )
 	{
 		this.driver=ldriver;
 		
@@ -216,7 +216,19 @@ public class CV_Search extends Utility {
 	
 	public void Search_CV()
 	{
-		ClickSearch.click();;
+		ClickSearch.click();
+		txtFloderLocationpath.click();
+		btnOkSearchLocation.click();
+		btnCancelSearchLocation.click();
+		btnCloseSearchLocation.click();
+		imgRefreshSearchLocation.click();
+		imgSearchDocumentLocation.click();
+		listIndexOption.click();
 		
+		
+		
+		
+		
+	}		
 
 }
