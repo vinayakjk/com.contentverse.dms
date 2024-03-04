@@ -1,14 +1,15 @@
 package cv_pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CV_Search {
+import cv_resources.Utility;
+
+public class CV_Search extends Utility {
 	
-	public CV_Search() 
-	{
-	 System.out.println("COnstructor added");	
-	}
+	WebDriver driver;
+	
 	
 	//WebElement Added in CV_Search_Page on 28/02/2024 - Suresh
 	// Click on "Search"
@@ -31,15 +32,15 @@ public class CV_Search {
 	@FindBy(xpath = "//span[@id='navigatorModelClose1']")
 	WebElement btnCloseSearchLocation;
 
-	// Click on "Refresh"
+	// Click on "Refresh"--
 	@FindBy(xpath = "//img[@id='searchfolderrefreshBtn']")
 	WebElement imgRefreshSearchLocation;
 
-	// Click on "labelSearchImage1"
+	// Click on "labelSearchImage1"--
 	@FindBy(xpath = "//input[@id='searchLocateNode']")
 	WebElement imgSearchDocumentLocation;
 
-	// Click on "All of the words"
+	// Click on "All of the words"--
 	@FindBy(xpath = "//li[@id='indexOptionMenu_0']")
 	WebElement listIndexOption;
 
@@ -205,6 +206,29 @@ public class CV_Search {
 
 	//
 	@FindBy(xpath = "//button[@id='resetColumsOk']")
-	WebElement dd2resetColums;
+	WebElement dd2ResetColums;
+	
+	public CV_Search(WebDriver ldriver )
+	{
+		this.driver=ldriver;
+		
+	}
+	
+	public void Search_CV()
+	{
+		ClickSearch.click();
+		txtFloderLocationpath.click();
+		btnOkSearchLocation.click();
+		btnCancelSearchLocation.click();
+		btnCloseSearchLocation.click();
+		imgRefreshSearchLocation.click();
+		imgSearchDocumentLocation.click();
+		listIndexOption.click();
+		
+		
+		
+		
+		
+	}		
 
 }
