@@ -134,19 +134,19 @@ public class CV_Search extends Utility {
 
 	// Checkbox All Versions
 	@FindBy(xpath = "//input[@id='allVersions']")
-	WebElement ChkAllVersions;
+	WebElement chkAllVersions;
 
 	// Checkbox Include Comment
 	@FindBy(xpath = "//input[@id='includeComment']")
-	WebElement ChkIncludeComment;
+	WebElement chkIncludeComment;
 
 	// Checkbox Append to hitlist
 	@FindBy(xpath = "//input[@id='appendToHitList']")
-	WebElement ChkAppendToHitList;
+	WebElement chkAppendToHitList;
 
 	// Checkbox Find inhitlist
 	@FindBy(xpath = "//input[@id='findInHitList']")
-	WebElement ChkFindInHitList;
+	WebElement chkFindInHitList;
 
 	// Click on "Select saved search"
 	@FindBy(xpath = "(//select[@id='savedSearchName']")
