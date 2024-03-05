@@ -5,203 +5,246 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 public class CV_NewDocument 
-{//Web Element added - 01/03/2024
-	
+{
+	// Web Elements added in CV_NewDocuments Amol - 04/03/2024
+
 	@CacheLookup
-	//Cabinet
+	// Cabinet
 	@FindBy(xpath = "//*[contains(text(), 'New Cabinet')]/ancestor::li/ins[@class='jstree-icon']")
-	WebElement usercabinet; //New Cabinet
-	
-	//Drawer
+	WebElement iconPlusCabinet; // New Cabinet
+
+	// Drawer
 	@FindBy(xpath = "//*[contains(text(), 'Amol')]/ancestor::li/ins[@class='jstree-icon']")
-	WebElement userdrawer; //Amol
-	
-	//Folder
+	WebElement iconPlusDrawer; // Amol
+
+	// Folder
 	@FindBy(xpath = "//*[contains(text(), 'QA_Test')]")
-	WebElement userfolder; //QA_Test
-	
-	//File opening loader
-	@FindBy(xpath = "(//div[@class='spinner-border spinner-border-lg'])[2]")
-	WebElement loader;
-	
-	//Document Checkbooks
-	@FindBy(xpath = "//span[@class='checkmark']")
-	WebElement chkbxdocument;
-	
-	//New Document
-	@FindBy(xpath = "//a[@id='createDocument']")
-	WebElement menunewdocument;
-	
-	//Destination Folder
-	@FindBy(xpath = "//input[@id='createDocuemtnLocation']")
-	WebElement txtdestinationfolder;
-	
-	//Document Type
-	@FindBy(xpath = "//select[@id='docTypeList']")
-	WebElement dddoctype;
-	
-	//Retain button
-	@FindBy(xpath = "//input[@id='retainBtn']")
-	WebElement chkbxretain;
-	
-	//Folder Create Button 
-	@FindBy(xpath = "//button[@id='createDocumentSubmit']")
-	WebElement btncreate;
-	
-	//Folder Cancel Button
-	@FindBy(xpath = "createDocumentClear")
-	WebElement btnclear;
-	
-	//Navigate button
-	@FindBy(xpath = "//button[@id='modelHome'][text()='Navigate']")
-	WebElement btnnavigate;
-	
-	//View Button
-	@FindBy(xpath = "//button[@id='viewCreatedDocument'][text()='View ']")
-	WebElement btnviewElement;
-	
-	//After clicking view button
-	
-	//Send to Workflow Button
-	@FindBy(xpath = "//span[@id='viewSendToWrkflw'][text()='Send To Workflow...']")
-	WebElement btnsendtoworkflow;
+	WebElement iconFolder; // QA_Test
+
+	// File opening loader after click on document
+	@FindBy(xpath = "(//div[@id='progressMsg'][text()='Opening document...'])[2]")
+	WebElement loaderFileOpening;
 		
-	//Document Type
-	@FindBy(xpath = "//select[@id='viewDocumentTypeList']")
-	WebElement dddocumenttypElement;
-	
-	//Properties
-	@FindBy(xpath = "//div[@class='elementHeader']/span[text()='Properties']")
-	WebElement headerElementproperties;
-	
-	//Update Button
-	@FindBy(xpath = "//a[@id='editproperties_983'][text()='Update']")
-	WebElement btnupdate;
-	
-	//After click on Update button
-	//Save button
-	@FindBy(xpath = "//a[@id='saveproperties_1016']")
-	WebElement btnsave;
-	
-	//Cancel Button
-	@FindBy(xpath = "//a[@id='cancelproperties_1016']")
-	WebElement btncancel;
-	
-	//Authors List
-	@FindBy(xpath = "//input[@id='indicesViewText_1']")
-	WebElement ddAuthorslist;
-	
-	//Comments
-	@FindBy(xpath = "//span[text()='Comments ']")
-	WebElement headercommentsElement;
-	
-	//After click on Comments
-	//Search Box
-	@FindBy(xpath = "//input[@id='commentsInput']")
-	WebElement txtSearchbox;
-	
-	//Add Comment
-	@FindBy(xpath = "//button[@id='addComment']")
-	WebElement btnaddcomment;
-	
-	//Close Button
-	@FindBy(xpath = "//button[@id='cancelComments']")
-	WebElement btnclose;
-	
-	//Close
-	@FindBy(xpath = "//span[@id='commentsModalClose']")
-	WebElement close;
-	
-	//References
-	@FindBy(xpath = "//span[@id='referenceView_1016']")
-	WebElement headerreferences;
-	
-	//After click on References
-	//Close
-	@FindBy(xpath = "//div[@class='jconfirm-buttons']/button[@class='btn btn-default'][text()='Cancel']")
-	WebElement btnreferencescancel;
-	
-	//Versions
-	@FindBy(xpath = "//span[text()='Versions']")
-	WebElement headerversions;
-	
-	//After click on Versions
-	//Set Active Version
-	@FindBy(xpath = "//a[@id='setVersions_1016']")
-	WebElement btnsetactiveversion;
-	
-	//Delete All Versions
-	@FindBy(xpath = "//a[@id='delVersions_1016']")
-	WebElement btndeleteallversions;
-	
-	//Comments
-	@FindBy(xpath = "//a[@id='CommentVersion_1016']")
-	WebElement btncomments;
-	
-	//General
-	@FindBy(xpath = "//span[text()='General']")
-	WebElement headergeneral;
+	// Document Checkbooks
+	@FindBy(xpath = "//span[@class='checkmark']")
+	WebElement chkDocument;
 
-	//After click on General
-	//Full Text Search
-	@FindBy(xpath = "//a[@id='fullTextSearch_1016']")
-	WebElement btnfulltextsearch;
-	
-	//History
-	@FindBy(xpath = "//span[text()='History']")
-	WebElement headerhistory;
-	
-	//After Click on History
-	//Excel Export
-	@FindBy(xpath = "//div[@class='e-toolbar-item'][@title='Excel Export']")
-	WebElement exportexcel;
-	
-	//PDF Export
-	@FindBy(xpath = "//div[@class='e-toolbar-item'][@title='PDF Export']")
-	WebElement pdfexport;
-	
-	//Search bar
-	@FindBy(xpath = "//input[@id='historyConfirm_searchbar']")
-	WebElement historySearchbar;
-	
-	//Print All
-	@FindBy(xpath = "//button[@class='btn modalDialogButtons']")
-	WebElement btnprintall;
-	
-	//Cancel
-	@FindBy(xpath = "//div[@class='jconfirm-buttons']/button[@class='btn btn-default']")
-	WebElement btnhistorycancel;
+	// Menu New Document
+	@FindBy(xpath = "//a[@id='createDocument']")
+	WebElement menuNewDocument;
 
-	//New Button
+	// After click on New Document Menu
+	// Destination Folder
+	@FindBy(xpath = "//input[@id='createDocuemtnLocation']")
+	WebElement txtDestinationFolder;
+
+	// Document Type
+	@FindBy(xpath = "//select[@id='docTypeList']")
+	WebElement ddDoctype;
+
+	// Retain button
+	@FindBy(xpath = "//input[@id='retainBtn']")
+	WebElement chkbxRetain;
+
+	// Folder Create Button
+	@FindBy(xpath = "//button[@id='createDocumentSubmit']")
+	WebElement btnCreate;
+
+	// Folder Cancel Button
+	@FindBy(xpath = "createDocumentClear")
+	WebElement btnClear;
+
+	// After click on Create Button
+	// Navigate button
+	@FindBy(xpath = "//button[@id='modelHome'][text()='Navigate']")
+	WebElement btnNavigate;
+
+	// View Button
+	@FindBy(xpath = "//button[@id='viewCreatedDocument'][text()='View ']")
+	WebElement btnView;
+
+	// New Button
 	@FindBy(xpath = "//button[@id='modelNewDocument'][text()='New']")
-	WebElement btnnew;	
-	
-	//After click on New button
-	//Plus icon
-	@FindBy(xpath = "//div[@id='addPagesDropDown']")
-	WebElement ddplusicon;
-	
-	//Browse 
-	@FindBy(xpath = "//input[@id='viewDocumentAddPages']")
-	WebElement browse;
+	WebElement btnNew;
 
-	//Camera
+	// After clicking view button
+	// Send to Workflow Button
+	@FindBy(xpath = "//span[@id='viewSendToWrkflw'][text()='Send To Workflow...']")
+	WebElement btnSendToWorkflow;
+
+	// Document Type
+	@FindBy(xpath = "//select[@id='viewDocumentTypeList']")
+	WebElement ddDocumentTyp;
+
+	// Properties
+	@FindBy(xpath = "//div[@class='elementHeader']/span[text()='Properties']")
+	WebElement lblProperties;
+
+	// Update Button
+	@FindBy(xpath = "//a[@id='editproperties_983'][text()='Update']")
+	WebElement btnUpdate;
+
+	// After click on Update button
+	// Save button
+	@FindBy(xpath = "//a[@id='saveproperties_1016']")
+	WebElement btnSave;
+
+	// Cancel Button
+	@FindBy(xpath = "//a[@id='cancelproperties_1016']")
+	WebElement btnCancel;
+
+	// Authors List
+	@FindBy(xpath = "//input[@id='indicesViewText_1']")
+	WebElement ddAuthorsList;
+
+	// Comments
+	@FindBy(xpath = "//span[text()='Comments ']")
+	WebElement lblComments;
+
+	// After click on Comments
+	// Search Box
+	@FindBy(xpath = "//input[@id='commentsInput']")
+	WebElement txtSearchBox;
+
+	// Add Comment
+	@FindBy(xpath = "//button[@id='addComment']")
+	WebElement btnAddComment;
+
+	// Close Button
+	@FindBy(xpath = "//button[@id='cancelComments']")
+	WebElement btnClose;
+
+	// Close
+	@FindBy(xpath = "//span[@id='commentsModalClose']")
+	WebElement Close;
+
+	// References
+	@FindBy(xpath = "//span[@id='referenceView_1016']")
+	WebElement lblReferences;
+
+	// After click on References
+	// Close
+	@FindBy(xpath = "//div[@class='jconfirm-buttons']/button[@class='btn btn-default'][text()='Cancel']")
+	WebElement btnReferencesCancel;
+
+	// Versions
+	@FindBy(xpath = "//span[text()='Versions']")
+	WebElement lblVersions;
+
+	// After click on Versions
+	// Set Active Version
+	@FindBy(xpath = "//a[@id='setVersions_1016']")
+	WebElement btnSetActiveVersion;
+
+	// Delete All Versions
+	@FindBy(xpath = "//a[@id='delVersions_1016']")
+	WebElement btnDeleteAllVersions;
+
+	// Comments
+	@FindBy(xpath = "//a[@id='CommentVersion_1016']")
+	WebElement btnComments;
+
+	// General
+	@FindBy(xpath = "//span[text()='General']")
+	WebElement lblGeneral;
+
+	// After click on General
+	// Full Text Search
+	@FindBy(xpath = "//a[@id='fullTextSearch_1016']")
+	WebElement btnFullTextSearch;
+
+	// History
+	@FindBy(xpath = "//span[text()='History']")
+	WebElement lblHistory;
+
+	// After Click on History
+	// Excel Export
+	@FindBy(xpath = "//div[@class='e-toolbar-item'][@title='Excel Export']")
+	WebElement btnExportExcel;
+
+	// PDF Export
+	@FindBy(xpath = "//div[@class='e-toolbar-item'][@title='PDF Export']")
+	WebElement btnPdfExport;
+
+	// Search bar
+	@FindBy(xpath = "//input[@id='historyConfirm_searchbar']")
+	WebElement txtHistorySearchBar;
+
+	// Print All
+	@FindBy(xpath = "//button[@class='btn modalDialogButtons']")
+	WebElement btnPrintAll;
+
+	// Cancel
+	@FindBy(xpath = "//div[@class='jconfirm-buttons']/button[@class='btn btn-default']")
+	WebElement btnHistoryCancel;
+
+	// After click on New button
+	// Plus icon
+	@FindBy(xpath = "//div[@id='addPagesDropDown']")
+	WebElement ddPlusIcon;
+
+	// Browse
+	@FindBy(xpath = "//input[@id='viewDocumentAddPages']")
+	WebElement ddBrowseButton;
+
+	// Camera
 	@FindBy(xpath = "//div[@id='fileUploadComp']")
-	WebElement camera;
-	
-	//Scan
+	WebElement ddCameraButton;
+
+	// Scan
 	@FindBy(xpath = "//div[@id='scan']")
-	WebElement scan;
-	
-	//New Word Document
+	WebElement ddScanButton;
+
+	// New Word Document
 	@FindBy(xpath = "//div[@id='addWordFile']")
-	WebElement newworddocument;
-	
-	//New Excel Spreadsheet
+	WebElement ddNewWordDocumentButton;
+
+	// Enter File Name
+	@FindBy(xpath = "//input[@id='newTemplateFileName']")
+	WebElement txtNewDocumentEnterFileName;
+
+	// Ok Button
+	@FindBy(xpath = "//button[@id='templateOK']")
+	WebElement btnNewDocumentOk;
+
+	// Cancel Button
+	@FindBy(xpath = "//button[@id='templateCanel']")
+	WebElement btnNewDocumentCancel;
+
+	// Close Navigation
+	@FindBy(xpath = "//span[@id='navigatorModelCloseTemplate9']")
+	WebElement btnNewDocumentClose;
+
+	// After Click on OK
+	// Loader
+	@FindBy(xpath = "(//div[text()='Adding page(s)...'][@id='progressMsg'])[2]")
+	WebElement msgNewDocument;
+
+	// New Excel Spreadsheet
 	@FindBy(xpath = "//div[@id='addExcelFile']")
-	WebElement newexcelspreadsheet;
-	
-	//New PDF Document
+	WebElement ddNewExcelSpreadsheetButton;
+
+	// New PDF Document
 	@FindBy(xpath = "//div[@id='addPdfFile']")
-	WebElement newpdfdocument;
+	WebElement ddNewPdfDocumentButton;
+
+	// Fab Menu Button
+	@FindBy(xpath = "//i[@id='fabButton'][@class='fa fa-bars']")
+	WebElement btnFabMenu;
+
+	// Fab Save Button
+	@FindBy(xpath = "//i[@id='saveFabButton']")
+	WebElement btnFabSaveDocument;
+
+	// Fab Delete Button
+	@FindBy(xpath = "//i[@id='deleteFabButton']")
+	WebElement btnFabDeleteDocument;
+
+	// Fab Upload Button
+	@FindBy(xpath = "//i[@id='uploadFabButton']")
+	WebElement btnFabploadDocument;
+
+	// Fab Full Screen View
+	@FindBy(xpath = "//i[@id='fullScreenFabButton']")
+	WebElement btnFabFullScreenView;
 }

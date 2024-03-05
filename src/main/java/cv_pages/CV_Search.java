@@ -1,14 +1,19 @@
 package cv_pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CV_Search {
+import cv_resources.Utility;
+
+public class CV_Search extends Utility {
 	
+	WebDriver driver;
+
 	//WebElement Added in CV_Search_Page on 28/02/2024 - Suresh
 	// Click on "Search"
 	@FindBy(xpath = "//a[@id='advSearchMenuBtn']")
-	WebElement ClickSearch;
+	WebElement clickSearchMenu;
 
 	// Click on "Select Document location
 	@FindBy(xpath = "//input[@id='folderLocationForSearch']")
@@ -26,15 +31,15 @@ public class CV_Search {
 	@FindBy(xpath = "//span[@id='navigatorModelClose1']")
 	WebElement btnCloseSearchLocation;
 
-	// Click on "Refresh"
+	// Click on "Refresh"--
 	@FindBy(xpath = "//img[@id='searchfolderrefreshBtn']")
 	WebElement imgRefreshSearchLocation;
 
-	// Click on "labelSearchImage1"
+	// Click on "labelSearchImage1"--
 	@FindBy(xpath = "//input[@id='searchLocateNode']")
 	WebElement imgSearchDocumentLocation;
 
-	// Click on "All of the words"
+	// Click on "All of the words"--
 	@FindBy(xpath = "//li[@id='indexOptionMenu_0']")
 	WebElement listIndexOption;
 
@@ -128,19 +133,19 @@ public class CV_Search {
 
 	// Checkbox All Versions
 	@FindBy(xpath = "//input[@id='allVersions']")
-	WebElement ChkAllVersions;
+	WebElement chkAllVersions;
 
 	// Checkbox Include Comment
 	@FindBy(xpath = "//input[@id='includeComment']")
-	WebElement ChkIncludeComment;
+	WebElement chkIncludeComment;
 
 	// Checkbox Append to hitlist
 	@FindBy(xpath = "//input[@id='appendToHitList']")
-	WebElement ChkAppendToHitList;
+	WebElement chkAppendToHitList;
 
 	// Checkbox Find inhitlist
 	@FindBy(xpath = "//input[@id='findInHitList']")
-	WebElement ChkFindInHitList;
+	WebElement chkFindInHitList;
 
 	// Click on "Select saved search"
 	@FindBy(xpath = "(//select[@id='savedSearchName']")
@@ -200,6 +205,29 @@ public class CV_Search {
 
 	//
 	@FindBy(xpath = "//button[@id='resetColumsOk']")
-	WebElement dd2resetColums;
+	WebElement dd2ResetColums;
+	
+	public CV_Search(WebDriver ldriver )
+	{
+		this.driver=ldriver;
+		
+	}
+	
+	public void Search_CV()
+	{
+		clickSearchMenu.click();
+		txtFloderLocationpath.click();
+		btnOkSearchLocation.click();
+		btnCancelSearchLocation.click();
+		btnCloseSearchLocation.click();
+		imgRefreshSearchLocation.click();
+		imgSearchDocumentLocation.click();
+		listIndexOption.click();
+		
+		
+		
+		
+		
+	}		
 
 }
