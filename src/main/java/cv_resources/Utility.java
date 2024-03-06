@@ -43,11 +43,7 @@ public class Utility {
 		 * Properties prop= new Properties(); FileInputStream fis=new
 		 * FileInputStream("/LTM/src/GlobalData.properties"); prop.load(fis); String
 		 * browsename=prop.getProperty("browser");
-<<<<<<< HEAD
-		
-=======
-		 
->>>>>>> AmolLocal
+
 		if (browsename.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			//ChromeOptions options = new ChromeOptions();
