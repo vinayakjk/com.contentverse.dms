@@ -17,8 +17,8 @@ public class CV_LoginTestCase {
 		
 		CV_LoginPage login_page= PageFactory.initElements(driver,CV_LoginPage.class);
 		
-		//login_page.login_cvWeb("vinayak", "Arnav@123");
-		login_page.login_cvWeb("mateen", "root@123");
+		login_page.login_cvWeb("vinayak", "Arnav@123");
+		//login_page.login_cvWeb("mateen", "root@123");
 	}
 	
 }
