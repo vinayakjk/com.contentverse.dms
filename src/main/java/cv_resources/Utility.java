@@ -25,24 +25,24 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 //import io.github.bonigarcia.wdm.WebDriverManager;
 
- // Method Added By Rajendra - 28/02/2024
+// Method Added By Rajendra - 28/02/2024
 
 public class Utility {
-	
-	
+
+
 	static WebDriver driver;
-	
+
 	/*
-	
+
 	public static WebDriver driver;
 	/*
 	public static WebDriver startBrowser(String browsename, String URL)
 
 	{
-		
-		 * Properties prop= new Properties(); FileInputStream fis=new
-		 * FileInputStream("/LTM/src/GlobalData.properties"); prop.load(fis); String
-		 * browsename=prop.getProperty("browser");
+
+	 * Properties prop= new Properties(); FileInputStream fis=new
+	 * FileInputStream("/LTM/src/GlobalData.properties"); prop.load(fis); String
+	 * browsename=prop.getProperty("browser");
 
 		if (browsename.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
@@ -67,8 +67,8 @@ public class Utility {
 		new WebDriverWait(wd, Duration.ofSeconds(30));
 		wd.get(URL);
 		return wd;
-*/
-	
+	 */
+
 
 	public void Dropdown(By drp_Ele, String visible) {
 		// WebElement myEleDp = wd.findElement(By.id(cat));
@@ -83,7 +83,7 @@ public class Utility {
 		dropdown.selectByVisibleText(visible);
 
 	}
-	
+
 	public static void Dropdownbyindex(WebElement cat, int visible) {
 		// WebElement myEleDp = wd.findElement(By.id(cat));
 		Select dropdown = new Select(cat);// For select Hardware Type
@@ -227,11 +227,11 @@ public class Utility {
 			wt.until(ExpectedConditions.visibilityOf(Ele));
 			isDisplayed = true;
 		} catch (Exception e)
-		
+
 		{
 			e.printStackTrace();
 		}
-       
+
 		return isDisplayed;
 
 	}
@@ -271,7 +271,7 @@ public class Utility {
 		}
 	}
 
-	
+
 	public static boolean isAlertPresent(WebDriver wd) 
 	{
 		try {
@@ -280,35 +280,35 @@ public class Utility {
 		} catch (Exception e) 
 		{
 			return false;
-			
-		}
 
 		}
 
+	}
 
 
-	
+
+
 	public static WebDriver startBrowser(String browserName,String url)
 	{
 		if(browserName.equalsIgnoreCase("firefox"))
 		{
 			driver = new FirefoxDriver();
-			
+
 		}
 		else if (browserName.equalsIgnoreCase("chrome"))
 		{
-			
+
 			driver=new ChromeDriver();
-			
+
 		}
 		else if (browserName.equalsIgnoreCase("edge"))
 		{
 			driver=new EdgeDriver();
 		}
-		
+
 		driver.manage().window().maximize();
 		driver.get(url);
-		
+
 		return driver;
 
 
