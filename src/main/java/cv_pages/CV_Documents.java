@@ -307,17 +307,5 @@ public class CV_Documents {
 		@FindBy(xpath ="//a[@id='refreshDocuments']")
 	    WebElement clickRefresh;
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
 }
+
