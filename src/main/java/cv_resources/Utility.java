@@ -1,6 +1,4 @@
 package cv_resources;
-
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -21,35 +19,26 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-//import org.openqa.selenium.firefox.FirefoxOptions;
-//import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-//import org.testng.annotations.AfterMethod;
-//import org.testng.annotations.AfterSuite;
-
-//import io.github.bonigarcia.wdm.WebDriverManager;
-
- // Method Added By Rajendra - 28/02/2024
 
 public class Utility {
-	
-	
+
+
 	static WebDriver driver;
-	
+
 	/*
-	
-	public static WebDriver wd;
-	
+
+	public static WebDriver driver;
 	public static WebDriver startBrowser(String browsename, String URL)
 
 	{
-		/*
-		 * Properties prop= new Properties(); FileInputStream fis=new
-		 * FileInputStream("/LTM/src/GlobalData.properties"); prop.load(fis); String
-		 * browsename=prop.getProperty("browser");
-		 
+
+	 * Properties prop= new Properties(); FileInputStream fis=new
+	 * FileInputStream("/LTM/src/GlobalData.properties"); prop.load(fis); String
+	 * browsename=prop.getProperty("browser");
+
 		if (browsename.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			//ChromeOptions options = new ChromeOptions();
@@ -121,7 +110,6 @@ public class Utility {
 	   
 	    
 	}	
-	
 
 	public void Dropdown(By drp_Ele, String visible) {
 		// WebElement myEleDp = wd.findElement(By.id(cat));
@@ -136,7 +124,7 @@ public class Utility {
 		dropdown.selectByVisibleText(visible);
 
 	}
-	
+
 	public static void Dropdownbyindex(WebElement cat, int visible) {
 		// WebElement myEleDp = wd.findElement(By.id(cat));
 		Select dropdown = new Select(cat);// For select Hardware Type
@@ -280,14 +268,11 @@ public class Utility {
 			wt.until(ExpectedConditions.visibilityOf(Ele));
 			isDisplayed = true;
 		} catch (Exception e)
-		{
-			
-		}
-			/*
+
 		{
 			e.printStackTrace();
 		}
-       */
+
 		return isDisplayed;
 
 	}
@@ -327,7 +312,7 @@ public class Utility {
 		}
 	}
 
-	
+
 	public static boolean isAlertPresent(WebDriver wd) 
 	{
 		try {
@@ -336,10 +321,13 @@ public class Utility {
 			} 	catch (Exception e) 
 			{
 			return false;
-			
-			}
+    }
 
 		}
+
+	}
+
+
 
 
 	public static WebDriver startBrowser()//String browserName,String url
@@ -347,22 +335,24 @@ public class Utility {
 		if(ConfigReader.getBrowser().equalsIgnoreCase("firefox"))
 		{
 			driver = new FirefoxDriver();
-			
+
 		}
 		else if (ConfigReader.getBrowser().equalsIgnoreCase("chrome"))
 		{
+
 			driver=new ChromeDriver();
+
 		}
 		else if (ConfigReader.getBrowser().equalsIgnoreCase("edge"))
 		{
 			driver=new EdgeDriver();
 		}
-		
+
 		driver.manage().window().maximize();
 		driver.get(ConfigReader.url);
-		
+		driver.get(url);
 		return driver;
-		
+
 
 	}
 	

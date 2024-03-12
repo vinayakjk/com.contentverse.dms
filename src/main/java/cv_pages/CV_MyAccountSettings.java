@@ -8,7 +8,7 @@ public class CV_MyAccountSettings
 
 	//ClickMyAccount
 	@FindBy(xpath = "//h3[contains(text(),'My Account')]")
-	WebElement ClickMyAccount;
+	WebElement clickMyAccount;
 	
 	//lblMyAccount
 	@FindBy(xpath = "//h3[text()='My Account']")

@@ -247,5 +247,4 @@ public class CV_NewDocument
 	// Fab Full Screen View
 	@FindBy(xpath = "//i[@id='fullScreenFabButton']")
 	WebElement btnFabFullScreenView;
-
 }
