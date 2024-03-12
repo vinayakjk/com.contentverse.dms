@@ -1,5 +1,6 @@
 package cv_resources;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -7,6 +8,7 @@ import java.net.URL;
 import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
@@ -17,15 +19,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-//import org.openqa.selenium.firefox.FirefoxOptions;
-//import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-//import io.github.bonigarcia.wdm.WebDriverManager;
-
-// Method Added By Rajendra - 28/02/2024
 
 public class Utility {
 
@@ -35,7 +31,6 @@ public class Utility {
 	/*
 
 	public static WebDriver driver;
-	/*
 	public static WebDriver startBrowser(String browsename, String URL)
 
 	{
@@ -67,8 +62,54 @@ public class Utility {
 		new WebDriverWait(wd, Duration.ofSeconds(30));
 		wd.get(URL);
 		return wd;
-	 */
+*/
+	
+	
 
+	public static class ConfigReader {
+	    private static String Username ;
+		private static Properties properties;
+	    private static String browser;
+	    private static String url;
+	    private static String Password;
+	   // private static long implicitwait ;
+
+	    static {
+	        properties = new Properties();
+	        try {
+	            FileInputStream fis = new FileInputStream("D:\\Data\\com.contentverse.dms\\src\\main\\java\\cv_resources\\config.properties");
+	            properties.load(fis);
+	            browser = properties.getProperty("browser");
+	            url = properties.getProperty("url");
+	            Username = properties.getProperty("Username");
+	            Password= properties.getProperty("Password");
+	           // implicitwait=properties.getProperty("implicitwait");
+	            //implicitwait  = Long.parseLong(properties.getProperty("implicitWaitSeconds"));
+	            
+	        } catch (IOException e) 
+	        {
+	            //e.printStackTrace();
+	        }
+	    }
+
+	    public static String getBrowser() {
+	        return browser;
+	    }
+
+	    public static String getUrl() {
+	        return url;
+	    }
+	    
+	    public static String getUsername() {
+	        return Username;
+	    }
+	    
+	    public static String getPassword() {
+	        return Password;
+	    }
+	   
+	    
+	}	
 
 	public void Dropdown(By drp_Ele, String visible) {
 		// WebElement myEleDp = wd.findElement(By.id(cat));
@@ -275,11 +316,12 @@ public class Utility {
 	public static boolean isAlertPresent(WebDriver wd) 
 	{
 		try {
-			wd.switchTo().alert();
-			return true;
-		} catch (Exception e) 
-		{
+				wd.switchTo().alert();
+				return true;
+			} 	catch (Exception e) 
+			{
 			return false;
+    }
 
 		}
 
@@ -288,30 +330,32 @@ public class Utility {
 
 
 
-	public static WebDriver startBrowser(String browserName,String url)
+	public static WebDriver startBrowser()//String browserName,String url
 	{
-		if(browserName.equalsIgnoreCase("firefox"))
+		if(ConfigReader.getBrowser().equalsIgnoreCase("firefox"))
 		{
 			driver = new FirefoxDriver();
 
 		}
-		else if (browserName.equalsIgnoreCase("chrome"))
+		else if (ConfigReader.getBrowser().equalsIgnoreCase("chrome"))
 		{
 
 			driver=new ChromeDriver();
 
 		}
-		else if (browserName.equalsIgnoreCase("edge"))
+		else if (ConfigReader.getBrowser().equalsIgnoreCase("edge"))
 		{
 			driver=new EdgeDriver();
 		}
 
 		driver.manage().window().maximize();
+		driver.get(ConfigReader.url);
 		driver.get(url);
-
 		return driver;
 
 
 	}
+	
+	
 }
 

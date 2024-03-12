@@ -11,6 +11,7 @@ import org.openqa.selenium.support.FindBy;
 //import org.openqa.selenium.support.PageFactory;
 //import org.testng.asserts.SoftAssert;
 
+
 import cv_resources.Utility;
 
 public class CV_LoginPage extends Utility {
@@ -75,20 +76,30 @@ public class CV_LoginPage extends Utility {
 	@FindBy(xpath="//input[@id='verifyOTPforgotpassword']")
 	WebElement txtVerifyOTPforgotpassword;
 	
+	@FindBy(xpath = "//button[@id='cvModelLoginValidationOk']")
+	WebElement WindowSesionMgr;
 	
-	public void cv_LoginPage(WebDriver ldriver )
+	
+	public void cv_LoginPage(WebDriver driver )
 	{
-		this.driver=ldriver;
+		this.driver=driver;
 		
 	}
 	
 	
-	public void login_cvWeb(String uid,String pass)
+	public void login_cvWeb()//String uid,String pass
 	{
-		txtUsername.sendKeys(uid);
-		txtPassword.sendKeys(pass);
+		txtUsername.sendKeys(ConfigReader.getUsername());
+		txtPassword.sendKeys(ConfigReader.getPassword());
 		ddRooms.click();
 		btnSubmit.click();
+		
+		if (Utility.isDisaplyedW(WindowSesionMgr, driver, 5))
+		{
+			WindowSesionMgr.click();
+			System.out.println("Another Session Ended");
+		}
+
 		
 		//check logged in user name correctly after logging/Verify the logging username 
 		
