@@ -3,7 +3,7 @@ package cv_resources;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
-public class ExtendReports 
+public class ExtentReportNG 
 {
 
 
