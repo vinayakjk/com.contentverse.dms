@@ -32,7 +32,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Utility {
 	
 	
-	static WebDriver driver;
+	 static WebDriver driver;
 	
 	/*
 	
