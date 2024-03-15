@@ -1,25 +1,29 @@
 package cv_pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import cv_resources.Utility;
 
 
 public class CV_Recent extends Utility{
-	
+
+	/*
+ 		Elements from this form are dynamic so we need to provide from config or text data .
+   		Text changes as per user login and visited files and folders 
+     		so do changes accordingly with below locators.
+   	
+ 	*/
 	//RecentTab
 	@FindBy(xpath = "//*[@id=\"recentMenus\"]")
 	WebElement  SubMenuRecent;
-	
+
 	//RecentFolder MouseHovermenu
-	@FindBy(xpath = "//*[@id=\"recentFolders\"]/tbody/tr[1]")
+	@FindBy(xpath = "//*[@id="recentFolders"]/tbody/tr[1]")
 	WebElement SubMenuRecentFolders;
 	
 	//RecentDocument MouseHovermenu
-	@FindBy(xpath = "//*[@id=\"recentDocuments\"]/tbody/tr[1]")
+	@FindBy(xpath = "//*[@id="recentDocuments"]/tbody/tr[1]")
 	WebElement SubMenuRecentDocuments;
 	
 	//Mousehover Document header 
