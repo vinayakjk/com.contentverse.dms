@@ -1,5 +1,7 @@
 package cv_pages;
 
+import java.time.Duration;
+
 //import java.time.Duration;
 //import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +12,7 @@ import org.openqa.selenium.support.FindBy;
 //import org.openqa.selenium.WebDriver;
 //import org.openqa.selenium.support.PageFactory;
 //import org.testng.asserts.SoftAssert;
+import org.openqa.selenium.support.PageFactory;
 
 
 import cv_resources.Utility;
@@ -79,10 +82,12 @@ public class CV_LoginPage extends Utility {
 	@FindBy(xpath = "//button[@id='cvModelLoginValidationOk']")
 	WebElement WindowSesionMgr;
 	
-	
-	public void cv_LoginPage(WebDriver driver )
+
+	public CV_LoginPage(WebDriver driver )
 	{
-		this.driver=driver;
+		this.driver = driver;
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		PageFactory.initElements(driver, this);
 		
 	}
 	
@@ -102,23 +107,19 @@ public class CV_LoginPage extends Utility {
 
 		
 		//check logged in user name correctly after logging/Verify the logging username 
-		
+		/*
 		if (imgLoggedInUsername.isDisplayed()==true)
 		{
 			System.out.println(imgLoggedInUsername.getText() + "logged in succeesfully.");
 			imgLoggedInUsername.click();
 			btnLogout.click();
 			System.out.println("logged out succeesfully.");
-		}
+		}*/
 
 	}
 
 	/*public void login(String User, String Pass) 
 
-=======
-	/*
-	public void login(String User, String Pass) 
->>>>>>> .theirs
 	{
 		SoftAssert softAssert = new SoftAssert();
 		username.sendKeys(User);

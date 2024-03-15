@@ -26,7 +26,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Utility {
 
 
-	static WebDriver driver;
+public class Utility {
+	 static WebDriver driver;
 
 	/*
 

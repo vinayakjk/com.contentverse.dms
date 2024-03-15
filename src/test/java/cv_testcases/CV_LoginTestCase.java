@@ -9,17 +9,19 @@ import org.testng.annotations.Test;
 
 import cv_pages.CV_LoginPage;
 import cv_resources.Utility;
-import org.openqa.selenium.support.PageFactory;
 
-public class CV_LoginTestCase {
+public class CV_LoginTestCase  {
 
 	WebDriver driver;
 	@Test
-	public void checkValidUser()
+	public  static void checkValidUser()
 	{
+		
+//		WebDriver driver =Utility.startBrowser("chrome", "http://192.168.1.15:8080/CVWeb/cvLgn");
 		driver =Utility.startBrowser();//"chrome", "http://192.168.1.15:8080/CVWeb/cvLgn"
 		
-		CV_LoginPage login_page= PageFactory.initElements(driver,CV_LoginPage.class);
+		
+		CV_LoginPage login_page= new CV_LoginPage(driver);
 		
 		//login_page.login_cvWeb("vinayak", "Arnav@123");
 		login_page.login_cvWeb();//"mateen", "root@123"
