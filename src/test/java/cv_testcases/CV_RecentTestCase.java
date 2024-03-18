@@ -15,7 +15,7 @@ public class CV_RecentTestCase {
 
 	//WebDriver driver;
 	
-	WebDriver driver =Utility.startBrowser("chrome", "http://192.168.1.15:8080/CVWeb/cvLgn");
+	WebDriver driver =Utility.startBrowser();//"chrome", "http://192.168.1.15:8080/CVWeb/cvLgn"
 	//CV_LoginPage login_page = new CV_LoginPage(driver);
 
 	//CV_Recent recent = new CV_Recent(driver);
@@ -30,7 +30,7 @@ public class CV_RecentTestCase {
 	@Test
 	public void login() {
 		CV_LoginPage login_page = new CV_LoginPage(driver);
-		login_page.login_cvWeb("shraddha" , "root@123");
+		login_page.login_cvWeb();//"shraddha" , "root@123"
 
 	}
 	
@@ -41,7 +41,7 @@ public class CV_RecentTestCase {
 	public void verifyRecentFileFolder() 
 	{
 		//CV_LoginTestCase.checkValidUser();
-
+		System.out.println("Verify FOlder Gets started");
         
 		recent.verifyFolder();
 		recent.verifyFile();
