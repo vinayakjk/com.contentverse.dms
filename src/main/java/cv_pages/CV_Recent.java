@@ -1,6 +1,8 @@
 package cv_pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import cv_resources.Utility;
@@ -15,35 +17,35 @@ public class CV_Recent extends Utility{
    	
  	*/
 	//RecentTab
-	@FindBy(xpath = "//*[@id=\"recentMenus\"]")
+	@FindBy(xpath = "//*[@id='recentMenus']")
 	WebElement  SubMenuRecent;
 
 	//RecentFolder MouseHovermenu
-	@FindBy(xpath = "//*[@id="recentFolders"]/tbody/tr[1]")
+	@FindBy(xpath = "//*[@id='recentFolders']/tbody/tr[1]")
 	WebElement SubMenuRecentFolders;
 	
 	//RecentDocument MouseHovermenu
-	@FindBy(xpath = "//*[@id="recentDocuments"]/tbody/tr[1]")
+	@FindBy(xpath = "//*[@id='recentDocuments']/tbody/tr[1]")
 	WebElement SubMenuRecentDocuments;
 	
 	//Mousehover Document header 
-	@FindBy(xpath = "//*[@id=\"recentDocuments\"]/thead/tr")
+	@FindBy(xpath = "//*[@id='recentDocuments']/thead/tr")
 	WebElement Doc;
 	
 	//Folder selection in tree view
-	@FindBy(xpath="//*[@id=\"1022\"]/a")
+	@FindBy(xpath="//*[@id='1022']/a")
 	WebElement verifyFoldername;
 	
 	//Verifying file element
-	@FindBy(xpath="//*[@id=\"Val_232\"]")
+	@FindBy(xpath="//*[@id='Val_232']")
 	WebElement verifyFilevalue;   
 	
 	//Click on My account
-	@FindBy(xpath="//*[@id=\"logoutElement\"]")
+	@FindBy(xpath="//*[@id='logoutElement']")
 	WebElement myaccount;
 	
 	//Logout button
-	@FindBy(xpath="//*[@id=\"idSidenav\"]/ul/li[1]/a")
+	@FindBy(xpath="//*[@id='idSidenav']/ul/li[1]/a")
 	WebElement logoutbtn;
 	
 	

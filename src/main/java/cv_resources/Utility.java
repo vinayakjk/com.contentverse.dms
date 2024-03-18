@@ -29,91 +29,49 @@ public class Utility {
 
 
 
-	public static class ConfigReader {
-  		private static String Username ;
-	  	private static Properties properties;
-	    private static String browser;
-	    private static String url;
-	    private static String Password;
+	 public static class ConfigReader {
+		    private static String Username ;
+			private static Properties properties;
+		    private static String browser;
+		    private static String url;
+		    private static String Password;
 
-	    static {
-	        properties = new Properties();
-	        try {
-	        	
-	            FileInputStream fis = new FileInputStream((System.getProperty("user.dir")+"\\src\\main\\java\\cv_resources\\Config.properties"));
-	            
-	            properties.load(fis);
-	            browser = properties.getProperty("browser");
-	            url = properties.getProperty("url");
-	            Username = properties.getProperty("Username");
-	            Password= properties.getProperty("Password");
-	            
-	        } catch (IOException e) 
-	        {
+		    static {
+		        properties = new Properties();
+		        try {
+		        	
+		            FileInputStream fis = new FileInputStream((System.getProperty("user.dir")+"\\src\\main\\java\\cv_resources\\Config.properties"));
+		            
+		            properties.load(fis);
+		            browser = properties.getProperty("browser");
+		            url = properties.getProperty("url");
+		            Username = properties.getProperty("Username");
+		            Password= properties.getProperty("Password");
+		            
+		        } catch (IOException e) 
+		        {
 
-	        }
-	    }
+		        }
+		    }
 
-	    public static String getBrowser() {
-	        return browser;
-	    }
+		    public static String getBrowser() {
+		        return browser;
+		    }
 
-	    public static String getUrl() {
-	        return url;
-	    }
-	    
-	    public static String getUsername() {
-	        return Username;
-	    }
-	    
-	    public static String getPassword() {
-	        return Password;
-	    }
-	   
-	    
-
-		private static String browser;
-		private static String url;
-		private static String Password;
-		// private static long implicitwait ;
-
-		static {
-			properties = new Properties();
-			try {
-				FileInputStream fis = new FileInputStream("D:\\Data\\com.contentverse.dms\\src\\main\\java\\cv_resources\\config.properties");
-				properties.load(fis);
-				browser = properties.getProperty("browser");
-				url = properties.getProperty("url");
-				Username = properties.getProperty("Username");
-				Password= properties.getProperty("Password");
-				// implicitwait=properties.getProperty("implicitwait");
-				//implicitwait  = Long.parseLong(properties.getProperty("implicitWaitSeconds"));
-
-			} catch (IOException e) 
-			{
-				//e.printStackTrace();
-			}
-		}
-
-		public static String getBrowser() {
-			return browser;
-		}
-
-		public static String getUrl() {
-			return url;
-		}
-
-		public static String getUsername() {
-			return Username;
-		}
-
-		public static String getPassword() {
-			return Password;
-		}
-
-
-
-	}	
+		    public static String getUrl() {
+		        return url;
+		    }
+		    
+		    public static String getUsername() {
+		        return Username;
+		    }
+		    
+		    public static String getPassword() {
+		        return Password;
+		    }
+		   
+		    
+		}	
 
 	public void Dropdown(By drp_Ele, String visible) 
 	{
@@ -324,7 +282,7 @@ public class Utility {
 		{
 			return false;
 		}
-
+	}
 
 	public static WebDriver startBrowser() //String browserName,String url
 	{
