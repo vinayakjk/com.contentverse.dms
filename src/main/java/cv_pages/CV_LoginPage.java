@@ -14,12 +14,11 @@ import org.openqa.selenium.support.FindBy;
 //import org.testng.asserts.SoftAssert;
 import org.openqa.selenium.support.PageFactory;
 
-
 import cv_resources.Utility;
 
 public class CV_LoginPage extends Utility {
 
-	WebDriver driver;
+	 WebDriver driver;
 	
 	@CacheLookup	
 	@FindBy(xpath = "//img[@alt='Computhink']")
@@ -82,8 +81,15 @@ public class CV_LoginPage extends Utility {
 	@FindBy(xpath = "//button[@id='cvModelLoginValidationOk']")
 	WebElement WindowSesionMgr;
 	
+	@FindBy(xpath = "//div[@id='header-main']")
+	WebElement HeaderMenu;
+	
+	@FindBy(xpath = "//span[@id='loginError']")
+	WebElement lbllogin;
+
 
 	public CV_LoginPage(WebDriver driver )
+
 	{
 		this.driver = driver;
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
@@ -94,61 +100,23 @@ public class CV_LoginPage extends Utility {
 	
 	public void login_cvWeb()//String uid,String pass
 	{
+		
 		txtUsername.sendKeys(ConfigReader.getUsername());
 		txtPassword.sendKeys(ConfigReader.getPassword());
 		ddRooms.click();
 		btnSubmit.click();
 		
-		if (Utility.isDisaplyedW(WindowSesionMgr, driver, 5))
+		if (Utility.isDisaplyedW(WindowSesionMgr, driver, 1))
 		{
 			WindowSesionMgr.click();
 			System.out.println("Another Session Ended");
 		}
 
+		System.out.println(imgLoggedInUsername.getText() + "logged in succeesfully.");
 		
-		//check logged in user name correctly after logging/Verify the logging username 
-		/*
-		if (imgLoggedInUsername.isDisplayed()==true)
-		{
-			System.out.println(imgLoggedInUsername.getText() + "logged in succeesfully.");
-			imgLoggedInUsername.click();
-			btnLogout.click();
-			System.out.println("logged out succeesfully.");
-		}*/
-
-	}
-
-	/*public void login(String User, String Pass) 
-
-	{
-		SoftAssert softAssert = new SoftAssert();
-		username.sendKeys(User);
-		password.sendKeys(Pass);
-
-		// For use of visible by text
-		// utility.Dropdownbytxt(ddproject, "DMS-SERVER.SUNDYNE");
-
-		// For select by index
-
-		Utility.Dropdownbyindex(ddproject, 1);
-
-		// Direct without using method into utility
-
-		// Select drop=new Select(ddproject);
-		// drop.selectByIndex(1);
-
-		btnlogin.click();
-
-		if (Utility.isDisaplyedW(sesionmgr, wd, 5))
-		{
-			sesionmgr.click();
-			System.out.println("Another Session Ended");
-		}
-
-		if (Utility.isVisible(header, wd, 15)) 
+		if (Utility.isVisible(HeaderMenu, driver, 15)) 
 		{
 			System.out.println("Login sucess");
-			softAssert.assertAll("Login With Valid data Pass");
 
 		}
 
@@ -157,9 +125,8 @@ public class CV_LoginPage extends Utility {
 			String Msg = lbllogin.getText();
 			System.out.println("Login failed with reason:- " + Msg);
 		}
-
-	*/
-
 	}
+	
+}
 
 

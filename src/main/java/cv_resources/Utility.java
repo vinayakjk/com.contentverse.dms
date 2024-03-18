@@ -24,52 +24,54 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Utility {
-
-
-public class Utility {
 	 static WebDriver driver;
 
-	/*
-
-	public static WebDriver driver;
-	public static WebDriver startBrowser(String browsename, String URL)
-
-	{
-
-	 * Properties prop= new Properties(); FileInputStream fis=new
-	 * FileInputStream("/LTM/src/GlobalData.properties"); prop.load(fis); String
-	 * browsename=prop.getProperty("browser");
-
-		if (browsename.equalsIgnoreCase("chrome")) {
-			WebDriverManager.chromedriver().setup();
-			//ChromeOptions options = new ChromeOptions();
-			//options.setAcceptInsecureCerts(true);
-			//options.addArguments("--force-device-scale-factor=0.8");
-			wd = new ChromeDriver();
-			new WebDriverWait(wd, Duration.ofSeconds(20));
-
-		} else if (browsename.equalsIgnoreCase("firefox")) {
-			WebDriverManager.firefoxdriver().setup();
-			FirefoxOptions options = new FirefoxOptions();
-			options.setAcceptInsecureCerts(true);
-			wd = new FirefoxDriver(options);
-			wd.manage().window().maximize();
-
-		} else if (browsename.equalsIgnoreCase("IE")) {
-			WebDriverManager.edgedriver().setup();
-			wd = new InternetExplorerDriver();
-		}
-		wd.manage().window().maximize();
-		new WebDriverWait(wd, Duration.ofSeconds(30));
-		wd.get(URL);
-		return wd;
-	 */
 
 
 
 	public static class ConfigReader {
-		private static String Username ;
-		private static Properties properties;
+  		private static String Username ;
+	  	private static Properties properties;
+	    private static String browser;
+	    private static String url;
+	    private static String Password;
+
+	    static {
+	        properties = new Properties();
+	        try {
+	        	
+	            FileInputStream fis = new FileInputStream((System.getProperty("user.dir")+"\\src\\main\\java\\cv_resources\\Config.properties"));
+	            
+	            properties.load(fis);
+	            browser = properties.getProperty("browser");
+	            url = properties.getProperty("url");
+	            Username = properties.getProperty("Username");
+	            Password= properties.getProperty("Password");
+	            
+	        } catch (IOException e) 
+	        {
+
+	        }
+	    }
+
+	    public static String getBrowser() {
+	        return browser;
+	    }
+
+	    public static String getUrl() {
+	        return url;
+	    }
+	    
+	    public static String getUsername() {
+	        return Username;
+	    }
+	    
+	    public static String getPassword() {
+	        return Password;
+	    }
+	   
+	    
+
 		private static String browser;
 		private static String url;
 		private static String Password;
@@ -110,25 +112,25 @@ public class Utility {
 		}
 
 
+
 	}	
 
-	public void Dropdown(By drp_Ele, String visible) {
-		// WebElement myEleDp = wd.findElement(By.id(cat));
-		Select dropdown = new Select((WebElement) drp_Ele);// For select Hardware Type
+	public void Dropdown(By drp_Ele, String visible) 
+	{
+		Select dropdown = new Select((WebElement) drp_Ele);
 		dropdown.selectByVisibleText(visible);
 
 	}
 
-	public static void Dropdownbytxt(WebElement cat, String visible) {
-		// WebElement myEleDp = wd.findElement(By.id(cat));
-		Select dropdown = new Select(cat);// For select Hardware Type
+	public static void Dropdownbytxt(WebElement cat, String visible) 
+	{
+		Select dropdown = new Select(cat);
 		dropdown.selectByVisibleText(visible);
-
 	}
 
-	public static void Dropdownbyindex(WebElement cat, int visible) {
-		// WebElement myEleDp = wd.findElement(By.id(cat));
-		Select dropdown = new Select(cat);// For select Hardware Type
+	public static void Dropdownbyindex(WebElement cat, int visible) 
+	{
+		Select dropdown = new Select(cat);
 		dropdown.selectByIndex(visible);
 
 	}
@@ -184,7 +186,6 @@ public class Utility {
 
 	// Print Message
 	public static void print(WebElement Print, String cat, Integer no) {
-		// WebElement print_msg = wd.findElement(By.id(id));
 		String text = Print.getText();
 		System.out.println(no + " : " + cat + " " + text);
 
@@ -271,14 +272,15 @@ public class Utility {
 		} catch (Exception e)
 
 		{
-			e.printStackTrace();
+	
 		}
 
 		return isDisplayed;
 
 	}
 
-	public void closebrowser() {
+	public void closebrowser() 
+	{
 		driver.close();
 	}
 
@@ -294,7 +296,6 @@ public class Utility {
 
 		{
 
-			e.printStackTrace();
 
 		}
 
@@ -324,12 +325,8 @@ public class Utility {
 			return false;
 		}
 
-	}
 
-
-
-
-	public static WebDriver startBrowser()//String browserName,String url
+	public static WebDriver startBrowser() //String browserName,String url
 	{
 		if(ConfigReader.getBrowser().equalsIgnoreCase("firefox"))
 		{
@@ -349,8 +346,7 @@ public class Utility {
 
 		driver.manage().window().maximize();
 		driver.get(ConfigReader.url);
-		//driver.get(url);
-		return driver;
+	return driver;
 
 
 	}
