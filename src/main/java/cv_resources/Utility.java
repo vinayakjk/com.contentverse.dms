@@ -24,13 +24,14 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Utility {
+	 static WebDriver driver;
 
 
-	static WebDriver driver;
+
 
 	public static class ConfigReader {
-	    private static String Username ;
-		private static Properties properties;
+  		private static String Username ;
+	  	private static Properties properties;
 	    private static String browser;
 	    private static String url;
 	    private static String Password;
@@ -70,6 +71,48 @@ public class Utility {
 	    }
 	   
 	    
+
+		private static String browser;
+		private static String url;
+		private static String Password;
+		// private static long implicitwait ;
+
+		static {
+			properties = new Properties();
+			try {
+				FileInputStream fis = new FileInputStream("D:\\Data\\com.contentverse.dms\\src\\main\\java\\cv_resources\\config.properties");
+				properties.load(fis);
+				browser = properties.getProperty("browser");
+				url = properties.getProperty("url");
+				Username = properties.getProperty("Username");
+				Password= properties.getProperty("Password");
+				// implicitwait=properties.getProperty("implicitwait");
+				//implicitwait  = Long.parseLong(properties.getProperty("implicitWaitSeconds"));
+
+			} catch (IOException e) 
+			{
+				//e.printStackTrace();
+			}
+		}
+
+		public static String getBrowser() {
+			return browser;
+		}
+
+		public static String getUrl() {
+			return url;
+		}
+
+		public static String getUsername() {
+			return Username;
+		}
+
+		public static String getPassword() {
+			return Password;
+		}
+
+
+
 	}	
 
 	public void Dropdown(By drp_Ele, String visible) 
@@ -275,13 +318,11 @@ public class Utility {
 	public static boolean isAlertPresent(WebDriver wd) 
 	{
 		try {
-				wd.switchTo().alert();
-				return true;
-			} 	catch (Exception e) 
-			{
+			wd.switchTo().alert();
+			return true;
+		} 	catch (Exception e) 
+		{
 			return false;
-    }
-
 		}
 
 
@@ -305,12 +346,11 @@ public class Utility {
 
 		driver.manage().window().maximize();
 		driver.get(ConfigReader.url);
-		
-		return driver;
+	return driver;
 
 
 	}
-	
-	
+
+
 }
 

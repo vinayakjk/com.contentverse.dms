@@ -13,7 +13,6 @@ import org.openqa.selenium.support.FindBy;
 //import org.openqa.selenium.support.PageFactory;
 //import org.testng.asserts.SoftAssert;
 import org.openqa.selenium.support.PageFactory;
-//import org.testng.asserts.SoftAssert;
 
 import cv_resources.Utility;
 
@@ -89,7 +88,8 @@ public class CV_LoginPage extends Utility {
 	WebElement lbllogin;
 
 
-	public CV_LoginPage(WebDriver driver)
+	public CV_LoginPage(WebDriver driver )
+
 	{
 		this.driver = driver;
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
@@ -125,7 +125,6 @@ public class CV_LoginPage extends Utility {
 			String Msg = lbllogin.getText();
 			System.out.println("Login failed with reason:- " + Msg);
 		}
-	
 	}
 	
 }
