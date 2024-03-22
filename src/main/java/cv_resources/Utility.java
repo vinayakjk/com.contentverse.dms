@@ -31,10 +31,16 @@ public class Utility {
 
 	 public static class ConfigReader {
 		    private static String Username ;
+		    private static String defaultView;
 			private static Properties properties;
 		    private static String browser;
 		    private static String url;
 		    private static String Password;
+		    
+		    private static String officeDocs;
+		    private static String officepdf; 
+		    private static String Loadcount;
+		    //private static int implicitwait;
 
 		    static {
 		        properties = new Properties();
@@ -47,6 +53,10 @@ public class Utility {
 		            url = properties.getProperty("url");
 		            Username = properties.getProperty("Username");
 		            Password= properties.getProperty("Password");
+		            defaultView=properties.getProperty("defaultView");
+		            officeDocs=properties.getProperty("officeDocs");
+		            Loadcount=properties.getProperty("Loadcount");
+		            officepdf=properties.getProperty("officepdf");
 		            
 		        } catch (IOException e) 
 		        {
@@ -69,7 +79,22 @@ public class Utility {
 		    public static String getPassword() {
 		        return Password;
 		    }
-		   
+		    
+		    public static String getdefaultView() {
+		        return defaultView;
+		    }
+		    
+		    public static String getofficeDocs() {
+		        return officeDocs;
+		    }
+		    public static String getofficepdf() {
+		        return officepdf;
+		    }
+		    public static String getLoadcount() {
+		        return Loadcount;
+		    }
+		    
+		    
 		    
 		}	
 
