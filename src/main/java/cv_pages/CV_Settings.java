@@ -215,17 +215,17 @@ public class CV_Settings extends Utility{
 		PageFactory.initElements(driver, this);
 	}
 
-	public void profile_Setting() 
+	public void profile_Setting(String getdefaultView, String getofficeDocs,String getofficepdf, String getLoadcount) 
 	{
 		imgSettings.click();
 		lblMyPreferences.click();
 		Utility.isVisible(windowMyprefernce, driver, 5);
-		System.out.println(ConfigReader.getdefaultView());
-		Utility.Dropdownbytxt(ddDefaultViewListNo, ConfigReader.getdefaultView());
-		Utility.Dropdownbytxt(ddOfficeDocuments, ConfigReader.getofficeDocs());
-		Utility.Dropdownbytxt(ddPdfDocuments, ConfigReader.getofficepdf());
+		//System.out.println(ConfigReader.getdefaultView());
+		Utility.Dropdownbytxt(ddDefaultViewListNo,getdefaultView);
+		Utility.Dropdownbytxt(ddOfficeDocuments, getofficeDocs);
+		Utility.Dropdownbytxt(ddPdfDocuments, getofficepdf);
 		txtLoadMoreCount.clear();
-		txtLoadMoreCount.sendKeys(ConfigReader.getLoadcount());
+		txtLoadMoreCount.sendKeys(getLoadcount);
 		
 		btnApplyMyPreferences.click();
 

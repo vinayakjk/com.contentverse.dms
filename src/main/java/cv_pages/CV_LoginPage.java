@@ -1,7 +1,7 @@
 package cv_pages;
 
 import java.time.Duration;
-
+//import com.example.mypackage.MyClass;
 //import java.time.Duration;
 //import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,10 +14,14 @@ import org.openqa.selenium.support.FindBy;
 //import org.testng.asserts.SoftAssert;
 import org.openqa.selenium.support.PageFactory;
 
+import com.fasterxml.jackson.databind.deser.Deserializers.Base;
+
+//import cv_testcases.Base.ConfigReader;
 import cv_resources.Utility;
 
 public class CV_LoginPage extends Utility {
 
+	
 	 WebDriver driver;
 	
 	@CacheLookup	
@@ -98,11 +102,11 @@ public class CV_LoginPage extends Utility {
 	}
 	
 	
-	public void login_cvWeb()//String uid,String pass
+	public void login_cvWeb(String uid,String pass)//
 	{
 		
-		txtUsername.sendKeys(ConfigReader.getUsername());
-		txtPassword.sendKeys(ConfigReader.getPassword());
+		txtUsername.sendKeys(uid);
+		txtPassword.sendKeys(pass);
 		ddRooms.click();
 		btnSubmit.click();
 		

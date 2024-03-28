@@ -1,6 +1,5 @@
 package cv_resources;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -8,17 +7,12 @@ import java.net.URL;
 import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
-
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -28,20 +22,19 @@ public class Utility {
 
 
 
-
+/*
 	 public static class ConfigReader {
 		    private static String Username ;
 		    private static String defaultView;
 			private static Properties properties;
 		    private static String browser;
-		    private static String url;
+		    public static String url;
 		    private static String Password;
 		    
 		    private static String officeDocs;
 		    private static String officepdf; 
 		    private static String Loadcount;
-		    //private static int implicitwait;
-
+		    //private static long implicitwait;
 		    static {
 		        properties = new Properties();
 		        try {
@@ -57,6 +50,11 @@ public class Utility {
 		            officeDocs=properties.getProperty("officeDocs");
 		            Loadcount=properties.getProperty("Loadcount");
 		            officepdf=properties.getProperty("officepdf");
+		           
+		           // implicitwait= properties.getProperty("implicitwait");
+		            
+		          //implicitwait=properties.getProperty("implicitwait");
+		            
 		            
 		        } catch (IOException e) 
 		        {
@@ -94,9 +92,10 @@ public class Utility {
 		        return Loadcount;
 		    }
 		    
-		    
+		   
 		    
 		}	
+		*/
 
 	public void Dropdown(By drp_Ele, String visible) 
 	{
@@ -228,7 +227,7 @@ public class Utility {
 		} catch (Exception e)
 
 		{
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 
 		return isVisible;
@@ -309,6 +308,7 @@ public class Utility {
 		}
 	}
 
+	/*
 	public static WebDriver startBrowser() //String browserName,String url
 	{
 		if(ConfigReader.getBrowser().equalsIgnoreCase("firefox"))
@@ -333,6 +333,7 @@ public class Utility {
 
 
 	}
+	*/
 
 
 }
