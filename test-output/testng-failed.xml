@@ -3,12 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="cv_testcases.CV_SettingsTestCase">
+      <class name="cv_testcases.CV_CreateCabinateDrawerTest">
         <methods>
-          <include name="quit"/>
-          <include name="CV_NewDocumentTest"/>
+          <include name="createCabinateAndDrawer"/>
         </methods>
-      </class> <!-- cv_testcases.CV_SettingsTestCase -->
+      </class> <!-- cv_testcases.CV_CreateCabinateDrawerTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

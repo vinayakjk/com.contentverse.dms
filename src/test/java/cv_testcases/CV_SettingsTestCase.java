@@ -24,8 +24,6 @@ public class CV_SettingsTestCase extends Base
 	}
 
 	@AfterMethod
-	@AfterTest
-	//@Test
 	public void quit()
 	{				
 		driver.quit();

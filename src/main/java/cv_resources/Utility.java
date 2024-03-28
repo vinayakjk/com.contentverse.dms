@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
@@ -19,16 +21,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Utility {
 	 static WebDriver driver;
-
-
-
-
+	 
 	 public static class ConfigReader {
 		    private static String Username ;
 		    private static String defaultView;
@@ -40,6 +40,7 @@ public class Utility {
 		    private static String officeDocs;
 		    private static String officepdf; 
 		    private static String Loadcount;
+		    
 		    //private static int implicitwait;
 
 		    static {
@@ -333,6 +334,17 @@ public class Utility {
 
 
 	}
+	
+ public static String currentTime()
+ {
+	 SimpleDateFormat format = new SimpleDateFormat("HHMMSS");
+	 
+	 Date dt = new Date();
+	 
+	 return format.format(dt).toString();
+ }
+	
+
 
 
 }
