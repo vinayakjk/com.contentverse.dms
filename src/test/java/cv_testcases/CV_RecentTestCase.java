@@ -6,52 +6,31 @@ import org.testng.annotations.Test;
 import cv_pages.CV_LoginPage;
 //import cv_pages.CV_LoginPage;
 import cv_pages.CV_Recent;
-//import cv_resources.Utility;
-import cv_resources.Utility;
+import cv_testcases.Base.ConfigReader;
 
+public class CV_RecentTestCase extends Base {
 
-
-public class CV_RecentTestCase {
-
-	//WebDriver driver;
-	
-	WebDriver driver =Utility.startBrowser();//"chrome", "http://192.168.1.15:8080/CVWeb/cvLgn"
-	//CV_LoginPage login_page = new CV_LoginPage(driver);
-
-	//CV_Recent recent = new CV_Recent(driver);
-
+	WebDriver driver = launchBrowser();// "chrome", "http://192.168.1.15:8080/CVWeb/cvLgn"
+	CV_LoginPage login_page= new CV_LoginPage(driver);
 	CV_Recent recent = new CV_Recent(driver);
 
-	
-	/*
-	 * Call login method from CV_Loginpage class
-	 * */
-	
 	@Test
-	public void login() {
-		CV_LoginPage login_page = new CV_LoginPage(driver);
-		login_page.login_cvWeb();//"shraddha" , "root@123"
-
-	}
-	
-	
-	/*   calling methods to open and verify documents and files   */
-	
-	@Test
-	public void verifyRecentFileFolder() 
+	public void login() 
 	{
 		//CV_LoginTestCase.checkValidUser();
+		login_page.login_cvWeb(ConfigReader.getUsername(),ConfigReader.getPassword());
+	}
+
+	@Test
+	public void verifyRecentFileFolder() {
+
 		System.out.println("Verify FOlder Gets started");
-        
+
 		recent.verifyFolder();
 		recent.verifyFile();
-		
-		//Calling logout method
+
 		recent.logout();
 
 	}
-	
-	
-	
-	
+
 }
