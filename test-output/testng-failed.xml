@@ -3,11 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="cv_testcases.CV_LoginTestCase">
+      <class name="cv_testcases.CV_RecentTestCase">
         <methods>
-          <include name="checkValidUser"/>
+          <include name="teardown"/>
+          <include name="ini"/>
+          <include name="verifyRecentFileFolder"/>
         </methods>
-      </class> <!-- cv_testcases.CV_LoginTestCase -->
+      </class> <!-- cv_testcases.CV_RecentTestCase -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

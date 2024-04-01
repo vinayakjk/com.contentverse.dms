@@ -11,16 +11,17 @@ import cv_pages.CV_NewDocument;
 public class CV_NewDocumentTestCase extends Base
 
 {
-	WebDriver driver=launchBrowser();
-	CV_LoginPage login_page= new CV_LoginPage(driver);
-	CV_NewDocument newdoc= new CV_NewDocument(driver);
+	
 	
 	
 	@Test
-	public void CV_NewDocumentTest() throws InterruptedException
+	public void CV_NewDocumentTest() throws Exception
 	{				
+		WebDriver driver=launchBrowser();
+		CV_LoginPage login_page= new CV_LoginPage(driver);
+		CV_NewDocument newdoc= new CV_NewDocument(driver);
 		//CV_LoginTestCase.checkValidUser();
-		login_page.login_cvWeb(ConfigReader.getUsername(),ConfigReader.getPassword());
+		login_page.login_cvWeb(getUsername(),getPassword());
 		newdoc.NewDocument();
 		
 	}
