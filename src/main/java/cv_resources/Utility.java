@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
@@ -13,12 +15,14 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Utility {
 	 static WebDriver driver;
+
 
 
 
@@ -34,7 +38,13 @@ public class Utility {
 		    private static String officeDocs;
 		    private static String officepdf; 
 		    private static String Loadcount;
+
 		    //private static long implicitwait;
+
+		    
+		    //private static int implicitwait;
+
+
 		    static {
 		        properties = new Properties();
 		        try {
@@ -95,7 +105,7 @@ public class Utility {
 		   
 		    
 		}	
-		*/
+	*/
 
 	public void Dropdown(By drp_Ele, String visible) 
 	{
@@ -333,7 +343,21 @@ public class Utility {
 
 
 	}
+
 	*/
+
+	
+ public static String currentTime()
+ {
+	 SimpleDateFormat format = new SimpleDateFormat("HHMMSS");
+	 
+	 Date dt = new Date();
+	 
+	 return format.format(dt).toString();
+ }
+	
+
+
 
 
 }
