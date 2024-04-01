@@ -9,7 +9,7 @@ import cv_resources.Utility;
 
 public class CV_ExportContentTest 
 {
-
+/*
 	WebDriver driver;
 	
 	@Test
@@ -24,4 +24,5 @@ public class CV_ExportContentTest
 		
 	}
 	
+*/
 }

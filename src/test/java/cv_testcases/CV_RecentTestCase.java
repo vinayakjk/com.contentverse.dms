@@ -34,6 +34,10 @@ public class CV_RecentTestCase extends Base {
 		System.out.println("Verify FOlder Gets started");
 		recent.verifyFolder();
 		recent.verifyFile();
+		
+	}
+	
+/*
 
 public class CV_RecentTestCase {
 
@@ -46,10 +50,6 @@ public class CV_RecentTestCase {
 
 	CV_Recent recent = new CV_Recent(driver);
 
-	/*
-	 * Call login method from CV_Loginpage class
-	 */
-
 	@Test
 	public void login() {
 		CV_LoginPage login_page = new CV_LoginPage(driver);
@@ -57,7 +57,7 @@ public class CV_RecentTestCase {
 
 	}
 
-	/* calling methods to open and verify documents and files */
+	// calling methods to open and verify documents and files 
 
 	@Test
 	public void verifyRecentFileFolder() {
@@ -71,7 +71,7 @@ public class CV_RecentTestCase {
 
 		recent.logout();
 	}
-
+*/
 	
 	@AfterMethod
 	public void teardown() throws Exception

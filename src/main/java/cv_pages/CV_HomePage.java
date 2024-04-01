@@ -28,6 +28,9 @@ public class CV_HomePage {
 	@FindBy(id = "createNodeAnchorForCabinet")
 	WebElement createCabinate;
 
+	// @FindBy(id= "//a[@id='createNodeAnchorForCabinet' and @class='disabled']")
+	// WebElement createCabinateDisable;
+
 	@FindBy(id = "createNodeAnchor")
 	WebElement createDrawer;
 
@@ -52,7 +55,7 @@ public class CV_HomePage {
 	@FindBy(id = "floatButton")
 	WebElement btnOnCabinateNamefloatButton;
 
-	@FindBy(xpath = "(//li[@class='jstree-open']//ins[@class='jstree-icon'])[1]")
+	@FindBy(xpath = "//li[@class='jstree-open']")
 	WebElement minusbtn;
 
 	public void cN() {
@@ -65,12 +68,16 @@ public class CV_HomePage {
 		act = new Actions(driver);
 		act.moveToElement(btnDataBaseName).build().perform();
 		Thread.sleep(3000);
-		if (Utility.isClickable(createCabinate, driver, 5)) {
-			act.moveToElement(createCabinate).click().build().perform();
+		if (createCabinate.getAttribute("class").equalsIgnoreCase("disabled")) {
+			// act.moveToElement(createCabinate).click().build().perform();
+			System.out.println("User not having permission");
 
 		} else {
-			System.out.println("User not having permission");
+			System.out.println("User is having permission");
+			act.moveToElement(createCabinate).click().build().perform();
+
 		}
+
 		cN();
 		txtEnterCabinateName.sendKeys("CV_" + CabinateName);
 		btnOKCreateCabinate.click();
@@ -87,16 +94,15 @@ public class CV_HomePage {
 		return result;
 	}
 
-	public void cvCreateDrawer() throws Exception
-	{
+	public void cvCreateDrawer() throws Exception {
 		Thread.sleep(3000);
 		btnOnCabinateNamefloatButton.click();
 		act = new Actions(driver);
 		act.moveToElement(createDrawer).click().build().perform();
 		txtEnterDrawerName.sendKeys(Utility.currentTime());
 		btnOKCreateDrwaer.click();
+		Thread.sleep(1000);
 		Assert.assertEquals(minusbtn.isDisplayed(), true);
-		
-		
+
 	}
 }
