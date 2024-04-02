@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import cv_pages.CV_LoginPage;
 //import cv_pages.CV_LoginPage;
 import cv_pages.CV_Recent;
-import cv_testcases.Base.ConfigReader;
 
 public class CV_RecentTestCase extends Base {
 
@@ -18,7 +17,7 @@ public class CV_RecentTestCase extends Base {
 	public void login() 
 	{
 		//CV_LoginTestCase.checkValidUser();
-		login_page.login_cvWeb(ConfigReader.getUsername(),ConfigReader.getPassword());
+		login_page.Check_Valid_Credentials(ConfigReader.getValidUsername(),ConfigReader.getvalidPassword());
 	}
 
 	@Test

@@ -2,7 +2,7 @@ package cv_testcases;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import cv_pages.CV_LoginPage;
@@ -11,27 +11,29 @@ import cv_pages.CV_NewDocument;
 public class CV_NewDocumentTestCase extends Base
 
 {
-	WebDriver driver=launchBrowser();
-	CV_LoginPage login_page= new CV_LoginPage(driver);
-	CV_NewDocument newdoc= new CV_NewDocument(driver);
-	
-	
+	WebDriver driver;
+	CV_LoginPage login_page;
+	CV_NewDocument newdoc;
+
+	@BeforeMethod
+	public void Before() 
+	{
+		driver = launchBrowser();
+		login_page = new CV_LoginPage(driver);
+		newdoc = new CV_NewDocument(driver);
+	}
+
 	@Test
 	public void CV_NewDocumentTest() throws InterruptedException
-	{				
-		//CV_LoginTestCase.checkValidUser();
-		login_page.login_cvWeb(ConfigReader.getUsername(),ConfigReader.getPassword());
+	{
+		login_page.Check_Valid_Credentials(ConfigReader.getValidUsername(), ConfigReader.getvalidPassword());
 		newdoc.NewDocument();
-		
 	}
 
 	@AfterMethod
-	@AfterTest
-	//@Test
-	public void quit()
-	{				
+	public void quit() 
+	{
 		driver.quit();
 	}
-
 
 }

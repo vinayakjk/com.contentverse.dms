@@ -17,6 +17,7 @@ public class Listeners extends Utility implements ITestListener
 	public void onTestStart(ITestResult result) 
 	{
 		test=extend.createTest(result.getMethod().getMethodName());
+		//System.out.println("This test Case Started"+test);
 		/*String timestamp = new SimpleDateFormat("yyyy_MM_dd__hh_mm_ss").format(new Date());
 		ATUTestRecorder recorder = null;
 			try 

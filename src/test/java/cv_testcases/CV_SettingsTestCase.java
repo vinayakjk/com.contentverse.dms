@@ -19,7 +19,7 @@ public class CV_SettingsTestCase extends Base
 	public void CV_NewDocumentTest() throws InterruptedException
 	{				
 		//CV_LoginTestCase.checkValidUser();
-		login_page.login_cvWeb(ConfigReader.getUsername(),ConfigReader.getPassword());
+		login_page.Check_Valid_Credentials(ConfigReader.getValidUsername(),ConfigReader.getvalidPassword());
 	//	login_page.login_cvWeb(ConfigReader.getUsername(),ConfigReader.getPassword());
 		newdoc.profile_Setting( ConfigReader.getdefaultView(),ConfigReader.getofficeDocs(),ConfigReader.getofficepdf(),ConfigReader.getLoadcount());
 		
