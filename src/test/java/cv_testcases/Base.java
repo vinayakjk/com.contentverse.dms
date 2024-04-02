@@ -1,8 +1,6 @@
 package cv_testcases;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
@@ -14,32 +12,35 @@ public class Base {
 
 	WebDriver driver;
 
-	String Username;
+	String ValidUsername;
 	String defaultView;
 	Properties properties;
 	String browser;
 	FileInputStream fis;
 	String url;
-	String Password;
+	String ValidPassword;
 
 	String officeDocs;
 	String officepdf;
 	String Loadcount;
-
+	String InValidUsername;
+	String InValidPassword;
+	
 	public void ConfigReader() throws Exception {
 		properties = new Properties();
-		fis = new FileInputStream(
-				(System.getProperty("user.dir") + "\\src\\main\\java\\cv_resources\\Config.properties"));
+		fis = new FileInputStream((System.getProperty("user.dir") + "\\src\\main\\java\\cv_resources\\Config.properties"));
 
 		properties.load(fis);
 		browser = properties.getProperty("browser");
 		url = properties.getProperty("url");
-		Username = properties.getProperty("Username");
-		Password = properties.getProperty("Password");
+		ValidUsername = properties.getProperty("Username");
+		ValidPassword = properties.getProperty("Password");
 		defaultView = properties.getProperty("defaultView");
 		officeDocs = properties.getProperty("officeDocs");
 		Loadcount = properties.getProperty("Loadcount");
 		officepdf = properties.getProperty("officepdf");
+		InValidUsername = properties.getProperty("Invalid_User");
+		InValidPassword = properties.getProperty("Invalid_Pass");
 	}
 
 	public String getBrowser() {
@@ -50,12 +51,12 @@ public class Base {
 		return url;
 	}
 
-	public String getUsername() {
-		return Username;
+	public String getValidUsername() {
+		return ValidUsername;
 	}
 
-	public String getPassword() {
-		return Password;
+	public String getValidPassword() {
+		return ValidPassword;
 	}
 
 	public String getdefaultView() {
@@ -73,8 +74,18 @@ public class Base {
 	public String getLoadcount() {
 		return Loadcount;
 	}
+	
+	
+	public String getInValidUsername() {
+		return InValidUsername;
+	}
+	
+	public  String getInvalidPassword() {
+		return InValidPassword;
+	}
 
-	public WebDriver launchBrowser() throws Exception {
+
+	public WebDriver launchBrowser() throws Exception  {
 
 		ConfigReader();
 
