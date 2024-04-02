@@ -11,14 +11,14 @@ public class CV_LoginTestCase extends Base {
 	WebDriver driver;
 
 	@BeforeMethod
-	public void Before() throws Exception 
+	public void initalization() throws Exception 
 	{
 		driver = launchBrowser();
 		login_page = new CV_LoginPage(driver);
 	}
 
 	@AfterMethod
-	public void After() 
+	public void tearDown() 
 	{
 		driver.quit();
 	}

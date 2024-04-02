@@ -68,33 +68,40 @@ public class CV_HomePage {
 		act = new Actions(driver);
 		act.moveToElement(btnDataBaseName).build().perform();
 		Thread.sleep(3000);
-		if (createCabinate.getAttribute("class").equalsIgnoreCase("disabled")) {
-			// act.moveToElement(createCabinate).click().build().perform();
-			System.out.println("User not having permission");
+		if (createCabinate.getAttribute("class").equalsIgnoreCase("disabled")) 
+			{
+				// act.moveToElement(createCabinate).click().build().perform();
+				System.out.println("User not having permission");
 
-		} else {
-			System.out.println("User is having permission");
-			act.moveToElement(createCabinate).click().build().perform();
-
-		}
-
-		cN();
-		txtEnterCabinateName.sendKeys("CV_" + CabinateName);
-		btnOKCreateCabinate.click();
-		for (int i = 0; i < listCabinates.size(); i++) {
-			if (listCabinates.get(i).getText().trim().equalsIgnoreCase("CV_" + CabinateName)) {
+		
+			}
+		else 
+			{
+			 System.out.println("User is having permission");
+			 act.moveToElement(createCabinate).click().build().perform();
+			 cN();
+			 txtEnterCabinateName.sendKeys("CV_" + CabinateName);
+			 btnOKCreateCabinate.click();
+			for (int i = 0; i < listCabinates.size(); i++) 
+			{
+				if (listCabinates.get(i).getText().trim().equalsIgnoreCase("CV_" + CabinateName)) 
 				{
-					listCabinates.get(i).click();
-					result = true;
-					break;
+					{
+						listCabinates.get(i).click();
+						result = true;
+						break;
+					}
 				}
+
 			}
 
 		}
 		return result;
 	}
 
-	public void cvCreateDrawer() throws Exception {
+	
+	public void cvCreateDrawer() throws Exception 
+	{
 		Thread.sleep(3000);
 		btnOnCabinateNamefloatButton.click();
 		act = new Actions(driver);
