@@ -1,12 +1,5 @@
 package cv_testcases;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.Test;
-
-import cv_pages.CV_LoginPage;
-import cv_resources.Utility;
-
 public class CV_ExportContentTest 
 {
 /*
