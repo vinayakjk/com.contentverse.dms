@@ -25,7 +25,7 @@ public class CV_RecentTestCase extends Base {
 	@Test
 	public void login() throws Exception 
 	{
-		login_page.login_cvWeb(getUsername(),getPassword());
+		login_page.login_cvWeb(getUsername(),getPassword(),getRoom());
 	}
 
 	@Test

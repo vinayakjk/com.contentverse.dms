@@ -21,6 +21,6 @@ public class CV_LoginTestCase extends Base{
 	public  void checkValidUser() throws Exception
 	
 	{
-		login_page.login_cvWeb(getUsername(),getPassword());
+		login_page.login_cvWeb(getUsername(),getPassword(),getRoom());
 	}
 }
