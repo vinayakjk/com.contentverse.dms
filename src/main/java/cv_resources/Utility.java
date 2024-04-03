@@ -355,6 +355,16 @@ public class Utility {
 	 
 	 return format.format(dt).toString();
  }
+ 
+ public int ifFileAvailable() throws InterruptedException
+	{
+		File downloadedFilePath = new File(System.getProperty("user.dir")+"\\downloadFiles\\");
+	
+		File allFiles[] = downloadedFilePath.listFiles();
+		//boolean ifFileNotAvailable = false;
+		int len1 = allFiles.length;
+		return len1;
+	}
 	
 
 

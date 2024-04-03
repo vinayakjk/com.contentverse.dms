@@ -28,6 +28,12 @@ public class CV_CreateCabinateDrawerTest extends Base
 	@Test
 	public void createCabinateAndDrawer() throws Exception
 	{
+		//WebDriver driver = launchBrowser();
+		//CV_LoginPage cvLP = new CV_LoginPage(driver);
+		//CV_HomePage cvHP = new CV_HomePage(driver);
+		//cvLP.login_cvWeb();
+		cvLP.login_cvWeb(getUsername(), getPassword(), getRoom());
+		Thread.sleep(3000);
 		Assert.assertEquals(cvHP.cv_CabinateCreation(), true);
 	}
 	
