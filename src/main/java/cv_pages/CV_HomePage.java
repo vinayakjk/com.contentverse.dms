@@ -55,7 +55,7 @@ public class CV_HomePage {
 	@FindBy(id = "floatButton")
 	WebElement btnOnCabinateNamefloatButton;
 
-	@FindBy(xpath = "//li[@class='jstree-open']")
+	@FindBy(xpath = "//li[@class='jstree-open']/ins")
 	WebElement minusbtn;
 
 	public void cN() {
@@ -95,13 +95,12 @@ public class CV_HomePage {
 	}
 
 	public void cvCreateDrawer() throws Exception {
-		Thread.sleep(3000);
 		btnOnCabinateNamefloatButton.click();
 		act = new Actions(driver);
 		act.moveToElement(createDrawer).click().build().perform();
 		txtEnterDrawerName.sendKeys(Utility.currentTime());
 		btnOKCreateDrwaer.click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		Assert.assertEquals(minusbtn.isDisplayed(), true);
 
 	}

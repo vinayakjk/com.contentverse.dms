@@ -14,7 +14,7 @@ public class CV_LoginTestCase extends Base{
 	@BeforeMethod
 	public void initalization() throws Exception
 	{
-		 driver = launchBrowser();
+		 launchBrowser();
 		 login_page= new CV_LoginPage(driver);
 	}
 	@Test

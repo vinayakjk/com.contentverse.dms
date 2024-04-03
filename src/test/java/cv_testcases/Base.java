@@ -3,6 +3,7 @@ package cv_testcases;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
@@ -74,7 +75,7 @@ public class Base {
 		return Loadcount;
 	}
 
-	public WebDriver launchBrowser() throws Exception {
+	public void launchBrowser() throws Exception {
 
 		ConfigReader();
 
@@ -90,8 +91,9 @@ public class Base {
 		}
 
 		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		driver.get(url);
-		return driver;
+		//return driver;
 	}
 
 }
