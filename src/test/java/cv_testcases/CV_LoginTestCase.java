@@ -1,6 +1,7 @@
 package cv_testcases;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import cv_pages.CV_LoginPage;
@@ -8,7 +9,7 @@ import cv_pages.CV_LoginPage;
 public class CV_LoginTestCase extends Base{
 		
 	 
-	WebDriver driver;
+	//WebDriver driver;
 	CV_LoginPage login_page;
 	
 	@BeforeMethod
@@ -23,4 +24,11 @@ public class CV_LoginTestCase extends Base{
 	{
 		login_page.login_cvWeb(getUsername(),getPassword(),getRoom());
 	}
+	
+	@AfterMethod
+	public void tearDown()
+	{
+		driver.close();
+	}
+	
 }

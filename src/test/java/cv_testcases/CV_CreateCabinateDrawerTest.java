@@ -21,7 +21,6 @@ public class CV_CreateCabinateDrawerTest extends Base
 	{
 		 launchBrowser();
 		 cvLP = new CV_LoginPage(driver);
-		 cvLP.login_cvWeb(getUsername(), getPassword());
 		 cvHP = new CV_HomePage(driver);
 	}
 	
@@ -48,7 +47,7 @@ public class CV_CreateCabinateDrawerTest extends Base
 	@AfterMethod
 	public void tearDown()
 	{
-		//driver.close();
+		driver.close();
 	}
 	
 	

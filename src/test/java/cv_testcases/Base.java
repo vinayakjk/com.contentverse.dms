@@ -99,7 +99,7 @@ public class Base {
 		return Loadcount;
 	}
 
-	public void launchBrowser() throws Exception {
+	public WebDriver launchBrowser() throws Exception {
 
 		ConfigReader();
 
@@ -124,11 +124,11 @@ public class Base {
 			driver = new EdgeDriver();
 		}
 
-		driver.manage().window().maximize();
+		//driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		//driver.manage().window().maximize();
 		driver.get(url);
-		//return driver;
+		return driver;
 	}
 
 }

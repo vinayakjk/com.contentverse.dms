@@ -122,7 +122,7 @@ public class CV_LoginPage extends Utility {
 		if (Utility.isDisaplyedW(WindowSesionMgr, driver, 1))
 		{
 			WindowSesionMgr.click();
-			System.out.println("Another Session Ended");
+			//System.out.println("Another Session Ended");
 		}
 
 		System.out.println(imgLoggedInUsername.getText() + " logged in succeesfully.");

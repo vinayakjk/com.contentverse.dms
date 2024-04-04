@@ -57,7 +57,7 @@ public class CV_HomePage extends Utility {
 	@FindBy(id = "floatButton")
 	WebElement btnOnCabinateNamefloatButton;
 
-	@FindBy(xpath = "//li[@class='jstree-open']/ins")
+	@FindBy(xpath = "//li[@rel='cabinet' and @class='jstree-open jstree-last']")
 	WebElement minusbtn;
 
 	@FindBy(xpath = "//div[@id='viewDocumentnavigator']//ul//ul//ul//li")
@@ -114,10 +114,10 @@ public class CV_HomePage extends Utility {
 		Thread.sleep(3000);
 		if (createCabinate.getAttribute("class").equalsIgnoreCase("disabled")) {
 			// act.moveToElement(createCabinate).click().build().perform();
-			System.out.println("User not having permission");
+			//System.out.println("User not having permission");
 
 		} else {
-			System.out.println("User is having permission");
+			//System.out.println("User is having permission");
 			act.moveToElement(createCabinate).click().build().perform();
 
 		}
@@ -156,9 +156,12 @@ public class CV_HomePage extends Utility {
 				if (listOfCabinates.get(i).getText().trim().equalsIgnoreCase(CabinateName)) 
 				{
 					String Cabinate_Name = listOfCabinates.get(i).getText();
-					System.out.println(Cabinate_Name);
+					//System.out.println(Cabinate_Name);
 					act = new Actions(driver);
-					act.doubleClick(listOfCabinates.get(i)).build().perform();
+					Thread.sleep(5000);
+					//System.out.println(listOfCabinates.get(i).getText());
+					act.moveToElement(listOfCabinates.get(i)).doubleClick().build().perform();;
+					//act.doubleClick(listOfCabinates.get(i)).build().perform();
 					Thread.sleep(5000);
 				}
 		}
