@@ -21,7 +21,11 @@ public class CV_NewDocumentTestCase extends Base
 		CV_LoginPage login_page= new CV_LoginPage(driver);
 		CV_NewDocument newdoc= new CV_NewDocument(driver);
 		//CV_LoginTestCase.checkValidUser();
-		login_page.Check_Valid_Credentials(getValidUsername(), getValidPassword());
+//<<<<<<< HEAD
+		login_page.Check_Valid_Credentials(getValidUsername(), getValidPassword(),getRoom());
+//=======
+	//	login_page.login_cvWeb(getUsername(),getPassword(),getRoom());
+//>>>>>>> CreateCabinateDrwaer
 		newdoc.NewDocument();
 		
 	}

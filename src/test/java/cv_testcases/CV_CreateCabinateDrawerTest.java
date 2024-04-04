@@ -11,16 +11,15 @@ import cv_pages.CV_LoginPage;
 
 public class CV_CreateCabinateDrawerTest extends Base 
 {
-	WebDriver driver;
+	//WebDriver driver;
 
 	CV_LoginPage cvLP;
 	CV_HomePage cvHP;
-	
-	
+		
 	@BeforeMethod
 	public void initalization() throws Exception
 	{
-		 driver = launchBrowser();
+		 launchBrowser();
 		 cvLP = new CV_LoginPage(driver);
 		 cvHP = new CV_HomePage(driver);
 	}
@@ -32,7 +31,11 @@ public class CV_CreateCabinateDrawerTest extends Base
 		//CV_LoginPage cvLP = new CV_LoginPage(driver);
 		//CV_HomePage cvHP = new CV_HomePage(driver);
 		//cvLP.login_cvWeb();
-		cvLP.Check_Valid_Credentials(getValidUsername(), getValidPassword());
+//<<<<<<< HEAD
+		cvLP.Check_Valid_Credentials(getValidUsername(), getValidPassword(),getRoom());
+//=======
+		//cvLP.login_cvWeb(getUsername(), getPassword(), getRoom());
+//>>>>>>> CreateCabinateDrwaer
 		Thread.sleep(3000);
 		Assert.assertEquals(cvHP.cv_CabinateCreation(), true);
 	}

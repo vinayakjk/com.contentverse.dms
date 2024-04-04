@@ -25,7 +25,11 @@ public class CV_RecentTestCase extends Base {
 	@Test
 	public void login() throws Exception 
 	{
-		login_page.Check_Valid_Credentials(getValidUsername(), getValidPassword());
+
+		login_page.Check_Valid_Credentials(getValidUsername(), getValidPassword(),getRoom());
+
+		//login_page.login_cvWeb(getUsername(),getPassword(),getRoom()); //This line creating merging issue so commented and above line is called.
+
 	}
 
 	@Test

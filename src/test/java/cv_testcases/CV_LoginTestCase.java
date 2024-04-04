@@ -7,19 +7,24 @@ import org.testng.annotations.Test;
 import cv_pages.CV_LoginPage;
 
 public class CV_LoginTestCase extends Base {
+
 	CV_LoginPage login_page;
 	WebDriver driver;
 
 	@BeforeMethod
-	public void initalization() throws Exception 
-	{
+	public void initalization() throws Exception {
+//<<<<<<< HEAD
 		driver = launchBrowser();
 		login_page = new CV_LoginPage(driver);
+//=======
+		// launchBrowser();
+		// login_page= new CV_LoginPage(driver);
+//>>>>>>> CreateCabinateDrwaer
 	}
 
 	@AfterMethod
-	public void tearDown() 
-	{
+	public void tearDown() {
+//<<<<<<< HEAD
 		driver.quit();
 	}
 
@@ -41,14 +46,14 @@ public class CV_LoginTestCase extends Base {
 	public void check_Blank_Username()
 
 	{
-		login_page.Blank_Username(getInvalidPassword()); //getValidUsername()
+		login_page.Blank_Username(getInvalidPassword()); // getValidUsername()
 	}
 
 	@Test(priority = 4)
 	public void check_Blank_Password()
 
 	{
-		login_page.Blank_Password(getValidUsername());//, getInvalidPassword()
+		login_page.Blank_Password(getValidUsername());// , getInvalidPassword()
 	}
 
 	@Test(priority = 5)
@@ -62,7 +67,7 @@ public class CV_LoginTestCase extends Base {
 	public void Check_Valid_Credentials()
 
 	{
-		login_page.Check_Valid_Credentials(getValidUsername(), getValidPassword());
+		login_page.Check_Valid_Credentials(getValidUsername(), getValidPassword(), getRoom());
 
 	}
 
