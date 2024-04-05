@@ -1,13 +1,13 @@
 package cv_pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CV_Documents {
+import cv_resources.Utility;
 
-	
-	// Document (After selecting Document)
-	
+public class CV_Documents extends Utility {
+
 	
 		@FindBy(xpath = "//a[@id='documentListSubMenu']")
 	    WebElement clickDocument;
@@ -306,6 +306,11 @@ public class CV_Documents {
 		//Click on Refresh
 		@FindBy(xpath ="//a[@id='refreshDocuments']")
 	    WebElement clickRefresh;
+		
+		public CV_Documents(WebDriver driver) {
+			super(driver);
+			// TODO Auto-generated constructor stub
+		}
 		
 }
 

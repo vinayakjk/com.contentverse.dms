@@ -9,11 +9,7 @@ import cv_pages.CV_LoginPage;
 import cv_pages.CV_NewDocument;
 
 public class CV_NewDocumentTestCase extends Base
-
-{
-	
-	
-	
+{	
 	@Test
 	public void CV_NewDocumentTest() throws Exception
 	{				

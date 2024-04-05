@@ -210,6 +210,7 @@ public class CV_Settings extends Utility{
 	// Declare Constructor
 	public CV_Settings(WebDriver driver)
 	{
+		super(driver);
 		this.driver = driver;
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		PageFactory.initElements(driver, this);
@@ -219,17 +220,17 @@ public class CV_Settings extends Utility{
 	{
 		imgSettings.click();
 		lblMyPreferences.click();
-		Utility.isVisible(windowMyprefernce, driver, 5);
+		isVisible(windowMyprefernce, 5);
 		//System.out.println(ConfigReader.getdefaultView());
-		Utility.Dropdownbytxt(ddDefaultViewListNo,getdefaultView);
-		Utility.Dropdownbytxt(ddOfficeDocuments, getofficeDocs);
-		Utility.Dropdownbytxt(ddPdfDocuments, getofficepdf);
+		Dropdownbytxt(ddDefaultViewListNo,getdefaultView);
+		Dropdownbytxt(ddOfficeDocuments, getofficeDocs);
+		Dropdownbytxt(ddPdfDocuments, getofficepdf);
 		txtLoadMoreCount.clear();
 		txtLoadMoreCount.sendKeys(getLoadcount);
 		
 		btnApplyMyPreferences.click();
 
-		if(Utility.isDisaplyedW(windowdefaultdocs, driver, 5)==true)
+		if(isDisaplyedW(windowdefaultdocs, 5)==true)
 		{
 			btnokwindowdefaultdocs.click();
 		}

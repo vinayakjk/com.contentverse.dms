@@ -11,6 +11,10 @@ import com.aventstack.extentreports.Status;
 
 public class Listeners extends Utility implements ITestListener
 {
+	public Listeners(WebDriver driver) {
+		super(driver);
+		// TODO Auto-generated constructor stub
+	}
 	ExtentTest test;
 	ExtentReports extend=  ExtentReportNG.getReportObject();
 	@Override

@@ -207,9 +207,10 @@ public class CV_Search extends Utility {
 	@FindBy(xpath = "//button[@id='resetColumsOk']")
 	WebElement dd2ResetColums;
 	
-	public CV_Search(WebDriver ldriver )
+	public CV_Search(WebDriver driver )
 	{
-		this.driver=ldriver;
+		super(driver);
+		this.driver=driver;
 		
 	}
 	

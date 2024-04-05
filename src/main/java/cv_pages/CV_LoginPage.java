@@ -114,6 +114,7 @@ public class CV_LoginPage extends Utility {
 	public CV_LoginPage(WebDriver driver)
 
 	{
+		super(driver);
 		this.driver = driver;
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		PageFactory.initElements(driver, this);
@@ -124,7 +125,7 @@ public class CV_LoginPage extends Utility {
 	public void Check_Valid_Credentials(String uid, String pass, String room) 
 	{
 		System.out.println("6.Check_Valid_Credentials");
-		Utility.isVisible(txtUsername, driver, 10);
+		isVisible(txtUsername, 10);
 		txtUsername.clear();
 //=======
 	/*
@@ -141,11 +142,11 @@ public class CV_LoginPage extends Utility {
 		txtUsername.sendKeys(uid);
 		txtPassword.clear();
 		txtPassword.sendKeys(pass);
-		Utility.Dropdownbytxt(listOfRooms,room);
+		Dropdownbytxt(listOfRooms,room);
 		//ddRooms.click();
 		btnSubmit.click();
 
-		if (Utility.isDisaplyedW(WindowSesionMgr, driver, 1)) {
+		if (isDisaplyedW(WindowSesionMgr, 1)) {
 			WindowSesionMgr.click();
 			//System.out.println("Another Session Ended");
 		}
@@ -153,11 +154,11 @@ public class CV_LoginPage extends Utility {
 //<<<<<<< HEAD
 		System.out.println(imgLoggedInUsername.getText().toUpperCase() + " :- Logged in succeesfully.");
 
-		if (Utility.isVisible(HeaderMenu, driver, 15)) {
+		if (isVisible(HeaderMenu, 15)) {
 //=======
 		System.out.println(imgLoggedInUsername.getText() + " logged in succeesfully.");
 		
-		if (Utility.isVisible(HeaderMenu, driver, 15)) 
+		if (isVisible(HeaderMenu, 15)) 
 		{
 //>>>>>>> CreateCabinateDrwaer
 			System.out.println("Login sucess");
@@ -211,7 +212,7 @@ public class CV_LoginPage extends Utility {
 		ddRooms.click();
 		btnSubmit.click();
 
-		if (Utility.isDisaplyedW(WindowSesionMgr, driver, 1)) 
+		if (isDisaplyedW(WindowSesionMgr, 1)) 
 		{
 			WindowSesionMgr.click();
 		}
@@ -289,7 +290,7 @@ public class CV_LoginPage extends Utility {
 
 	public void Select_Room(String uid, String pass) {
 		System.out.println("5.Select_Room");
-		Utility.isVisible(txtUsername, driver, 10);
+		isVisible(txtUsername, 10);
 		txtUsername.clear();
 		txtUsername.sendKeys(uid);
 		txtPassword.clear();

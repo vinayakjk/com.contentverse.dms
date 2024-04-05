@@ -16,6 +16,7 @@ public class CV_SearchNew extends Utility {
 	Actions act;
 	
 	public CV_SearchNew(WebDriver driver) {
+		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
@@ -62,7 +63,7 @@ public class CV_SearchNew extends Utility {
 	
 	public void selectSearchedDocument() throws InterruptedException
 	{
-		isVisible(documentCreatorIcon, driver, 3);
+		isVisible(documentCreatorIcon, 3);
 		documentCreatorIcon.click();
 	}
 	public void selectDate() throws InterruptedException

@@ -15,98 +15,29 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Utility {
-	 static WebDriver driver;
+	 WebDriver driver;
+	 Actions act;
 
-
-
-
-/*
-	 public static class ConfigReader {
-		    private static String Username ;
-		    private static String defaultView;
-			private static Properties properties;
-		    private static String browser;
-		    public static String url;
-		    private static String Password;
-		    
-		    private static String officeDocs;
-		    private static String officepdf; 
-		    private static String Loadcount;
-
-		    //private static long implicitwait;
-
-		    
-		    //private static int implicitwait;
-
-
-		    static {
-		        properties = new Properties();
-		        try {
-		        	
-		            FileInputStream fis = new FileInputStream((System.getProperty("user.dir")+"\\src\\main\\java\\cv_resources\\Config.properties"));
-		            
-		            properties.load(fis);
-		            browser = properties.getProperty("browser");
-		            url = properties.getProperty("url");
-		            Username = properties.getProperty("Username");
-		            Password= properties.getProperty("Password");
-		            defaultView=properties.getProperty("defaultView");
-		            officeDocs=properties.getProperty("officeDocs");
-		            Loadcount=properties.getProperty("Loadcount");
-		            officepdf=properties.getProperty("officepdf");
-		           
-		           // implicitwait= properties.getProperty("implicitwait");
-		            
-		          //implicitwait=properties.getProperty("implicitwait");
-		            
-		            
-		        } catch (IOException e) 
-		        {
-
-		        }
-		    }
-
-		    public static String getBrowser() {
-		        return browser;
-		    }
-
-		    public static String getUrl() {
-		        return url;
-		    }
-		    
-		    public static String getUsername() {
-		        return Username;
-		    }
-		    
-		    public static String getPassword() {
-		        return Password;
-		    }
-		    
-		    public static String getdefaultView() {
-		        return defaultView;
-		    }
-		    
-		    public static String getofficeDocs() {
-		        return officeDocs;
-		    }
-		    public static String getofficepdf() {
-		        return officepdf;
-		    }
-		    public static String getLoadcount() {
-		        return Loadcount;
-		    }
-		    
-		   
-		    
-		}	
-	*/
-
+	 public Utility(WebDriver driver)
+	 {
+		 this.driver = driver;
+		 act = new Actions(driver);
+	 }
+	 
+	 public void moveToElementAndClick(WebElement ele)
+	 {
+		 act.moveToElement(ele).click().build().perform();
+	 }
+	 
+	 
+	 
+	 
 	public void Dropdown(By drp_Ele, String visible) 
 	{
 		Select dropdown = new Select((WebElement) drp_Ele);
@@ -114,25 +45,25 @@ public class Utility {
 
 	}
 
-	public static void Dropdownbytxt(WebElement cat, String visible) 
+	public void Dropdownbytxt(WebElement cat, String visible) 
 	{
 		Select dropdown = new Select(cat);
 		dropdown.selectByVisibleText(visible);
 	}
 
-	public static void Dropdownbyindex(WebElement cat, int visible) 
+	public void Dropdownbyindex(WebElement cat, int visible) 
 	{
 		Select dropdown = new Select(cat);
 		dropdown.selectByIndex(visible);
 
 	}
 
-	public static boolean isInvisible(WebElement Element, WebDriver wd, long tm) {
+	public boolean isInvisible(WebElement Element, long tm) {
 		boolean isDisplayed = false;
 
 		try {
 
-			WebDriverWait wt = new WebDriverWait(wd, Duration.ofMinutes(tm));
+			WebDriverWait wt = new WebDriverWait(driver, Duration.ofMinutes(tm));
 			wt.until(ExpectedConditions.invisibilityOf(Element));
 			isDisplayed = true;
 		} catch (Exception e)
@@ -145,7 +76,7 @@ public class Utility {
 
 	}
 
-	public static boolean isDisaplyed(By Locator, WebDriver wd, long tm) {
+	public boolean isDisaplyed(By Locator, WebDriver wd, long tm) {
 		boolean isDisplayed = false;
 
 		try {
@@ -184,7 +115,7 @@ public class Utility {
 	}
 
 	// URL Checking
-	public static void checkUrl(WebDriver wd) {
+	public void checkUrl(WebDriver wd) {
 
 		String url = "";
 		HttpURLConnection huc = null;
@@ -226,12 +157,12 @@ public class Utility {
 
 	}
 
-	public static boolean isVisible(WebElement WebElement, WebDriver wd, long tm) {
+	public boolean isVisible(WebElement WebElement, long tm) {
 		boolean isVisible = false;
 
 		try {
 
-			WebDriverWait wt = new WebDriverWait(wd, Duration.ofSeconds(tm));
+			WebDriverWait wt = new WebDriverWait(driver, Duration.ofSeconds(tm));
 			wt.until(ExpectedConditions.visibilityOf(WebElement));
 			isVisible = true;
 		} catch (Exception e)
@@ -253,12 +184,12 @@ public class Utility {
 
 	}
 
-	public static boolean isDisaplyedW(WebElement Ele, WebDriver wd, long tm) {
+	public boolean isDisaplyedW(WebElement Ele, long tm) {
 		boolean isDisplayed = false;
 
 		try {
 
-			WebDriverWait wt = new WebDriverWait(wd, Duration.ofSeconds(tm));
+			WebDriverWait wt = new WebDriverWait(driver, Duration.ofSeconds(tm));
 			wt.until(ExpectedConditions.visibilityOf(Ele));
 			isDisplayed = true;
 		} catch (Exception e)
@@ -276,7 +207,7 @@ public class Utility {
 		driver.close();
 	}
 
-	public static boolean isClickable(WebElement WebElement, WebDriver driver, long tm) {
+	public boolean isClickable(WebElement WebElement, WebDriver driver, long tm) {
 		boolean isClickable = false;
 
 		try {
@@ -295,7 +226,7 @@ public class Utility {
 
 	}
 
-	public static boolean isClicked(WebElement element) {
+	public boolean isClicked(WebElement element) {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 			wait.until(ExpectedConditions.elementToBeClickable(element));
@@ -307,7 +238,7 @@ public class Utility {
 	}
 
 
-	public static boolean isAlertPresent(WebDriver wd) 
+	public boolean isAlertPresent(WebDriver wd) 
 	{
 		try {
 			wd.switchTo().alert();
@@ -347,7 +278,7 @@ public class Utility {
 	*/
 
 	
- public static String currentTime()
+ public String currentTime()
  {
 	 SimpleDateFormat format = new SimpleDateFormat("HHMMSS");
 	 

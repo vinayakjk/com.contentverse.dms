@@ -20,6 +20,8 @@ public class CV_HomePage extends Utility {
 	Actions act;
 
 	public CV_HomePage(WebDriver driver) {
+		
+		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
@@ -103,7 +105,7 @@ public class CV_HomePage extends Utility {
 	WebElement btnAdvanceSearch;
 
 	public void cN() {
-		CabinateName = Utility.currentTime();
+		CabinateName = currentTime();
 	}
 
 	public boolean cv_CabinateCreation() throws Exception {
@@ -176,7 +178,7 @@ public void cvCreateDrawer() throws Exception {
 		btnOnCabinateNamefloatButton.click();
 		act = new Actions(driver);
 		act.moveToElement(createDrawer).click().build().perform();
-		txtEnterDrawerName.sendKeys(Utility.currentTime());
+		txtEnterDrawerName.sendKeys(currentTime());
 		btnOKCreateDrwaer.click();
 		Thread.sleep(2000);
 		Assert.assertEquals(minusbtn.isDisplayed(), true);
@@ -266,7 +268,7 @@ public void cvCreateDrawer() throws Exception {
 		public void selectDocument() throws InterruptedException 
 		{
 			driver.findElement(By.xpath("//td[text()='Image']/preceding-sibling::td/label/span")).click();
-			isDisaplyedW(txtDocumentName, driver, 2);
+			isDisaplyedW(txtDocumentName, 2);
 			act.contextClick(txtDocumentName);
 			
 			/*for (int i = 0; i < listOfAllDocs.size(); i++) 
@@ -288,15 +290,15 @@ public void cvCreateDrawer() throws Exception {
 		public boolean exportDocument() throws InterruptedException, IOException {
 			boolean testresult = false;
 			int afterdownload = 0;
-			isDisaplyedW(sendTo, driver, 3);
+			isDisaplyedW(sendTo, 3);
 			act.moveToElement(sendTo).click().build().perform();
 			if(sendToExport.isEnabled()) 
 			{
-				isDisaplyedW(sendToExport, driver, 3);
+				isDisaplyedW(sendToExport, 3);
 				sendToExport.click();
 				btnOKToExport.click();
 
-				isDisaplyedW(exportInfoMessageBox, driver, 2);
+				isDisaplyedW(exportInfoMessageBox, 2);
 				if (exportInfoMessageBox.getText().trim().equalsIgnoreCase("Error On Download")) 
 				{
 					System.out.println(exportInfoMessageBox.getText());
@@ -307,7 +309,7 @@ public void cvCreateDrawer() throws Exception {
 					int beforedownload = ifFileAvailable();
 					System.out.println(beforedownload);
 				
-					isInvisible(exportInfoMessageBox, driver, 30);
+					isInvisible(exportInfoMessageBox, 30);
 					afterdownload = ifFileAvailable();
 					System.out.println(afterdownload);
 					if(beforedownload<afterdownload)
