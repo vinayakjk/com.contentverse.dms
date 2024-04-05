@@ -7,6 +7,12 @@
 	</listeners>
 
   <test thread-count="5" name="Test">
+	
+	<!-- <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups> -->
     <classes>
       <class name="cv_testcases.CV_LoginTestCase"/>
     </classes>

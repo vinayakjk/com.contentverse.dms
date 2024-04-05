@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+
 import cv_resources.Utility;
 
 public class CV_Settings extends Utility{
@@ -205,6 +207,9 @@ public class CV_Settings extends Utility{
 	@FindBy(xpath = "//button[@id='cvModel50Ok']")
 	WebElement btnokwindowdefaultdocs;
 	
+	@FindBy(xpath = "//div[@id='toastMessage']")
+	WebElement msgtoast;
+	
 	WebDriver driver;
 
 	// Declare Constructor
@@ -220,7 +225,6 @@ public class CV_Settings extends Utility{
 		imgSettings.click();
 		lblMyPreferences.click();
 		Utility.isVisible(windowMyprefernce, driver, 5);
-		//System.out.println(ConfigReader.getdefaultView());
 		Utility.Dropdownbytxt(ddDefaultViewListNo,getdefaultView);
 		Utility.Dropdownbytxt(ddOfficeDocuments, getofficeDocs);
 		Utility.Dropdownbytxt(ddPdfDocuments, getofficepdf);
@@ -228,11 +232,15 @@ public class CV_Settings extends Utility{
 		txtLoadMoreCount.sendKeys(getLoadcount);
 		
 		btnApplyMyPreferences.click();
+		String Settingapplymsg=msgtoast.getText();
 
-		if(Utility.isDisaplyedW(windowdefaultdocs, driver, 5)==true)
+		if(Utility.isDisaplyedW(windowdefaultdocs, driver, 1)==true)
 		{
 			btnokwindowdefaultdocs.click();
 		}
+		
+		System.out.println(Settingapplymsg);
+		Assert.assertTrue(Settingapplymsg.contains("Saved Successfully!"));
 	}
 
 }

@@ -20,8 +20,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import cv_pages.CV_LoginPage;
+
 public class Utility {
-	 static WebDriver driver;
+	
+
+	static WebDriver driver;
 
 
 
@@ -270,12 +274,12 @@ public class Utility {
 		return isDisplayed;
 
 	}
-
+	/*
 	public void closebrowser() 
 	{
 		driver.close();
 	}
-
+	 */
 	public static boolean isClickable(WebElement WebElement, WebDriver driver, long tm) {
 		boolean isClickable = false;
 

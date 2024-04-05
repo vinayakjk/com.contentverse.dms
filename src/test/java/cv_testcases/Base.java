@@ -19,12 +19,13 @@ public class Base {
 	FileInputStream fis;
 	String url;
 	String ValidPassword;
-
 	String officeDocs;
 	String officepdf;
 	String Loadcount;
 	String InValidUsername;
 	String InValidPassword;
+	String Act_Msg;
+    String Language;
 	
 	public void ConfigReader() throws Exception {
 		properties = new Properties();
@@ -41,6 +42,8 @@ public class Base {
 		officepdf = properties.getProperty("officepdf");
 		InValidUsername = properties.getProperty("Invalid_User");
 		InValidPassword = properties.getProperty("Invalid_Pass");
+		 Act_Msg=properties.getProperty("Act_Msg");
+         Language=properties.getProperty("Language");
 	}
 
 	public String getBrowser() {
@@ -84,7 +87,15 @@ public class Base {
 		return InValidPassword;
 	}
 
+	public String getAct_Msg() {
+		return Act_Msg;
+	}
 
+	public String getLanguage() {
+		return Language;
+	}
+
+	
 	public WebDriver launchBrowser() throws Exception  {
 
 		ConfigReader();
