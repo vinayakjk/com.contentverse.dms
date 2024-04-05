@@ -20,7 +20,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import cv_pages.CV_LoginPage;
+
 public class Utility {
+
 	 WebDriver driver;
 	 Actions act;
 
@@ -35,9 +38,88 @@ public class Utility {
 		 act.moveToElement(ele).click().build().perform();
 	 }
 	 
-	 
-	 
-	 
+
+/*
+	 public static class ConfigReader {
+		    private static String Username ;
+		    private static String defaultView;
+			private static Properties properties;
+		    private static String browser;
+		    public static String url;
+		    private static String Password;
+		    
+		    private static String officeDocs;
+		    private static String officepdf; 
+		    private static String Loadcount;
+
+		    //private static long implicitwait;
+
+		    
+		    //private static int implicitwait;
+
+
+		    static {
+		        properties = new Properties();
+		        try {
+		        	
+		            FileInputStream fis = new FileInputStream((System.getProperty("user.dir")+"\\src\\main\\java\\cv_resources\\Config.properties"));
+		            
+		            properties.load(fis);
+		            browser = properties.getProperty("browser");
+		            url = properties.getProperty("url");
+		            Username = properties.getProperty("Username");
+		            Password= properties.getProperty("Password");
+		            defaultView=properties.getProperty("defaultView");
+		            officeDocs=properties.getProperty("officeDocs");
+		            Loadcount=properties.getProperty("Loadcount");
+		            officepdf=properties.getProperty("officepdf");
+		           
+		           // implicitwait= properties.getProperty("implicitwait");
+		            
+		          //implicitwait=properties.getProperty("implicitwait");
+		            
+		            
+		        } catch (IOException e) 
+		        {
+
+		        }
+		    }
+
+		    public static String getBrowser() {
+		        return browser;
+		    }
+
+		    public static String getUrl() {
+		        return url;
+		    }
+		    
+		    public static String getUsername() {
+		        return Username;
+		    }
+		    
+		    public static String getPassword() {
+		        return Password;
+		    }
+		    
+		    public static String getdefaultView() {
+		        return defaultView;
+		    }
+		    
+		    public static String getofficeDocs() {
+		        return officeDocs;
+		    }
+		    public static String getofficepdf() {
+		        return officepdf;
+		    }
+		    public static String getLoadcount() {
+		        return Loadcount;
+		    }
+		    
+		   
+		    
+		}	
+	*/
+
 	public void Dropdown(By drp_Ele, String visible) 
 	{
 		Select dropdown = new Select((WebElement) drp_Ele);
@@ -201,13 +283,14 @@ public class Utility {
 		return isDisplayed;
 
 	}
-
+	/*
 	public void closebrowser() 
 	{
 		driver.close();
 	}
 
-	public boolean isClickable(WebElement WebElement, WebDriver driver, long tm) {
+	public boolean isClickable(WebElement WebElement, long tm) {
+
 		boolean isClickable = false;
 
 		try {

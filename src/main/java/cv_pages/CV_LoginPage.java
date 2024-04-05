@@ -120,10 +120,10 @@ public class CV_LoginPage extends Utility {
 		PageFactory.initElements(driver, this);
 
 	}
-//<<<<< HEAD
 
 	public void Check_Valid_Credentials(String uid, String pass, String room) 
 	{
+
 		System.out.println("6.Check_Valid_Credentials");
 		isVisible(txtUsername, 10);
 		txtUsername.clear();
@@ -151,17 +151,9 @@ public class CV_LoginPage extends Utility {
 			//System.out.println("Another Session Ended");
 		}
 
-//<<<<<<< HEAD
-		System.out.println(imgLoggedInUsername.getText().toUpperCase() + " :- Logged in succeesfully.");
+		if (Utility.isVisible(HeaderMenu, 15)) {
+			System.out.println(imgLoggedInUsername.getText().toUpperCase() + " :- Logged in succeesfully.");
 
-		if (isVisible(HeaderMenu, 15)) {
-//=======
-		System.out.println(imgLoggedInUsername.getText() + " logged in succeesfully.");
-		
-		if (isVisible(HeaderMenu, 15)) 
-		{
-//>>>>>>> CreateCabinateDrwaer
-			System.out.println("Login sucess");
 
 		}
 

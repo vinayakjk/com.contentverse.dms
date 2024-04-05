@@ -11,20 +11,20 @@ public class CV_LoginTestCase extends Base {
 	CV_LoginPage login_page;
 	WebDriver driver;
 
+
 	@BeforeMethod
-	public void initalization() throws Exception {
-//<<<<<<< HEAD
+	public void initalization() throws Exception 
+	{
+
 		driver = launchBrowser();
 		login_page = new CV_LoginPage(driver);
-//=======
-		// launchBrowser();
-		// login_page= new CV_LoginPage(driver);
-//>>>>>>> CreateCabinateDrwaer
+
 	}
 
 	@AfterMethod
-	public void tearDown() {
-//<<<<<<< HEAD
+		public void tearDown() 
+	{
+
 		driver.quit();
 	}
 
@@ -35,7 +35,7 @@ public class CV_LoginTestCase extends Base {
 		login_page.Invalid_Username(getInValidUsername(), getValidPassword());
 	}
 
-	@Test(priority = 2)
+	@Test(priority = 2)//, groups = "smoke"
 	public void check_InValid_Password()
 
 	{
@@ -63,7 +63,7 @@ public class CV_LoginTestCase extends Base {
 		login_page.Select_Room(getValidUsername(), getInvalidPassword());
 	}
 
-	@Test(priority = 6)
+	@Test(priority = 6)//,groups = "smoke"
 	public void Check_Valid_Credentials()
 
 	{
