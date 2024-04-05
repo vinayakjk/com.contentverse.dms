@@ -164,6 +164,7 @@ public class Somke_Test_LoginPage extends Utility
 		public Somke_Test_LoginPage(WebDriver driver )
 
 		{
+			super(driver);
 			this.driver = driver;
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 			PageFactory.initElements(driver, this);
@@ -214,13 +215,13 @@ public class Somke_Test_LoginPage extends Utility
 			ddRooms.click();
 			btnSubmit.click();
 			
-			if (Utility.isDisaplyedW(WindowSesionMgr, driver, 1))
+			if (isDisaplyedW(WindowSesionMgr, 1))
 			{
 				WindowSesionMgr.click();
 				System.out.println("Another Session Ended");
 			}
 			
-			Utility.isDisaplyedW(SelectedRoom, driver, 10);
+			isDisaplyedW(SelectedRoom, 10);
 			String room=SelectedRoom.getText();
 			softAssert.assertEquals(room,"SUNDYNE");
 			
@@ -239,7 +240,7 @@ public class Somke_Test_LoginPage extends Utility
 
 		public void cN() 
 		{
-			CabinateName = Utility.currentTime();
+			CabinateName = currentTime();
 		}
 
 		
@@ -296,10 +297,10 @@ public class Somke_Test_LoginPage extends Utility
 			firstDrawer.click();
 			BtnFloat.click();
 			
-			if(Utility.isClicked(clickNewFOlder)==true)
+			if(isClicked(clickNewFOlder)==true)
 			{
 				softAssert.assertTrue(true);
-				Utility.isClicked(btncancleCreateFolder);
+				isClicked(btncancleCreateFolder);
 				System.out.println(User+":- This user should able to create a Folder");
 			}
 			else 

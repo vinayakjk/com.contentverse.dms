@@ -288,7 +288,7 @@ public class Utility {
 	{
 		driver.close();
 	}
-
+*/
 	public boolean isClickable(WebElement WebElement, long tm) {
 
 		boolean isClickable = false;

@@ -151,7 +151,7 @@ public class CV_LoginPage extends Utility {
 			//System.out.println("Another Session Ended");
 		}
 
-		if (Utility.isVisible(HeaderMenu, 15)) {
+		if (isVisible(HeaderMenu, 15)) {
 			System.out.println(imgLoggedInUsername.getText().toUpperCase() + " :- Logged in succeesfully.");
 
 
@@ -162,7 +162,7 @@ public class CV_LoginPage extends Utility {
 			System.out.println("Login failed with reason:- " + Msg);
 		}
 	}
-	}
+	
 
 	public void Invalid_Username(String uid, String pass) {
 		System.out.println("1.Login With Invalid Username");
