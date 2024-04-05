@@ -3,7 +3,9 @@
 <suite name="Suite">
   <test thread-count="5" name="Test">
     <classes>
-          <class name="cv_testcases.CV_CreateCabinateDrawerTest"/>
+			<!-- <class name="cv_testcases.CV_LoginTestCase"/> -->
+          	<class name="cv_testcases.CV_CreateCabinateDrawerTest"/>
+          	<class name="cv_testcases.CV_ExportContentTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

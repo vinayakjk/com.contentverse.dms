@@ -15,7 +15,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,12 +23,21 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import cv_pages.CV_LoginPage;
 
 public class Utility {
-	
 
-	static WebDriver driver;
+	 WebDriver driver;
+	 Actions act;
 
-
-
+	 public Utility(WebDriver driver)
+	 {
+		 this.driver = driver;
+		 act = new Actions(driver);
+	 }
+	 
+	 public void moveToElementAndClick(WebElement ele)
+	 {
+		 act.moveToElement(ele).click().build().perform();
+	 }
+	 
 
 /*
 	 public static class ConfigReader {
@@ -118,25 +127,25 @@ public class Utility {
 
 	}
 
-	public static void Dropdownbytxt(WebElement cat, String visible) 
+	public void Dropdownbytxt(WebElement cat, String visible) 
 	{
 		Select dropdown = new Select(cat);
 		dropdown.selectByVisibleText(visible);
 	}
 
-	public static void Dropdownbyindex(WebElement cat, int visible) 
+	public void Dropdownbyindex(WebElement cat, int visible) 
 	{
 		Select dropdown = new Select(cat);
 		dropdown.selectByIndex(visible);
 
 	}
 
-	public static boolean isInvisible(WebElement Element, WebDriver wd, long tm) {
+	public boolean isInvisible(WebElement Element, long tm) {
 		boolean isDisplayed = false;
 
 		try {
 
-			WebDriverWait wt = new WebDriverWait(wd, Duration.ofMinutes(tm));
+			WebDriverWait wt = new WebDriverWait(driver, Duration.ofMinutes(tm));
 			wt.until(ExpectedConditions.invisibilityOf(Element));
 			isDisplayed = true;
 		} catch (Exception e)
@@ -149,7 +158,7 @@ public class Utility {
 
 	}
 
-	public static boolean isDisaplyed(By Locator, WebDriver wd, long tm) {
+	public boolean isDisaplyed(By Locator, WebDriver wd, long tm) {
 		boolean isDisplayed = false;
 
 		try {
@@ -188,7 +197,7 @@ public class Utility {
 	}
 
 	// URL Checking
-	public static void checkUrl(WebDriver wd) {
+	public void checkUrl(WebDriver wd) {
 
 		String url = "";
 		HttpURLConnection huc = null;
@@ -230,12 +239,12 @@ public class Utility {
 
 	}
 
-	public static boolean isVisible(WebElement WebElement, WebDriver wd, long tm) {
+	public boolean isVisible(WebElement WebElement, long tm) {
 		boolean isVisible = false;
 
 		try {
 
-			WebDriverWait wt = new WebDriverWait(wd, Duration.ofSeconds(tm));
+			WebDriverWait wt = new WebDriverWait(driver, Duration.ofSeconds(tm));
 			wt.until(ExpectedConditions.visibilityOf(WebElement));
 			isVisible = true;
 		} catch (Exception e)
@@ -257,12 +266,12 @@ public class Utility {
 
 	}
 
-	public static boolean isDisaplyedW(WebElement Ele, WebDriver wd, long tm) {
+	public boolean isDisaplyedW(WebElement Ele, long tm) {
 		boolean isDisplayed = false;
 
 		try {
 
-			WebDriverWait wt = new WebDriverWait(wd, Duration.ofSeconds(tm));
+			WebDriverWait wt = new WebDriverWait(driver, Duration.ofSeconds(tm));
 			wt.until(ExpectedConditions.visibilityOf(Ele));
 			isDisplayed = true;
 		} catch (Exception e)
@@ -279,8 +288,9 @@ public class Utility {
 	{
 		driver.close();
 	}
-	 */
-	public static boolean isClickable(WebElement WebElement, WebDriver driver, long tm) {
+
+	public boolean isClickable(WebElement WebElement, long tm) {
+
 		boolean isClickable = false;
 
 		try {
@@ -299,7 +309,7 @@ public class Utility {
 
 	}
 
-	public static boolean isClicked(WebElement element) {
+	public boolean isClicked(WebElement element) {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 			wait.until(ExpectedConditions.elementToBeClickable(element));
@@ -311,7 +321,7 @@ public class Utility {
 	}
 
 
-	public static boolean isAlertPresent(WebDriver wd) 
+	public boolean isAlertPresent(WebDriver wd) 
 	{
 		try {
 			wd.switchTo().alert();
@@ -351,7 +361,7 @@ public class Utility {
 	*/
 
 	
- public static String currentTime()
+ public String currentTime()
  {
 	 SimpleDateFormat format = new SimpleDateFormat("HHMMSS");
 	 
@@ -359,6 +369,16 @@ public class Utility {
 	 
 	 return format.format(dt).toString();
  }
+ 
+ public int ifFileAvailable() throws InterruptedException
+	{
+		File downloadedFilePath = new File(System.getProperty("user.dir")+"\\downloadFiles\\");
+	
+		File allFiles[] = downloadedFilePath.listFiles();
+		//boolean ifFileNotAvailable = false;
+		int len1 = allFiles.length;
+		return len1;
+	}
 	
 
 

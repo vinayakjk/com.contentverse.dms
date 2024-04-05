@@ -11,7 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import cv_resources.Utility;
 
-public class CV_NewDocument 
+public class CV_NewDocument extends Utility 
 {
 	// Web Elements added in CV_NewDocuments Amol - 04/03/2024
 
@@ -35,7 +35,7 @@ public class CV_NewDocument
 	    WebElement chkDocument;
 	// Add New Document ----------------------------------------------------------------------------------
 	// If Direct Click on New Document
-	    
+	    	      
 	    @FindBy(xpath = "//a[@id='createDocument']")
 	    WebElement menuNewDocument;
 	    // After click on New Document Menu - Destination Folder
@@ -230,35 +230,52 @@ public class CV_NewDocument
 	    // Fab Full Screen View
 	    @FindBy(xpath = "//i[@id='fullScreenFabButton']")
 	    WebElement btnFabFullScreenView;
+	    
+	    /*
+	     * @FindBy(id="addWordFile")
+	     
+	    WebElement NewWordDocument;
+	    
+	    public void NewWorkDocument()
+	    {
+	    	NewWordDocument.click();
+	    }
+	    */
 	//------------------------------------------------------------------------------------------------------------------------------------------------
 	    WebDriver driver;
 	    
-	   
-	    public CV_NewDocument(WebDriver driver)
-		{
+	    public CV_NewDocument(WebDriver driver) {
+	    	super(driver);
 			this.driver = driver;
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 			PageFactory.initElements(driver, this);
-			
-			
+
 		}
-	    /*
-	    public void PlusIcon() 
+		/*
+		 * public void PlusIcon() { Actions actions = new Actions(driver);
+		 * actions.moveToElement(ddPlusIcon).build().perform(); }
+		 */
+	    
+	    //Following method is added by Ajay Sharma
+	    public void selectTypeToCreateNewDocument() throws InterruptedException
 	    {
-	    	Actions actions = new Actions(driver);
-	        actions.moveToElement(ddPlusIcon).build().perform();
+	    	menuNewDocument.click();
+	    	moveToElementAndClick(ddNewWordDocumentButton);
 	    }
-	    */
+	    
+	    
+	    
+	    
 	    
 	    public void NewDocument() 
 	    {
 	    	 Actions actions = new Actions(driver);
 	    	
 	        menuNewDocument.click();
-	        Utility.isVisible(txtDestinationFolder, driver, 10);
+	        isVisible(txtDestinationFolder, 10);
 	        actions.moveToElement(txtDestinationFolder).build().perform();
 	        txtDestinationFolder.click();
-	        if(Utility.isVisible(tabBrowserForFolder, driver, 10)== true);
+	        if(isVisible(tabBrowserForFolder, 10)== true);
 	        {
 	            iconPlusSelectCabinet.click();
 	            iconPlusSelectDrawer.click();
@@ -266,11 +283,11 @@ public class CV_NewDocument
 	            btnOkBrowseForFolder.click();
 	        }
 	    //  actions.moveToElement(ddDocumentType).build().perform();
-	        Utility.Dropdownbytxt(ddDocumentType, "WordDocs");
+	        Dropdownbytxt(ddDocumentType, "WordDocs");
 	        txtAuthorsList.sendKeys("TestDoc");
 	        chkbxRetain.click();
 	        btnNewDocCreate.click();
-	        Utility.isInvisible(loaderNewDocCreate, driver, 10);
+	        isInvisible(loaderNewDocCreate, 10);
 	        String msg = lblMessage.getText();
 	        if (msg.contains("Document created successfully")) {
 	            System.out.println("Document created successfully");

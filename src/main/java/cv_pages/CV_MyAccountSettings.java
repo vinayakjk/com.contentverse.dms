@@ -1,10 +1,18 @@
 package cv_pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CV_MyAccountSettings 
+import cv_resources.Utility;
+
+public class CV_MyAccountSettings extends Utility
 {
+
+	public CV_MyAccountSettings(WebDriver driver) {
+		super(driver);
+		
+	}
 
 	//ClickMyAccount
 	@FindBy(xpath = "//h3[contains(text(),'My Account')]")

@@ -14,7 +14,13 @@ import org.openqa.selenium.support.FindBy;
 //import org.openqa.selenium.support.PageFactory;
 //import org.testng.asserts.SoftAssert;
 import org.openqa.selenium.support.PageFactory;
+//<<<<<<< HEAD
 import org.testng.Assert;
+//=======
+import org.openqa.selenium.support.ui.Select;
+
+import com.fasterxml.jackson.databind.deser.Deserializers.Base;
+//>>>>>>> CreateCabinateDrwaer
 
 //import cv_testcases.Base.ConfigReader;
 import cv_resources.Utility;
@@ -39,8 +45,13 @@ public class CV_LoginPage extends Utility {
 	@FindBy(xpath = "//input[@id='loginPassword']")
 	WebElement txtPassword;
 
+//<<<<<<< HEAD
 	@FindBy(xpath = "//select[@id='rooms']/option[contains(text(),'DMS-SERVER.SUNDYNE')]")
 	WebElement ddRooms;
+//=======
+	//@FindBy(xpath="//select[@id='rooms']/option[contains(text(),'DMS-SERVER.SUNDYNE')]")
+	//WebElement ddRooms;
+//>>>>>>> CreateCabinateDrwaer
 
 	@FindBy(xpath = "//button[@id='submitid']")
 	WebElement btnSubmit;
@@ -90,6 +101,9 @@ public class CV_LoginPage extends Utility {
 
 	@FindBy(xpath = "//span[@id='loginError']")
 	WebElement lbllogin;
+	
+	@FindBy(id="rooms")
+	WebElement listOfRooms;
 
 	@FindBy(xpath = "//div[@class='nameValidation']")
 	WebElement lblnamevalidation;
@@ -100,33 +114,46 @@ public class CV_LoginPage extends Utility {
 	public CV_LoginPage(WebDriver driver)
 
 	{
+		super(driver);
 		this.driver = driver;
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		PageFactory.initElements(driver, this);
 
 	}
 
-	
+	public void Check_Valid_Credentials(String uid, String pass, String room) 
+	{
 
-	public void Check_Valid_Credentials(String uid, String pass) {
 		System.out.println("6.Check_Valid_Credentials");
-		Utility.isVisible(txtUsername, driver, 10);
+		isVisible(txtUsername, 10);
 		txtUsername.clear();
+//=======
+	/*
+		public void roomListValue(String roomName)
+	{
+		Select rooms_Lists = new Select(listOfRooms);
+		rooms_Lists.selectByValue(roomName);
+	}
+	*/
+//	public void login_cvWeb(String uid,String pass,String room)
+	//{
+		
+//>>>>>>> CreateCabinateDrwaer
 		txtUsername.sendKeys(uid);
 		txtPassword.clear();
 		txtPassword.sendKeys(pass);
-		ddRooms.click();
+		Dropdownbytxt(listOfRooms,room);
+		//ddRooms.click();
 		btnSubmit.click();
 
-		if (Utility.isDisaplyedW(WindowSesionMgr, driver, 1)) {
+		if (isDisaplyedW(WindowSesionMgr, 1)) {
 			WindowSesionMgr.click();
-			System.out.println("Another Session Ended");
+			//System.out.println("Another Session Ended");
 		}
 
-		
-
-		if (Utility.isVisible(HeaderMenu, driver, 15)) {
+		if (Utility.isVisible(HeaderMenu, 15)) {
 			System.out.println(imgLoggedInUsername.getText().toUpperCase() + " :- Logged in succeesfully.");
+
 
 		}
 
@@ -134,6 +161,7 @@ public class CV_LoginPage extends Utility {
 			String Msg = lbllogin.getText();
 			System.out.println("Login failed with reason:- " + Msg);
 		}
+	}
 	}
 
 	public void Invalid_Username(String uid, String pass) {
@@ -176,7 +204,7 @@ public class CV_LoginPage extends Utility {
 		ddRooms.click();
 		btnSubmit.click();
 
-		if (Utility.isDisaplyedW(WindowSesionMgr, driver, 1)) 
+		if (isDisaplyedW(WindowSesionMgr, 1)) 
 		{
 			WindowSesionMgr.click();
 		}
@@ -254,7 +282,7 @@ public class CV_LoginPage extends Utility {
 
 	public void Select_Room(String uid, String pass) {
 		System.out.println("5.Select_Room");
-		Utility.isVisible(txtUsername, driver, 10);
+		isVisible(txtUsername, 10);
 		txtUsername.clear();
 		txtUsername.sendKeys(uid);
 		txtPassword.clear();

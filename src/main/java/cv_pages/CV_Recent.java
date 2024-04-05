@@ -54,9 +54,10 @@ public class CV_Recent extends Utility{
 
 	
 
-	public CV_Recent(WebDriver ldriver)
+	public CV_Recent(WebDriver driver)
 	{
-		this.driver=ldriver;
+		super(driver);
+		this.driver=driver;
 		PageFactory.initElements(driver,this);
 	}  
 	
