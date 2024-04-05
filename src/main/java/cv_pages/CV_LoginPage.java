@@ -106,6 +106,8 @@ public class CV_LoginPage extends Utility {
 
 	}
 
+	
+
 	public void Check_Valid_Credentials(String uid, String pass) {
 		System.out.println("6.Check_Valid_Credentials");
 		Utility.isVisible(txtUsername, driver, 10);
@@ -121,10 +123,10 @@ public class CV_LoginPage extends Utility {
 			System.out.println("Another Session Ended");
 		}
 
-		System.out.println(imgLoggedInUsername.getText().toUpperCase() + " :- Logged in succeesfully.");
+		
 
 		if (Utility.isVisible(HeaderMenu, driver, 15)) {
-			System.out.println("Login sucess");
+			System.out.println(imgLoggedInUsername.getText().toUpperCase() + " :- Logged in succeesfully.");
 
 		}
 
