@@ -53,7 +53,7 @@ public class Listeners extends Utility implements ITestListener
 			driver=(WebDriver) result.getTestClass().getRealClass().getField("wd").get(result.getInstance());
 		} catch (Exception e1) {
 		}
-			String filepath = null;
+			String filepath = (System.getProperty("user.dir")+"\\src\\main\\java\\reports");
 		test.addScreenCaptureFromPath(filepath, result.getMethod().getMethodName());
 	}
 
@@ -69,7 +69,7 @@ public class Listeners extends Utility implements ITestListener
 	test.fail(result.getThrowable());
 		
 		//TakeScreenShot and Attach To report 
-		String filepath = null;
+		String filepath = (System.getProperty("user.dir")+"\\src\\main\\java\\reports");
 		test.addScreenCaptureFromPath(filepath, result.getMethod().getMethodName());
 	}
 	
