@@ -39,9 +39,9 @@ public class CV_ExportContentTest extends Base
 
 		// Thread.sleep(2000);
 		cvHP.selectFolderPresentInDrawer(getFolderName());
-
+	
+		cvHP.documentListTable();
 		cvHP.selectDocument();
-		// cvHP.selectAllDocuments();
 		Assert.assertEquals(cvHP.exportDocument(), true);
 	}
 

@@ -38,6 +38,22 @@ public class Utility {
 		 act.moveToElement(ele).click().build().perform();
 	 }
 	 
+	 public void moveToElementAndDoubleClick(WebElement ele)
+	 {
+		 act.moveToElement(ele).doubleClick().build().perform();
+	 }
+	 
+	 public void moveToElementAndContextClick(WebElement ele)
+	 {
+		 act.moveToElement(ele).contextClick();
+	 }
+	 
+	 public void doubleClick(WebElement ele)
+	 {
+		 act.doubleClick(ele).build().perform();
+	 }
+	 
+	 
 
 /*
 	 public static class ConfigReader {
