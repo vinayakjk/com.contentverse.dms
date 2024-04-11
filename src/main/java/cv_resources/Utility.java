@@ -1,0 +1,398 @@
+package cv_resources;
+import java.io.File;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import cv_pages.CV_LoginPage;
+
+public class Utility {
+
+	 WebDriver driver;
+	 Actions act;
+
+	 public Utility(WebDriver driver)
+	 {
+		 this.driver = driver;
+		 act = new Actions(driver);
+	 }
+	 
+	 public void moveToElementAndClick(WebElement ele)
+	 {
+		 act.moveToElement(ele).click().build().perform();
+	 }
+	 
+	 public void keypress(String a)
+	 {
+		 act.sendKeys(a).build().perform();
+	 }
+	 
+	 public void doubleClick()
+	 {
+		 act.doubleClick().build().perform();
+	 }
+	 
+
+/*
+	 public static class ConfigReader {
+		    private static String Username ;
+		    private static String defaultView;
+			private static Properties properties;
+		    private static String browser;
+		    public static String url;
+		    private static String Password;
+		    
+		    private static String officeDocs;
+		    private static String officepdf; 
+		    private static String Loadcount;
+
+		    //private static long implicitwait;
+
+		    
+		    //private static int implicitwait;
+
+
+		    static {
+		        properties = new Properties();
+		        try {
+		        	
+		            FileInputStream fis = new FileInputStream((System.getProperty("user.dir")+"\\src\\main\\java\\cv_resources\\Config.properties"));
+		            
+		            properties.load(fis);
+		            browser = properties.getProperty("browser");
+		            url = properties.getProperty("url");
+		            Username = properties.getProperty("Username");
+		            Password= properties.getProperty("Password");
+		            defaultView=properties.getProperty("defaultView");
+		            officeDocs=properties.getProperty("officeDocs");
+		            Loadcount=properties.getProperty("Loadcount");
+		            officepdf=properties.getProperty("officepdf");
+		           
+		           // implicitwait= properties.getProperty("implicitwait");
+		            
+		          //implicitwait=properties.getProperty("implicitwait");
+		            
+		            
+		        } catch (IOException e) 
+		        {
+
+		        }
+		    }
+
+		    public static String getBrowser() {
+		        return browser;
+		    }
+
+		    public static String getUrl() {
+		        return url;
+		    }
+		    
+		    public static String getUsername() {
+		        return Username;
+		    }
+		    
+		    public static String getPassword() {
+		        return Password;
+		    }
+		    
+		    public static String getdefaultView() {
+		        return defaultView;
+		    }
+		    
+		    public static String getofficeDocs() {
+		        return officeDocs;
+		    }
+		    public static String getofficepdf() {
+		        return officepdf;
+		    }
+		    public static String getLoadcount() {
+		        return Loadcount;
+		    }
+		    
+		   
+		    
+		}	
+	*/
+
+	public void Dropdown(By drp_Ele, String visible) 
+	{
+		Select dropdown = new Select((WebElement) drp_Ele);
+		dropdown.selectByVisibleText(visible);
+
+	}
+
+	public void Dropdownbytxt(WebElement cat, String visible) 
+	{
+		Select dropdown = new Select(cat);
+		dropdown.selectByVisibleText(visible);
+	}
+
+	public void Dropdownbyindex(WebElement cat, int visible) 
+	{
+		Select dropdown = new Select(cat);
+		dropdown.selectByIndex(visible);
+
+	}
+
+	public boolean isInvisible(WebElement Element, long tm) {
+		boolean isDisplayed = false;
+
+		try {
+
+			WebDriverWait wt = new WebDriverWait(driver, Duration.ofMinutes(tm));
+			wt.until(ExpectedConditions.invisibilityOf(Element));
+			isDisplayed = true;
+		} catch (Exception e)
+
+		{
+			e.printStackTrace();
+		}
+
+		return isDisplayed;
+
+	}
+
+	public boolean isDisaplyed(By Locator, WebDriver wd, long tm) {
+		boolean isDisplayed = false;
+
+		try {
+
+			WebDriverWait wt = new WebDriverWait(wd, Duration.ofSeconds(tm));
+			// wt.until(null)
+			wt.until(ExpectedConditions.visibilityOfElementLocated(Locator));
+			isDisplayed = true;
+		} catch (Exception e)
+
+		{
+
+			e.printStackTrace();
+
+		}
+
+		return isDisplayed;
+
+	}
+
+	public void login(WebDriver wd, String url, String User, String Pass) {
+
+		wd.manage().window().maximize();
+		wd.findElement(By.id("UserName")).sendKeys(User);
+		wd.findElement(By.name("Password")).sendKeys(Pass);
+		wd.findElement(By.id("btnLogin")).click();
+		System.out.println("Login Sucessfull");
+
+	}
+
+	// Print Message
+	public static void print(WebElement Print, String cat, Integer no) {
+		String text = Print.getText();
+		System.out.println(no + " : " + cat + " " + text);
+
+	}
+
+	// URL Checking
+	public void checkUrl(WebDriver wd) {
+
+		String url = "";
+		HttpURLConnection huc = null;
+		int respCode = 200;
+
+		List<WebElement> links = wd.findElements((By.xpath("//ul[@class='nav navbar-nav pull-right']//a")));
+		Iterator<WebElement> it = links.iterator();
+
+		while (it.hasNext()) {
+
+			url = it.next().getAttribute("href");
+
+			if (url != null && url.endsWith(".aspx")) {
+				System.out.println(url);
+
+				try {
+					huc = (HttpURLConnection) (new URL(url).openConnection());
+
+					huc.setRequestMethod("HEAD");
+
+					huc.connect();
+
+					respCode = huc.getResponseCode();
+
+					if (respCode >= 400) {
+						System.out.println(url + " is a broken link");
+					} else {
+						System.out.println(url + " :-( Is a valid link)");
+					}
+
+				} catch (MalformedURLException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			continue;
+		}
+
+	}
+
+	public boolean isVisible(WebElement WebElement, long tm) {
+		boolean isVisible = false;
+
+		try {
+
+			WebDriverWait wt = new WebDriverWait(driver, Duration.ofSeconds(tm));
+			wt.until(ExpectedConditions.visibilityOf(WebElement));
+			isVisible = true;
+		} catch (Exception e)
+
+		{
+			//e.printStackTrace();
+		}
+
+		return isVisible;
+
+	}
+
+	public String getScreenshot(String testCaseName, WebDriver wd) throws IOException {
+		TakesScreenshot ts = (TakesScreenshot) wd;
+		File source = ts.getScreenshotAs(OutputType.FILE);
+		File file = new File(System.getProperty("user.dir") + "//reports//" + testCaseName + ".png");
+		FileUtils.copyFile(source, file);
+		return System.getProperty("user.dir") + "//reports//" + testCaseName + ".png";
+
+	}
+
+	public boolean isDisaplyedW(WebElement Ele, long tm) {
+		boolean isDisplayed = false;
+
+		try {
+
+			WebDriverWait wt = new WebDriverWait(driver, Duration.ofSeconds(tm));
+			wt.until(ExpectedConditions.visibilityOf(Ele));
+			isDisplayed = true;
+		} catch (Exception e)
+
+		{
+	
+		}
+
+		return isDisplayed;
+
+	}
+	/*
+	public void closebrowser() 
+	{
+		driver.close();
+	}
+*/
+	public boolean isClickable(WebElement WebElement, long tm) {
+
+		boolean isClickable = false;
+
+		try {
+
+			WebDriverWait wt = new WebDriverWait(driver, Duration.ofSeconds(3));
+			wt.until(ExpectedConditions.elementToBeClickable(WebElement));
+			isClickable = true;
+		} catch (Exception e)
+
+		{
+
+
+		}
+
+		return isClickable;
+
+	}
+
+	public boolean isClicked(WebElement element) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+			wait.until(ExpectedConditions.elementToBeClickable(element));
+			element.click();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+
+	public boolean isAlertPresent(WebDriver wd) 
+	{
+		try {
+			wd.switchTo().alert();
+			return true;
+		} 	catch (Exception e) 
+		{
+			return false;
+		}
+	}
+
+	/*
+	public static WebDriver startBrowser() //String browserName,String url
+	{
+		if(ConfigReader.getBrowser().equalsIgnoreCase("firefox"))
+		{
+			driver = new FirefoxDriver();
+
+		}
+		else if (ConfigReader.getBrowser().equalsIgnoreCase("chrome"))
+		{
+
+			driver=new ChromeDriver();
+
+		}
+		else if (ConfigReader.getBrowser().equalsIgnoreCase("edge"))
+		{
+			driver=new EdgeDriver();
+		}
+
+		driver.manage().window().maximize();
+		driver.get(ConfigReader.url);
+	return driver;
+
+
+	}
+
+	*/
+
+	
+ public String currentTime()
+ {
+	 SimpleDateFormat format = new SimpleDateFormat("HHMMSS");
+	 
+	 Date dt = new Date();
+	 
+	 return format.format(dt).toString();
+ }
+ 
+ public int ifFileAvailable() throws InterruptedException
+	{
+		File downloadedFilePath = new File(System.getProperty("user.dir")+"\\downloadFiles\\");
+	
+		File allFiles[] = downloadedFilePath.listFiles();
+		//boolean ifFileNotAvailable = false;
+		int len1 = allFiles.length;
+		return len1;
+	}
+	
+
+
+
+
+}
+
