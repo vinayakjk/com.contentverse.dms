@@ -1,0 +1,13 @@
+/target/
+/test-output/
+pom.properties
+/test-output/
+/end
+
+# Followings are added by Mr. Ajay Sharma
+
+.settings
+.idea
+target
+test-output
+reports
