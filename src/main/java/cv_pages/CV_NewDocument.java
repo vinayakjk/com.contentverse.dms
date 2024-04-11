@@ -8,6 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+//<<<<<<< HEAD
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
@@ -362,5 +363,6 @@ public class CV_NewDocument extends Utility {
 		btnSaveNewWordDocument.click();
 		System.out.println("Pass123");		
 	}
+
 
 }

@@ -11,3 +11,5 @@ pom.properties
 target
 test-output
 reports
+.project
+.classpath

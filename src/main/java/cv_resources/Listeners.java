@@ -9,13 +9,14 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
+
 import cv_pages.CV_LoginPage;
 
-public class Listeners extends CV_LoginPage  implements ITestListener
+public class Listeners implements ITestListener
 {
-	
+
 	public Listeners(WebDriver driver) {
-		super(driver);
+		
 		// TODO Auto-generated constructor stub
 	}
 	ExtentTest test;
@@ -53,7 +54,9 @@ public class Listeners extends CV_LoginPage  implements ITestListener
 	@Override
 	public void onTestFailure(ITestResult result)
 	{
+
 		WebDriver driver;
+
 		test.fail(result.getThrowable());
 		
 		//TakeScreenShot and Attach To report 

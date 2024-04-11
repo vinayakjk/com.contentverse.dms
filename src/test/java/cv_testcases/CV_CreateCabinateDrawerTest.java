@@ -27,7 +27,6 @@ public class CV_CreateCabinateDrawerTest extends Base
 	@Test
 	public void createCabinateAndDrawer() throws Exception
 	{
-		
 		cvLP.Check_Valid_Credentials(getValidUsername(), getValidPassword(),getRoom());
 		Thread.sleep(3000);
 		Assert.assertEquals(cvHP.cv_CabinateCreation(), true);

@@ -48,6 +48,22 @@ public class Utility {
 		 act.doubleClick().build().perform();
 	 }
 	 
+	 public void moveToElementAndDoubleClick(WebElement ele)
+	 {
+		 act.moveToElement(ele).doubleClick().build().perform();
+	 }
+	 
+	 public void moveToElementAndContextClick(WebElement ele)
+	 {
+		 act.moveToElement(ele).contextClick();
+	 }
+	 
+	 public void doubleClick(WebElement ele)
+	 {
+		 act.doubleClick(ele).build().perform();
+	 }
+	 
+	 
 
 /*
 	 public static class ConfigReader {
@@ -341,36 +357,6 @@ public class Utility {
 			return false;
 		}
 	}
-
-	/*
-	public static WebDriver startBrowser() //String browserName,String url
-	{
-		if(ConfigReader.getBrowser().equalsIgnoreCase("firefox"))
-		{
-			driver = new FirefoxDriver();
-
-		}
-		else if (ConfigReader.getBrowser().equalsIgnoreCase("chrome"))
-		{
-
-			driver=new ChromeDriver();
-
-		}
-		else if (ConfigReader.getBrowser().equalsIgnoreCase("edge"))
-		{
-			driver=new EdgeDriver();
-		}
-
-		driver.manage().window().maximize();
-		driver.get(ConfigReader.url);
-	return driver;
-
-
-	}
-
-	*/
-
-	
  public String currentTime()
  {
 	 SimpleDateFormat format = new SimpleDateFormat("HHMMSS");

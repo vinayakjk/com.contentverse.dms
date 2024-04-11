@@ -1,5 +1,8 @@
 package cv_pages;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -10,6 +13,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.asserts.Assertion;
 
 import cv_resources.Utility;
 
@@ -71,8 +75,8 @@ public class CV_HomePage extends Utility {
 	@FindBy(id = "documentListDiv")
 	WebElement documentListBox;
 
-	@FindBy(xpath = "///span[@class='checkmark']")
-	List<WebElement> documentListInFolder;
+	@FindBy(xpath = "//table[@id='documentListTable']//tbody")
+	WebElement documentListInFolder;
 	
 	@FindBy(xpath = "//table[@id='documentListTable']//tbody//td[contains(@class,'customDocName')]")
 	List<WebElement> docsInFolder;
@@ -83,7 +87,8 @@ public class CV_HomePage extends Utility {
 	@FindBy(xpath = "//td[@class=' customDocName']")
 	List<WebElement> listOfAllDocs;
 	
-	@FindBy(xpath = "//td[text()='Image']")
+	//@FindBy(xpath = "//td[text()='Image']")
+	@FindBy(xpath = "//td[text()='ODTFILE']")
 	WebElement txtDocumentName;
 	
 	@FindBy(xpath = "//a[@id='documentSendTo']")
@@ -117,6 +122,10 @@ public class CV_HomePage extends Utility {
 		
 	}
 	
+	
+	@FindBy(xpath = "//div[@id='progressModel' and @class='cvModel']")
+	WebElement msgInitializing;
+	
 
 	public boolean cv_CabinateCreation() throws Exception {
 
@@ -145,14 +154,12 @@ public class CV_HomePage extends Utility {
 						break;
 					}
 				}
-
 			}
 
 		}
 		return result;
 	}
 
-//<<<<<<< HEAD
 	
 public void cvCreateDrawer() throws Exception {
 
@@ -172,27 +179,12 @@ public void cvCreateDrawer() throws Exception {
 		{
 				if (listOfCabinates.get(i).getText().trim().equalsIgnoreCase(CabinateName)) 
 				{
-					String Cabinate_Name = listOfCabinates.get(i).getText();
-					//System.out.println(Cabinate_Name);
-					act = new Actions(driver);
-					Thread.sleep(5000);
-					//System.out.println(listOfCabinates.get(i).getText());
-					act.moveToElement(listOfCabinates.get(i)).doubleClick().build().perform();;
-					//act.doubleClick(listOfCabinates.get(i)).build().perform();
+					moveToElementAndDoubleClick(listOfCabinates.get(i));
 					Thread.sleep(5000);
 				}
 		}
 	}
 
-	/*
-	public void listOfDrawersPresentInCabinet() throws InterruptedException 
-	{
-		for (int j = 0; j < listOfDrawers.size(); j++) 
-		{
-			System.out.println(listOfDrawers.get(j).getText());
-		}
-	}
-*/
 	public void selectDrawerPresentInCabinet(String DrawerName) throws InterruptedException 
 	{
 		for (int j = 0; j < listOfDrawers.size(); j++) 
@@ -204,86 +196,78 @@ public void cvCreateDrawer() throws Exception {
 			}
 		}
 	}
-/*
-	public void listOfFoldersPresentInDrawer() throws InterruptedException 
-	{
-		for (int k = 0; k < listOfFolders.size(); k++) 
-		{
-			System.out.println("---->>" + listOfFolders.get(k).getText());
-		}
-	}
-*/
 	public void selectFolderPresentInDrawer(String FolderName) throws InterruptedException 
 	{
 		for (int k = 0; k < listOfFolders.size(); k++) 
 		{
 			if (listOfFolders.get(k).getText().trim().equalsIgnoreCase(FolderName)) 
 			{
-				act = new Actions(driver);
-				act.moveToElement(selectFolder.get(k)).click(selectFolder.get(k)).build().perform();
-				//documentListTable();
+				isDisaplyedW(selectFolder.get(k), 3);
+				moveToElementAndClick(selectFolder.get(k));
 			}
 		}
 	}
 
-	public void documentListTable() throws InterruptedException {
-		
-		for (int i = 0; i < documentListInFolder.size(); i++) {
-			
-			// cv_PageUtility cv_PU = new cv_PageUtility(driver);
-			// cv_PU.isVisible();
-			Thread.sleep(3000);
-			if (documentListInFolder.get(i).getText().trim().equalsIgnoreCase("No data available in table")) 
+	
+	public boolean documentListTable() throws InterruptedException 
+	{
+		boolean documentListTable = false;
+		isDisaplyedW(documentListInFolder, 5);
+			if (documentListInFolder.getText().trim().equalsIgnoreCase("No data available in table")) 
 			{
-								
-			} else {
-				System.out.println(i+"="+"Documents in selected folder ---->>" + documentListInFolder.get(i).getText());
+				System.out.println(documentListInFolder.getText());
+				Assert.assertEquals(documentListTable, true);
+				
+			} else 
+			{
+				for (int i = 0; i<docsInFolder.size(); i++)
+				{
+					documentListTable = true;	
+				}		
 			}
-		}
-		
+		return documentListTable;
 	}
 	
 		public void selectAllDocuments() throws InterruptedException 
 		{
 			chkSelectAll.click();
-			Thread.sleep(3000);
-			act.contextClick(documentListBox).perform();
+			isDisaplyedW(documentListBox, 3);
+			moveToElementAndContextClick(documentListBox);
 		}
 
 		public void selectDocument() throws InterruptedException 
 		{
-			driver.findElement(By.xpath("//td[text()='Image']/preceding-sibling::td/label/span")).click();
+			driver.findElement(By.xpath("//td[text()='ODTFILE']/preceding-sibling::td/label/span")).click();
 			isDisaplyedW(txtDocumentName, 2);
-			act.contextClick(txtDocumentName);
-			
-			/*for (int i = 0; i < listOfAllDocs.size(); i++) 
-			{
-				if (listOfAllDocs.get(i).getText().trim().equalsIgnoreCase(docName)) 
-				{
-					String doc_name = listOfAllDocs.get(i).getText();
-					System.out.println(doc_name);
-					Thread.sleep(3000);
-					//driver.findElement(By.xpath("//td[text()='${doc_name}']/preceding-sibling::td/label/span")).click();
-
-					//driver.findElement(By.xpath("//td[text()='Image']/preceding-sibling::td/label/span")).click();
-					Thread.sleep(3000);
-					act.contextClick(txtDocumentName);
-				}
-			}*/
+			moveToElementAndContextClick(txtDocumentName);
+			Thread.sleep(2000);
 		}
-		
+		public void selectMultipleDocuments(String docName1, String docName2) throws InterruptedException 
+		{
+				List<WebElement> DocName1 = driver.findElements(By.xpath("//td[contains(text(),'"+docName1+"')]/preceding-sibling::td/label/span"));
+				for(int i=0; i<DocName1.size(); i++)
+				{
+					DocName1.get(i).click();
+					isInvisible(msgInitializing,10);
+				}
+				List<WebElement> DocName2 = driver.findElements(By.xpath("//td[contains(text(),'"+docName2+"')]/preceding-sibling::td/label/span"));
+				for(int i=0; i<DocName2.size(); i++)
+				{
+					DocName2.get(i).click();
+				}
+		}
 		public boolean exportDocument() throws InterruptedException, IOException {
 			boolean testresult = false;
 			int afterdownload = 0;
-			isDisaplyedW(sendTo, 3);
-			act.moveToElement(sendTo).click().build().perform();
-			if(sendToExport.isEnabled()) 
+			isDisaplyedW(sendTo,2);
+			moveToElementAndClick(sendTo);
+			if(sendToExport.getAttribute("class").equalsIgnoreCase("enabled"))
 			{
-				isDisaplyedW(sendToExport, 3);
+				isDisaplyedW(sendToExport,3);
 				sendToExport.click();
 				btnOKToExport.click();
 
-				isDisaplyedW(exportInfoMessageBox, 2);
+				isDisaplyedW(exportInfoMessageBox,2);
 				if (exportInfoMessageBox.getText().trim().equalsIgnoreCase("Error On Download")) 
 				{
 					System.out.println(exportInfoMessageBox.getText());
@@ -292,9 +276,7 @@ public void cvCreateDrawer() throws Exception {
 				else
 				{
 					int beforedownload = ifFileAvailable();
-					System.out.println(beforedownload);
-				
-					isInvisible(exportInfoMessageBox, 30);
+					isInvisible(exportInfoMessageBox,30);
 					afterdownload = ifFileAvailable();
 					System.out.println(afterdownload);
 					if(beforedownload<afterdownload)
