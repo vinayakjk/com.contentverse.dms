@@ -25,7 +25,7 @@ public class CV_SettingsTestCase extends Base
 	@Test
 	public void CV_NewDocumentTest() throws InterruptedException
 	{				
-		login_page.Check_Valid_Credentials(getValidUsername(),getValidPassword());
+		login_page.Check_Valid_Credentials(getValidUsername(),getValidPassword(),getRoom());
 		newdoc.profile_Setting( getdefaultView(),getofficeDocs(),getofficepdf(),getLoadcount());
 	}
 
