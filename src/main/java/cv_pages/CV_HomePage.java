@@ -76,7 +76,7 @@ public class CV_HomePage extends Utility {
 	WebElement documentListBox;
 
 	@FindBy(xpath = "//table[@id='documentListTable']//tbody")
-	List<WebElement> documentListInFolder;
+	WebElement documentListInFolder;
 	
 	@FindBy(xpath = "//table[@id='documentListTable']//tbody//td[contains(@class,'customDocName')]")
 	List<WebElement> docsInFolder;
@@ -251,22 +251,20 @@ public void cvCreateDrawer() throws Exception {
 	public boolean documentListTable() throws InterruptedException 
 	{
 		boolean documentListTable = false;
-		for (int i = 0; i<docsInFolder.size(); i++)
-		{
-			isDisaplyedW(docsInFolder.get(i), 3);
-			if (docsInFolder.get(i).getText().trim().equalsIgnoreCase("No data available in table")) 
+			if (documentListInFolder.getText().trim().equalsIgnoreCase("No data available in table")) 
 			{
-				System.out.println(docsInFolder.get(i).getText());
+				System.out.println(documentListInFolder.getText());
 				Assert.assertEquals(documentListTable, true);
 				
 			} else 
 			{
-				//System.out.println(docsInFolder.size());
-				System.out.println(docsInFolder.get(i).getText());
-				documentListTable = true;		
+				for (int i = 0; i<docsInFolder.size(); i++)
+				{
+					//System.out.println(docsInFolder.size());
+					System.out.println(docsInFolder.get(i).getText());
+					documentListTable = true;	
+				}		
 			}
-		
-		}
 		return documentListTable;
 	}
 	
