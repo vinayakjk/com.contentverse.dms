@@ -25,7 +25,7 @@ public class CV_HomePage extends Utility {
 
 	public CV_HomePage(WebDriver driver) {
 		
-		super(driver);
+		super(driver); 
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
@@ -111,7 +111,18 @@ public class CV_HomePage extends Utility {
 	
 	@FindBy(xpath = "//a[@id='advSearchMenuBtn']")
 	WebElement btnAdvanceSearch;
-
+	
+	@FindBy(id="saveAddedPages")
+	WebElement btndocSave;
+	
+	@FindBy(id="messageBox42")
+	WebElement mesgBoxDocUpdated;
+	
+	public WebElement documentToEdit(String linkText)
+	{
+		return driver.findElement(By.xpath("//*[contains(text(), '" + linkText + "')]"));
+	}
+	
 	public void cN() {
 		CabinateName = currentTime();
 	}
@@ -127,6 +138,21 @@ public class CV_HomePage extends Utility {
 	WebElement msgInitializing;
 	
 
+	public void editDocument(String docName) throws InterruptedException
+	{
+		moveToElementAndClick(documentToEdit(docName));
+		Thread.sleep(8000);
+		pressEnter();
+		pressUpKeys();
+		keypress(currentTime()+" Above current time is entered by selenium script ");
+		Thread.sleep(8000);
+		btndocSave.click();
+		//isDisaplyedW(mesgBoxDocUpdated, 10);
+		Assert.assertTrue(isDisaplyedW(mesgBoxDocUpdated, 10));
+	}
+	
+	
+	
 	public boolean cv_CabinateCreation() throws Exception {
 
 		boolean result = false;

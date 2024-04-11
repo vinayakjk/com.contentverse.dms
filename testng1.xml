@@ -6,7 +6,8 @@
 			<!-- <class name="cv_testcases.CV_LoginTestCase"/> -->
           	<class name="cv_testcases.CV_CreateCabinateDrawerTest"/>
 	       	<class name="cv_testcases.CV_CreateDocumentTest"/>
-	      	<!-- class name="cv_testcases.CV_ExportContentTest"/-->
+	       	<class name="cv_testcases.CV_UpdateExistingFileTest"/>
+	       	<!-- class name="cv_testcases.CV_ExportContentTest"/-->
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
