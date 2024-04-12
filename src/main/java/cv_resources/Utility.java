@@ -1,5 +1,6 @@
 package cv_resources;
 import java.io.File;
+//import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -21,19 +22,20 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import cv_pages.CV_LoginPage;
-
 public class Utility {
 
 	 WebDriver driver;
 	 Actions act;
 
+	 
+	 
 	 public Utility(WebDriver driver)
 	 {
+		 super();
 		 this.driver = driver;
 		 act = new Actions(driver);
 	 }
-	 
+
 	 public void pressEnter()
 	 {
 		 act.sendKeys(Keys.ENTER).build().perform();
@@ -44,7 +46,8 @@ public class Utility {
 		 act.sendKeys(Keys.UP).build().perform();
 	 }
 	 
-	 public void moveToElementAndClick(WebElement ele)
+	public void moveToElementAndClick(WebElement ele)
+
 	 {
 		 act.moveToElement(ele).click().build().perform();
 	 }
