@@ -11,12 +11,12 @@ import org.testng.Assert;
 
 import cv_resources.Utility;
 
-public class SendToWorkflowPage extends Utility 
+public class CV_SendToWorkflowPage extends Utility 
 {
 
 	public WebDriver driver;
 	Actions ac;
-	public SendToWorkflowPage(WebDriver driver)
+	public CV_SendToWorkflowPage(WebDriver driver)
 	{
 		super(driver);
 		this.driver = driver;
@@ -201,7 +201,7 @@ public class SendToWorkflowPage extends Utility
 		@FindBy(xpath = "(//td)[108]")
 		WebElement downarrowfordocument;
 		
-		@FindBy(xpath = "//*[@id=\"documentListTable\"]/tbody/tr[1]/td[3]")
+		@FindBy(xpath = "//*[@id='documentListTable']/tbody/tr[1]/td[3]")
 		WebElement clickOnDocument;
 		
 		//click on send to mail --> SubMenu--> mail
@@ -269,6 +269,7 @@ public class SendToWorkflowPage extends Utility
 		@FindBy(xpath = "(//td[@class=' customDocName'])[1]")
 		WebElement clickondocument;
 		
+		
 		@FindBy(xpath = "//span[normalize-space()='History']")
 		WebElement tabhistory;
 		
@@ -316,7 +317,7 @@ public class SendToWorkflowPage extends Utility
 		String Createmsg=FileUploadlblMessage.getText();
 		if(Createmsg.contains("Document created successfully"))
 		{
-			SendToWorkflowPage STF=new SendToWorkflowPage(driver);
+			CV_SendToWorkflowPage STF=new CV_SendToWorkflowPage(driver);
 			//WebElement verifyDOcument ;
 			System.out.println("Document created successfully");
 			btnviewDocument.click();
@@ -331,6 +332,7 @@ public class SendToWorkflowPage extends Utility
 			btnapplyworkflow.click();
 			Thread.sleep(3000);
 			tabhistory.click();
+			Thread.sleep(3000);
 			 String verifymsghistory=historymsg.getText();
 			 if(verifymsghistory.equals("Workflow Initiated by "+UserName))
 			 {
@@ -350,7 +352,7 @@ public class SendToWorkflowPage extends Utility
 
 	public void WorflowVerify_By_First_User(String Status,String DocumentName,String UserName) throws InterruptedException
 	{
-		SendToWorkflowPage STF=new SendToWorkflowPage(driver);
+		CV_SendToWorkflowPage STF=new CV_SendToWorkflowPage(driver);
 		WebElement verifyDOcument = null;
 		//WebElement verifyDOcument2 = null;
 		ac.moveToElement(MenuToDoList).perform();
@@ -419,15 +421,14 @@ public class SendToWorkflowPage extends Utility
 			}
 			*/
 		}
-		if(Status.contains("Reject"))
+		if(Status.contains("reject"))
 		{
+			Thread.sleep(3000);
 			btnrejectWorkflow.click();
-			txtAreaComment.sendKeys("This Document rejected by Automation");
+			Thread.sleep(4000);
+			txtAreaComment.sendKeys("This Document rejected by User :- "+UserName);
 			btnokworkflowaccept.click();
-			if(verifyDOcument.isDisplayed()==false)
-			{
-				System.out.println("Document Rejected By first USer");
-			}
+			Thread.sleep(3000);
 			
 		}
 		
@@ -449,7 +450,7 @@ public class SendToWorkflowPage extends Utility
 	public void WorflowVerify_By_Second_User(String Status,String DocumentName,String UserName) throws InterruptedException
 	{
 
-		SendToWorkflowPage STF=new SendToWorkflowPage(driver);
+		CV_SendToWorkflowPage STF=new CV_SendToWorkflowPage(driver);
 		WebElement verifyDOcument = null;
 		//WebElement verifyDOcument2 = null;
 		ac.moveToElement(MenuToDoList).perform();
@@ -512,15 +513,15 @@ public class SendToWorkflowPage extends Utility
 			}
 			*/
 		}
-		if(Status.contains("Reject"))
+		if(Status.contains("reject"))
 		{
+
+			Thread.sleep(2000);
 			btnrejectWorkflow.click();
-			txtAreaComment.sendKeys("This Document rejected by Automation");
+			Thread.sleep(3000);
+			txtAreaComment.sendKeys("This Document rejected by User :- "+UserName);
 			btnokworkflowaccept.click();
-			if(verifyDOcument.isDisplayed()==false)
-			{
-				System.out.println("Document Rejected By first USer");
-			}
+			Thread.sleep(3000);
 			
 		}
 		
@@ -539,7 +540,20 @@ public class SendToWorkflowPage extends Utility
 	}
 
 	
-	
+	public void Verify_Reject_Workflow(String DocumentName) throws InterruptedException 
+	{
+		ac.moveToElement(MenuToDoList).perform();
+		SubMenuReviewedItems.click();
+		Thread.sleep(2000);
+		WebElement tobeverify= findDocumentElementtxt(DocumentName);
+		Thread.sleep(2000);
+		if(tobeverify.isDisplayed()==true)
+		{
+			System.out.println("Document Reject Testcase Passed and File present into reviewed Items");
+		}
+		
+		
+	}
 	
 	
 }

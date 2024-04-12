@@ -5,20 +5,20 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import cv_pages.Somke_Test_LoginPage;
+import cv_pages.CV_Somke_Test_LoginPage;
 
 
 
-public class Somke_Test_LoginPage_Testcase extends Base
+public class CV_Somke_Test_LoginPage_Testcase extends Base
 {
 	WebDriver driver;
-	Somke_Test_LoginPage STL;
+	CV_Somke_Test_LoginPage STL;
 	
 	@BeforeMethod
 	public void intilization() throws Exception 
 	{
 		driver=launchBrowser();
-		STL= new Somke_Test_LoginPage(driver);
+		STL= new CV_Somke_Test_LoginPage(driver);
 	}
 	
 	 
