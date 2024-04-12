@@ -21,16 +21,16 @@ public class Base {
 	WebDriver driver;
 
 	String ValidUsername;
+	String ValidPassword;
+	String Room;
+	
 	String defaultView;
 	Properties properties;
 	String browser;
 	FileInputStream fis;
 	String url;
 
-	String ValidPassword;
-
-	String Password;
-	String Room;
+	
 	String CabinateName;
 	String DrawerName;
 	String FolderName;
@@ -41,51 +41,50 @@ public class Base {
 	String InValidUsername;
 	String InValidPassword;
 	String Act_Msg;
-    String Language;
-    
-    String WorkflowVerify_F_User;
-    String WorkflowVerify_F_Password;
-    String WorkflowVerify_S_User;
-    String WorkflowVerify_S_Password;
-    String WorkflowStatus;
-    String DocumentName;
-    String Name_OF_WF;
-	
+	String Language;
+
+	String WorkflowVerify_F_User;
+	String WorkflowVerify_F_Password;
+	String WorkflowVerify_S_User;
+	String WorkflowVerify_S_Password;
+	String WorkflowStatus_By_First_User;
+	String WorkflowStatus_By_Second_User;
+	String DocumentName;
+	String Name_OF_WF;
+
 	public void ConfigReader() throws Exception {
 		properties = new Properties();
-		fis = new FileInputStream((System.getProperty("user.dir") + "\\src\\main\\java\\cv_resources\\Config.properties"));
+		fis = new FileInputStream(
+				(System.getProperty("user.dir") + "\\src\\main\\java\\cv_resources\\Config.properties"));
 
 		properties.load(fis);
 		browser = properties.getProperty("browser");
 		url = properties.getProperty("url");
-//<<<<<<< HEAD
+
 		ValidUsername = properties.getProperty("Username");
 		ValidPassword = properties.getProperty("Password");
-//=======
-		//Username = properties.getProperty("Username");
-		//Password = properties.getProperty("Password");
 		Room = properties.getProperty("Room");
 		CabinateName = properties.getProperty("CabinateName");
 		DrawerName = properties.getProperty("DrawerName");
 		FolderName = properties.getProperty("FolderName");
-//>>>>>>> CreateCabinateDrwaer
 		defaultView = properties.getProperty("defaultView");
 		officeDocs = properties.getProperty("officeDocs");
 		Loadcount = properties.getProperty("Loadcount");
 		officepdf = properties.getProperty("officepdf");
 		InValidUsername = properties.getProperty("Invalid_User");
 		InValidPassword = properties.getProperty("Invalid_Pass");
-		 Act_Msg=properties.getProperty("Act_Msg");
-         Language=properties.getProperty("Language");
-         
-         WorkflowVerify_F_User=properties.getProperty("WorkflowVerify_F_User");
-         WorkflowVerify_F_Password=properties.getProperty("WorkflowVerify_F_Password");
-         
-         WorkflowVerify_S_User=properties.getProperty("WorkflowVerify_S_User");
-         WorkflowVerify_S_Password=properties.getProperty("WorkflowVerify_S_Password");
-         WorkflowStatus=properties.getProperty("WorkflowStatus");
-         DocumentName=properties.getProperty("DocumentName");
-         Name_OF_WF=properties.getProperty("Name_OF_WF");
+		Act_Msg = properties.getProperty("Act_Msg");
+		Language = properties.getProperty("Language");
+
+		WorkflowVerify_F_User = properties.getProperty("WorkflowVerify_F_User");
+		WorkflowVerify_F_Password = properties.getProperty("WorkflowVerify_F_Password");
+
+		WorkflowVerify_S_User = properties.getProperty("WorkflowVerify_S_User");
+		WorkflowVerify_S_Password = properties.getProperty("WorkflowVerify_S_Password");
+		WorkflowStatus_By_First_User = properties.getProperty("WorkflowStatus_By_First_User");
+		WorkflowStatus_By_Second_User = properties.getProperty("WorkflowStatus_By_Second_User");
+		DocumentName = properties.getProperty("DocumentName");
+		Name_OF_WF = properties.getProperty("Name_OF_WF");
 	}
 
 	public String getBrowser() {
@@ -103,6 +102,7 @@ public class Base {
 	public String getValidPassword() {
 		return ValidPassword;
 	}
+
 	public String getRoom() {
 		return Room;
 	}
@@ -114,9 +114,11 @@ public class Base {
 	public String getDrawerName() {
 		return DrawerName;
 	}
+
 	public String getFolderName() {
 		return FolderName;
 	}
+
 	public String getdefaultView() {
 		return defaultView;
 	}
@@ -132,13 +134,12 @@ public class Base {
 	public String getLoadcount() {
 		return Loadcount;
 	}
-	
-	
+
 	public String getInValidUsername() {
 		return InValidUsername;
 	}
-	
-	public  String getInvalidPassword() {
+
+	public String getInvalidPassword() {
 		return InValidPassword;
 	}
 
@@ -150,54 +151,52 @@ public class Base {
 		return Language;
 	}
 
-
 	public String getWorkflowVerify_F_User() {
 		return WorkflowVerify_F_User;
 	}
-
 
 	public String getWorkflowVerify_F_Password() {
 		return WorkflowVerify_F_Password;
 	}
 
-
 	public String getWorkflowVerify_S_User() {
 		return WorkflowVerify_S_User;
 	}
 
-
 	public String getWorkflowVerify_S_Password() {
 		return WorkflowVerify_F_Password;
-	} 
-
-	public String getWorkflowStatus() {
-		return WorkflowStatus; 
 	}
-	
+
+	public String getWorkflowStatus_By_First_User() {
+		return WorkflowStatus_By_First_User;
+	}
+
+	public String getWorkflowStatus_By_Second_User() {
+		return WorkflowStatus_By_Second_User;
+	}
+
 	public String getDocumentName() {
 		return DocumentName;
 	}
-	
+
 	public String getName_OF_WF() {
 		return Name_OF_WF;
 	}
-	
-	
-	public WebDriver launchBrowser() throws Exception  {
+
+	public WebDriver launchBrowser() throws Exception {
 
 		ConfigReader();
 
 		if (getBrowser().equalsIgnoreCase("firefox")) {
-			//driver = new FirefoxDriver();
-			
+
 			WebDriverManager.firefoxdriver().setup();
 			FirefoxOptions options = new FirefoxOptions();
 			FirefoxProfile profile = new FirefoxProfile();
 			profile.setPreference("browser.download.folderList", 2);
-			profile.setPreference("browser.download.dir",System.getProperty("user.dir")+"\\downloadFiles\\");
+			profile.setPreference("browser.download.dir", System.getProperty("user.dir") + "\\downloadFiles\\");
 			profile.setPreference("browser.download.manager.closeWhenDone", true);
 			options.setProfile(profile);
-			
+
 			driver = new FirefoxDriver(options);
 
 		} else if (getBrowser().equalsIgnoreCase("chrome")) {
