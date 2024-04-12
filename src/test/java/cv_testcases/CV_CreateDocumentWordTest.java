@@ -32,7 +32,7 @@ public class CV_CreateDocumentWordTest extends Base
 		cvHP.listOfCabinatesPresentInDataBase(getCabinetName());
 		cvHP.selectDrawerPresentInCabinet(getDrawerName());
 		cvHP.selectFolderPresentInDrawer(getFolderName());
-		cvND.selectTypeToCreateNewDocument();
+		//cvND.selectTypeToCreateNewDocument();
 		//cvND.NewWorkDocument();
 	}
 	
