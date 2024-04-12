@@ -10,3 +10,6 @@ pom.properties
 .idea
 target
 test-output
+reports
+.project
+.classpath

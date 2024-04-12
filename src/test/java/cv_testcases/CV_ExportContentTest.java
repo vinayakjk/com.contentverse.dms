@@ -1,8 +1,5 @@
 package cv_testcases;
 
-//<<<<<<< HEAD
-//public class CV_ExportContentTest 
-//=======
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -13,9 +10,7 @@ import cv_pages.CV_HomePage;
 import cv_pages.CV_LoginPage;
 
 public class CV_ExportContentTest extends Base
-//>>>>>>> CreateCabinateDrwaer
 {
-	// WebDriver driver;
 	CV_LoginPage cvLP;
 	CV_HomePage cvHP;
 
@@ -28,7 +23,8 @@ public class CV_ExportContentTest extends Base
 	}
 
 	@Test
-	public void exportDocument() throws Exception {
+
+	public void exportSinDocument() throws Exception {
 		cvLP.Check_Valid_Credentials(getValidUsername(), getValidPassword(), getRoom());
 		// Thread.sleep(3000);
 		cvHP.listOfCabinatesPresentInDataBase(getCabinetName());
@@ -39,12 +35,56 @@ public class CV_ExportContentTest extends Base
 
 		// Thread.sleep(2000);
 		cvHP.selectFolderPresentInDrawer(getFolderName());
-
+		cvHP.documentListTable();
 		cvHP.selectDocument();
-		// cvHP.selectAllDocuments();
 		Assert.assertEquals(cvHP.exportDocument(), true);
 	}
 
+	@Test
+	public void exportAllDocument() throws Exception {
+		cvLP.Check_Valid_Credentials(getValidUsername(), getValidPassword(), getRoom());
+		// Thread.sleep(3000);
+		cvHP.listOfCabinatesPresentInDataBase(getCabinetName());
+		// cv_HP.listOfDrawersPresentInCabinet();
+
+		cvHP.selectDrawerPresentInCabinet(getDrawerName());
+		// cv_HP.listOfFoldersPresentInDrawer();
+
+		// Thread.sleep(2000);
+		cvHP.selectFolderPresentInDrawer(getFolderName());
+		cvHP.documentListTable();
+		cvHP.selectAllDocuments();
+		Assert.assertEquals(cvHP.exportDocument(), true);
+	}
+
+	@Test
+	public void exportUserSpecifiedDocument() throws Exception {
+		cvLP.Check_Valid_Credentials(getValidUsername(), getValidPassword(), getRoom());
+		// Thread.sleep(3000);
+		cvHP.listOfCabinatesPresentInDataBase(getCabinetName());
+		// cv_HP.listOfDrawersPresentInCabinet();
+
+		cvHP.selectDrawerPresentInCabinet(getDrawerName());
+		// cv_HP.listOfFoldersPresentInDrawer();
+
+		// Thread.sleep(2000);
+		cvHP.selectFolderPresentInDrawer(getFolderName());
+		cvHP.documentListTable();
+		cvHP.selectMultipleDocuments(CabinateName, Act_Msg);
+		Assert.assertEquals(cvHP.exportDocument(), true);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@AfterMethod
 	public void tearDown() {
 		driver.close();

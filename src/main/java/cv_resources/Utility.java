@@ -12,6 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -35,10 +36,47 @@ public class Utility {
 		 act = new Actions(driver);
 	 }
 
+	 public void pressEnter()
+	 {
+		 act.sendKeys(Keys.ENTER).build().perform();
+	 }
+	 
+	 public void pressUpKeys()
+	 {
+		 act.sendKeys(Keys.UP).build().perform();
+	 }
+	 
 	public void moveToElementAndClick(WebElement ele)
+
 	 {
 		 act.moveToElement(ele).click().build().perform();
 	 }
+	 
+	 public void keypress(String a)
+	 {
+		 act.sendKeys(a).build().perform();
+	 }
+	 
+	 public void doubleClick()
+	 {
+		 act.doubleClick().build().perform();
+	 }
+	 
+	 public void moveToElementAndDoubleClick(WebElement ele)
+	 {
+		 act.moveToElement(ele).doubleClick().build().perform();
+	 }
+	 
+	 public void moveToElementAndContextClick(WebElement ele)
+	 {
+		 act.moveToElement(ele).contextClick();
+	 }
+	 
+	 public void doubleClick(WebElement ele)
+	 {
+		 act.doubleClick(ele).build().perform();
+	 }
+	 
 	 
 
 /*
@@ -137,7 +175,7 @@ public class Utility {
 
 	public void Dropdownbyindex(WebElement cat, int visible) 
 	{
-		Select dropdown = new Select(cat);
+		Select dropdown = new Select(cat); 
 		dropdown.selectByIndex(visible);
 
 	}
@@ -333,36 +371,6 @@ public class Utility {
 			return false;
 		}
 	}
-
-	/*
-	public static WebDriver startBrowser() //String browserName,String url
-	{
-		if(ConfigReader.getBrowser().equalsIgnoreCase("firefox"))
-		{
-			driver = new FirefoxDriver();
-
-		}
-		else if (ConfigReader.getBrowser().equalsIgnoreCase("chrome"))
-		{
-
-			driver=new ChromeDriver();
-
-		}
-		else if (ConfigReader.getBrowser().equalsIgnoreCase("edge"))
-		{
-			driver=new EdgeDriver();
-		}
-
-		driver.manage().window().maximize();
-		driver.get(ConfigReader.url);
-	return driver;
-
-
-	}
-
-	*/
-
-	
  public String currentTime()
  {
 	 SimpleDateFormat format = new SimpleDateFormat("HHMMSS");

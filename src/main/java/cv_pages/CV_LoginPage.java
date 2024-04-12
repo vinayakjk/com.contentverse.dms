@@ -45,13 +45,6 @@ public class CV_LoginPage extends Utility {
 	@FindBy(xpath = "//input[@id='loginPassword']")
 	WebElement txtPassword;
 
-//<<<<<<< HEAD
-	@FindBy(xpath = "//select[@id='rooms']/option[contains(text(),'DMS-SERVER.SUNDYNE')]")
-	WebElement ddRooms;
-//=======
-	//@FindBy(xpath="//select[@id='rooms']/option[contains(text(),'DMS-SERVER.SUNDYNE')]")
-	//WebElement ddRooms;
-//>>>>>>> CreateCabinateDrwaer
 
 	@FindBy(xpath = "//button[@id='submitid']")
 	WebElement btnSubmit;
@@ -116,7 +109,6 @@ public class CV_LoginPage extends Utility {
 	{
 		super(driver);
 		this.driver = driver;
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		PageFactory.initElements(driver, this);
 
 	}
@@ -124,26 +116,13 @@ public class CV_LoginPage extends Utility {
 	public void Check_Valid_Credentials(String uid, String pass, String room) 
 	{
 
-		System.out.println("6.Check_Valid_Credentials");
-		isVisible(txtUsername, 10);
+		isVisible(txtUsername, 5);
 		txtUsername.clear();
-//=======
-	/*
-		public void roomListValue(String roomName)
-	{
-		Select rooms_Lists = new Select(listOfRooms);
-		rooms_Lists.selectByValue(roomName);
-	}
-	*/
-//	public void login_cvWeb(String uid,String pass,String room)
-	//{
 		
-//>>>>>>> CreateCabinateDrwaer
 		txtUsername.sendKeys(uid);
 		txtPassword.clear();
 		txtPassword.sendKeys(pass);
 		Dropdownbytxt(listOfRooms,room);
-		//ddRooms.click();
 		btnSubmit.click();
 
 		if (isDisaplyedW(WindowSesionMgr, 1)) {
@@ -151,7 +130,7 @@ public class CV_LoginPage extends Utility {
 			//System.out.println("Another Session Ended");
 		}
 
-		if (isVisible(HeaderMenu, 15)) {
+		if (isVisible(HeaderMenu, 5)) {
 			System.out.println(imgLoggedInUsername.getText().toUpperCase() + " :- Logged in succeesfully.");
 
 
@@ -170,7 +149,7 @@ public class CV_LoginPage extends Utility {
 		txtUsername.sendKeys(uid);
 		txtPassword.clear();
 		txtPassword.sendKeys(pass);
-		ddRooms.click();
+		//ddRooms.click();
 		btnSubmit.click();
 
 		String lblInvalidateUser = lbllogin.getText();
@@ -183,17 +162,6 @@ public class CV_LoginPage extends Utility {
         {
             Assert.fail("Invalid user Name test Case failed! Actual text: " + lblInvalidateUser);//", Expected text: " + expectedText);
         }
-		
-		
-		/*
-		Assert.assertEquals(lblInvalidateUser, "User does not exist");
-		System.out.println("Invalid user Name test Case : Pass");
-		
-		if (lblInvalidateUser.contains("User does not exist")) {
-			System.out.println(lblInvalidateUser);
-			System.out.println("Invalid user Name test Case : Pass");
-		}
-		 */
 	}
 
 	public void Invalid_Password(String uid, String pass) {
@@ -201,7 +169,7 @@ public class CV_LoginPage extends Utility {
 		txtUsername.sendKeys(uid);
 		txtPassword.clear();
 		txtPassword.sendKeys(pass);
-		ddRooms.click();
+		//ddRooms.click();
 		btnSubmit.click();
 
 		if (isDisaplyedW(WindowSesionMgr, 1)) 
@@ -220,11 +188,6 @@ public class CV_LoginPage extends Utility {
             Assert.fail("Invalid Password test Case failed! Actual text: " + lblInvalidateUser);//", Expected text: " + expectedText);
         }
 		
-		/*
-		if (lblInvalidateUser.contains("Failed to authenticate user")) {
-			System.out.println(lblInvalidateUser);
-			System.out.println("Invalid Password test Case : Pass");
-		}*/
 	}
 
 	public void Blank_Username(String pass) //String uid, 
@@ -233,7 +196,7 @@ public class CV_LoginPage extends Utility {
 		txtUsername.clear();
 		txtPassword.clear();
 		txtPassword.sendKeys(pass);
-		ddRooms.click();
+		//ddRooms.click();
 		btnSubmit.click();
 
 		String lblusernamevalidation = lblnamevalidation.getText();
@@ -246,21 +209,14 @@ public class CV_LoginPage extends Utility {
         {
             Assert.fail("Blank Username failed! Actual text: " + lblusernamevalidation);//", Expected text: " + expectedText);
         }
-		
-		/*
-		if (lblusernamevalidation.contains("Please enter username")) {
-			System.out.println(lblusernamevalidation);
-			System.out.println("Blank Username : Pass");
-		}*/
-	}
-
+	}	
 	public void Blank_Password(String uid) //, String pass
 	{
 		System.out.println("4.Blank Password");
 		txtUsername.clear();
 		txtUsername.sendKeys(uid);
 		txtPassword.clear();
-		ddRooms.click();
+		//ddRooms.click();
 		btnSubmit.click();
 
 		String lblpwdvalidation = lblpasswordvalidation.getText();
@@ -273,11 +229,6 @@ public class CV_LoginPage extends Utility {
         {
             Assert.fail("Blank Password failed! Actual text: " + lblpwdvalidation);//", Expected text: " + expectedText);
         }
-		/*
-		if (lblpwdvalidation.contains("Please enter password")) {
-			System.out.println(lblpwdvalidation);
-			System.out.println("Blank Username : Pass");
-		}*/
 	}
 
 	public void Select_Room(String uid, String pass) {
@@ -300,12 +251,5 @@ public class CV_LoginPage extends Utility {
         {
             Assert.fail("Select a room! Actual text: " + roomselection);//", Expected text: " + expectedText);
         }
-		/*
-		
-		if (roomselection.contains("Select a room")) {
-			System.out.println(roomselection);
-			System.out.println("Select a room : Pass");
-		}
-		 */
 	}
 }
