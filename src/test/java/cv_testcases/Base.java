@@ -1,12 +1,11 @@
 package cv_testcases;
 
 import java.io.FileInputStream;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.time.Duration;
-
 import java.util.Properties;
+
+//import java.time.Duration;
+//import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -43,6 +42,14 @@ public class Base {
 	String InValidPassword;
 	String Act_Msg;
     String Language;
+    
+    String WorkflowVerify_F_User;
+    String WorkflowVerify_F_Password;
+    String WorkflowVerify_S_User;
+    String WorkflowVerify_S_Password;
+    String WorkflowStatus;
+    String DocumentName;
+    String Name_OF_WF;
 	
 	public void ConfigReader() throws Exception {
 		properties = new Properties();
@@ -70,6 +77,15 @@ public class Base {
 		InValidPassword = properties.getProperty("Invalid_Pass");
 		 Act_Msg=properties.getProperty("Act_Msg");
          Language=properties.getProperty("Language");
+         
+         WorkflowVerify_F_User=properties.getProperty("WorkflowVerify_F_User");
+         WorkflowVerify_F_Password=properties.getProperty("WorkflowVerify_F_Password");
+         
+         WorkflowVerify_S_User=properties.getProperty("WorkflowVerify_S_User");
+         WorkflowVerify_S_Password=properties.getProperty("WorkflowVerify_S_Password");
+         WorkflowStatus=properties.getProperty("WorkflowStatus");
+         DocumentName=properties.getProperty("DocumentName");
+         Name_OF_WF=properties.getProperty("Name_OF_WF");
 	}
 
 	public String getBrowser() {
@@ -134,6 +150,38 @@ public class Base {
 		return Language;
 	}
 
+
+	public String getWorkflowVerify_F_User() {
+		return WorkflowVerify_F_User;
+	}
+
+
+	public String getWorkflowVerify_F_Password() {
+		return WorkflowVerify_F_Password;
+	}
+
+
+	public String getWorkflowVerify_S_User() {
+		return WorkflowVerify_S_User;
+	}
+
+
+	public String getWorkflowVerify_S_Password() {
+		return WorkflowVerify_F_Password;
+	} 
+
+	public String getWorkflowStatus() {
+		return WorkflowStatus; 
+	}
+	
+	public String getDocumentName() {
+		return DocumentName;
+	}
+	
+	public String getName_OF_WF() {
+		return Name_OF_WF;
+	}
+	
 	
 	public WebDriver launchBrowser() throws Exception  {
 
@@ -160,9 +208,8 @@ public class Base {
 			driver = new EdgeDriver();
 		}
 
-		//driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		//driver.manage().window().maximize();
+		driver.manage().window().maximize();
 		driver.get(url);
 		return driver;
 	}
