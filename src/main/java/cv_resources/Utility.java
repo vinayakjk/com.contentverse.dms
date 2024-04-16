@@ -76,7 +76,11 @@ public class Utility {
 	 {
 		 act.doubleClick(ele).build().perform();
 	 }
-	 
+	
+	 public void moveToElement(WebElement ele)
+	 {
+		 act.moveToElement(ele).perform();
+	 }
 	 
 
 /*
