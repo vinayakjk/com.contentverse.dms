@@ -14,7 +14,7 @@ import org.testng.asserts.SoftAssert;
 
 import cv_resources.Utility;
 
-public class CV_Somke_Test_LoginPage extends Utility
+public class CV_Smoke_Test_LoginPage extends Utility
 {
 	 WebDriver driver;
 	 String CabinateName;
@@ -161,7 +161,7 @@ public class CV_Somke_Test_LoginPage extends Utility
 		WebElement minusbtn;
 		
 		
-		public CV_Somke_Test_LoginPage(WebDriver driver )
+		public CV_Smoke_Test_LoginPage(WebDriver driver )
 
 		{
 			super(driver);

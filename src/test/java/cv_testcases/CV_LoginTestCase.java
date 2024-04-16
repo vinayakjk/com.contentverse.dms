@@ -11,10 +11,8 @@ public class CV_LoginTestCase extends Base {
 	CV_LoginPage login_page;
 	WebDriver driver;
 
-
 	@BeforeMethod
-	public void initalization() throws Exception 
-	{
+	public void initalization() throws Exception {
 
 		driver = launchBrowser();
 		login_page = new CV_LoginPage(driver);
@@ -22,8 +20,7 @@ public class CV_LoginTestCase extends Base {
 	}
 
 	@AfterMethod
-		public void tearDown() 
-	{
+	public void tearDown() {
 
 		driver.quit();
 	}
@@ -32,28 +29,28 @@ public class CV_LoginTestCase extends Base {
 	public void check_InValid_UserName()
 
 	{
-		login_page.Invalid_Username(getInValidUsername(), getValidPassword());
+		login_page.Invalid_Username(getInValidUsername(), getValidPassword(), getRoom());
 	}
 
-	@Test(priority = 2)//, groups = "smoke"
+	@Test(priority = 2) // , groups = "smoke"
 	public void check_InValid_Password()
 
 	{
-		login_page.Invalid_Password(getValidUsername(), getInvalidPassword());
+		login_page.Invalid_Password(getValidUsername(), getInvalidPassword(), getRoom());
 	}
 
 	@Test(priority = 3)
 	public void check_Blank_Username()
 
 	{
-		login_page.Blank_Username(getInvalidPassword()); // getValidUsername()
+		login_page.Blank_Username(getInvalidPassword(), getRoom()); // getValidUsername()
 	}
 
 	@Test(priority = 4)
 	public void check_Blank_Password()
 
 	{
-		login_page.Blank_Password(getValidUsername());// , getInvalidPassword()
+		login_page.Blank_Password(getValidUsername(), getRoom());// , getInvalidPassword()
 	}
 
 	@Test(priority = 5)
@@ -63,7 +60,7 @@ public class CV_LoginTestCase extends Base {
 		login_page.Select_Room(getValidUsername(), getInvalidPassword());
 	}
 
-	@Test(priority = 6)//,groups = "smoke"
+	@Test(priority = 6) // ,groups = "smoke"
 	public void Check_Valid_Credentials()
 
 	{

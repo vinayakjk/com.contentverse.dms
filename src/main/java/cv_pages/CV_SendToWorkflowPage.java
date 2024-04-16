@@ -285,14 +285,6 @@ public class CV_SendToWorkflowPage extends Utility
 	public void Worflow(String DocumentName,String UserName,String WFName)  throws InterruptedException 
 	
 	{
-		//Actions a = new Actions(driver);
-		/*
-		IconPlusCabinet.click();
-		IconPlusDrawer.click();
-		isVisible(FolderNameWord, 15);
-		FolderNameWord.click();
-		Thread.sleep(2000);
-		*/
 		openDocs();
 		SubMenuCreateNewDocument.click();
 		Thread.sleep(3000);
@@ -317,17 +309,12 @@ public class CV_SendToWorkflowPage extends Utility
 		String Createmsg=FileUploadlblMessage.getText();
 		if(Createmsg.contains("Document created successfully"))
 		{
-			CV_SendToWorkflowPage STF=new CV_SendToWorkflowPage(driver);
-			//WebElement verifyDOcument ;
 			System.out.println("Document created successfully");
 			btnviewDocument.click();
 			BtnsendDocumentWorkflow.click();
 			isVisible(windowavailableworkflow, 10);
 			
-			WebElement verifyDOcument=STF.findDocumentElement(WFName);
-			verifyDOcument.click();
-			
-			//NameOfWorkflow.click();
+			findDocumentElement(WFName).click();
 			Thread.sleep(3000);
 			btnapplyworkflow.click();
 			Thread.sleep(3000);
@@ -355,7 +342,7 @@ public class CV_SendToWorkflowPage extends Utility
 		CV_SendToWorkflowPage STF=new CV_SendToWorkflowPage(driver);
 		WebElement verifyDOcument = null;
 		//WebElement verifyDOcument2 = null;
-		ac.moveToElement(MenuToDoList).perform();
+		moveToElement(MenuToDoList);
 		SubMenuNewItems.click();
 		
 		
@@ -450,8 +437,8 @@ public class CV_SendToWorkflowPage extends Utility
 	public void WorflowVerify_By_Second_User(String Status,String DocumentName,String UserName) throws InterruptedException
 	{
 
-		CV_SendToWorkflowPage STF=new CV_SendToWorkflowPage(driver);
-		WebElement verifyDOcument = null;
+		//CV_SendToWorkflowPage STF=new CV_SendToWorkflowPage(driver);
+		//WebElement verifyDOcument = null;
 		//WebElement verifyDOcument2 = null;
 		ac.moveToElement(MenuToDoList).perform();
 		SubMenuNewItems.click();
@@ -459,15 +446,18 @@ public class CV_SendToWorkflowPage extends Utility
 		
 		try 
 		{
-			verifyDOcument=STF.findDocumentElement(DocumentName);
-			verifyDOcument.click();
+			findDocumentElement(DocumentName).click();
+			
+			//verifyDOcument=STF.findDocumentElement(DocumentName);
+			//verifyDOcument.click();
 		} catch (Exception e) 
 		
 		{
 			ac.moveToElement(MenuToDoList).perform();
 			SubMenupendingItems.click();
-			verifyDOcument=STF.findDocumentElement(DocumentName);
-			verifyDOcument.click();
+			findDocumentElement(DocumentName).click();
+			//verifyDOcument=STF.findDocumentElement(DocumentName);
+			//verifyDOcument.click();
 		}
 		
 
@@ -530,11 +520,11 @@ public class CV_SendToWorkflowPage extends Utility
 			btnrejectWorkflow.click();
 			txtAreaComment.sendKeys("This Document rejected by Automation");
 			btnokworkflowaccept.click();
-			if(verifyDOcument.isDisplayed()==false)
-			{
-				System.out.println("Document Rejected By first USer");
-			}
-			
+			//if(verifyDOcument.isDisplayed()==false)
+			//{
+            //	System.out.println("Document Rejected By first USer");
+			//}
+	
 		}
 		
 	}

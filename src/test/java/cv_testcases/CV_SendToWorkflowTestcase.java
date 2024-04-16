@@ -17,6 +17,7 @@ public class CV_SendToWorkflowTestcase extends Base
 	@BeforeMethod
 	public void initalization() throws Exception 
 	{
+		// Initalization driver and Delcare Object for respective page 
 		driver = launchBrowser();
 		login_page = new CV_LoginPage(driver);
 		sendWF=new CV_SendToWorkflowPage(driver);
@@ -25,6 +26,7 @@ public class CV_SendToWorkflowTestcase extends Base
 	@AfterMethod
 		public void tearDown() 
 	{
+		// Webdriver End
 		driver.quit();
 	}
 
@@ -32,6 +34,8 @@ public class CV_SendToWorkflowTestcase extends Base
 	public void SendToWorkFlow() throws InterruptedException
 
 	{
+		//Send Document To workflow from Originator
+		
 		login_page.Check_Valid_Credentials(getValidUsername(), getValidPassword(),getRoom());
 		System.out.println("Document Upload and send to workflow Started From Originator Of User"+getValidUsername());
 		sendWF.Worflow(getDocumentName(),getValidUsername(),getName_OF_WF());
@@ -43,6 +47,8 @@ public class CV_SendToWorkflowTestcase extends Base
 	public void WorflowVerify_By_First_User() throws InterruptedException 
 
 	{
+		//Document verification from first User
+		
 		login_page.Check_Valid_Credentials(getWorkflowVerify_F_User(), getWorkflowVerify_F_Password(),getRoom());
 		System.out.println("Workflow Verify By First User StartedUserName:-"+getWorkflowVerify_F_User());
 		sendWF.WorflowVerify_By_First_User(getWorkflowStatus_By_First_User(),getDocumentName(),getWorkflowVerify_F_User());
@@ -55,6 +61,8 @@ public class CV_SendToWorkflowTestcase extends Base
 	public void WorflowVerify_By_Second_User() throws InterruptedException 
 
 	{
+		//Document verification from first User
+		
 		if(getWorkflowStatus_By_First_User().contains("Accept"))
 		{
 		login_page.Check_Valid_Credentials(getWorkflowVerify_S_User(), getWorkflowVerify_S_Password(),getRoom());
@@ -74,6 +82,8 @@ public class CV_SendToWorkflowTestcase extends Base
 	public void WorflowVerify_Reject() throws InterruptedException 
 
 	{
+		// Reject Case :- If any user reject Document then for verification Purpose
+		
 		if((getWorkflowStatus_By_First_User().contains("reject"))||(getWorkflowStatus_By_Second_User().contains("reject")))
 		{
 			login_page.Check_Valid_Credentials(getValidUsername(), getValidPassword(),getRoom());
