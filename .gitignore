@@ -13,3 +13,5 @@ test-output
 reports
 .project
 .classpath
+screenshot
+downloadFiles

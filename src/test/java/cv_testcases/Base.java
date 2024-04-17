@@ -1,8 +1,14 @@
 package cv_testcases;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
 //import java.time.Duration;
 //import java.util.Properties;
@@ -18,7 +24,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Base {
 
-	WebDriver driver;
+	public WebDriver driver;
 
 	String ValidUsername;
 	String ValidPassword;
@@ -213,5 +219,7 @@ public class Base {
 		driver.get(url);
 		return driver;
 	}
+	
+
 
 }

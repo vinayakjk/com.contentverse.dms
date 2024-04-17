@@ -131,7 +131,7 @@ public class CV_LoginPage extends Utility {
 		}
 
 		if (isVisible(HeaderMenu, 5)) {
-			System.out.println(imgLoggedInUsername.getText().toUpperCase() + " :- Logged in succeesfully.");
+			//System.out.println(imgLoggedInUsername.getText().toUpperCase() + " :- Logged in succeesfully.");
 
 
 		}

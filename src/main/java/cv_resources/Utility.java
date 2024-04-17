@@ -50,6 +50,8 @@ public class Utility {
 
 	 {
 		 act.moveToElement(ele).click().build().perform();
+		 
+		
 	 }
 	 
 	 public void keypress(String a)

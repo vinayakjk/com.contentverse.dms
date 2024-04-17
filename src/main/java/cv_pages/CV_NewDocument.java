@@ -306,7 +306,6 @@ public class CV_NewDocument extends Utility {
 			doubleClick();
 			keypress("Statement type by Selenium Automation script");
 		}
-		keypress("Statement type by Selenium Automation script");
 		mandatoryPropertiesEmpName.sendKeys("Document"+currentTime());
 		btnNewDocCreate.click();
 		Thread.sleep(5000);

@@ -6,11 +6,11 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 public class ExtentReportNG 
 {
 
-
 	//Changes Done by rajendra 28/02/2024
-	public static ExtentReports getReportObject() 
+	public ExtentReports getReportObject() 
 		  {
-				String path= System.getProperty("user.dir")+"//reports//index.html";
+				String reportName = System.currentTimeMillis()+".html";
+				String path = System.getProperty("user.dir")+"//reports//"+"Extentreport_"+reportName+"";
 				ExtentSparkReporter reporter= new ExtentSparkReporter(path);
 				reporter.config().setReportName("Test Cases Report");
 				reporter.config().setDocumentTitle("Test Result");
