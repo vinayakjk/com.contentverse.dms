@@ -17,6 +17,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -230,16 +231,19 @@ public class Base {
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
 			HashMap<String, Object> prefs = new HashMap<String, Object>();
-			prefs.put("safebrowsing.enabled", true);
-			prefs.put("profile.default_content_settings.popups", 0);
-			prefs.put("download.prompt_for_download", false);
+			//prefs.put("safebrowsing.enabled", false);
+			//prefs.put("profile.default_content_settings.popups", 0);
+			//prefs.put("download.prompt_for_download", false);
 			prefs.put("download.default_directory",System.getProperty("user.dir")+"\\downloadFiles\\");
 			//prefs.put("browser.download.manager.closeWhenDone", true);
 			options.setExperimentalOption("prefs", prefs);
+			options.addArguments("--disable-features=InsecureDownloadWarnings");
 			//options.addArguments("--disable-popup-blocking");
-			options.addArguments("--safebrowsing-disable-download-protection");
-			options.addArguments("safebrowsing-disable-extension-blacklist");
+			//options.addArguments("--disable-notifications");
+			//options.addArguments("--safebrowsing-disable-download-protection");
+			//options.addArguments("safebrowsing-disable-extension-blacklist");
 			//options.addArguments("--allow-running-insecure-content");
+			
 			driver = new ChromeDriver(options);
 
 		} else if (getBrowser().equalsIgnoreCase("edge")) {
