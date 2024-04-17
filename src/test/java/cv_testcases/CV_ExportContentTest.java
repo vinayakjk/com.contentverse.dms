@@ -19,11 +19,9 @@ public class CV_ExportContentTest extends Base
 		launchBrowser();
 		cvLP = new CV_LoginPage(driver);
 		cvHP = new CV_HomePage(driver);
-
 	}
 
 	@Test
-
 	public void exportSinDocument() throws Exception {
 		cvLP.Check_Valid_Credentials(getValidUsername(), getValidPassword(), getRoom());
 		// Thread.sleep(3000);
@@ -36,7 +34,7 @@ public class CV_ExportContentTest extends Base
 		// Thread.sleep(2000);
 		cvHP.selectFolderPresentInDrawer(getFolderName());
 		cvHP.documentListTable();
-		cvHP.selectDocument();
+		cvHP.selectSingleDocument(getDocName());
 		Assert.assertEquals(cvHP.exportDocument(), true);
 	}
 
@@ -70,24 +68,13 @@ public class CV_ExportContentTest extends Base
 		// Thread.sleep(2000);
 		cvHP.selectFolderPresentInDrawer(getFolderName());
 		cvHP.documentListTable();
-		cvHP.selectMultipleDocuments(CabinateName, Act_Msg);
+		cvHP.selectMultipleDocuments(getDocName1(), getDocName2());
 		Assert.assertEquals(cvHP.exportDocument(), true);
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	@AfterMethod
 	public void tearDown() {
-		driver.close();
+		//driver.close();
 	}
 
 }

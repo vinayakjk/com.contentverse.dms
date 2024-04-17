@@ -87,9 +87,15 @@ public class CV_HomePage extends Utility {
 	@FindBy(xpath = "//td[@class=' customDocName']")
 	List<WebElement> listOfAllDocs;
 	
-	//@FindBy(xpath = "//td[text()='Image']")
-	@FindBy(xpath = "//td[text()='ODTFILE']")
-	WebElement txtDocumentName;
+	//td[contains(text(),'"+documentName+"')]/preceding-sibling::td/label/span
+	@FindBy(xpath = "//td[contains(text(),'\"+documentName+\"')]/preceding-sibling::td/label/span")
+	WebElement chkDocumentName;
+		
+	@FindBy(xpath = "//td[contains(text(),'\"+docName1+\"')]/preceding-sibling::td/label/span")
+	List<WebElement> chkDocName1;
+		
+	@FindBy(xpath = "//td[contains(text(),'\"+docName2+\"')]/preceding-sibling::td/label/span")
+	List<WebElement> chkDocName2;
 	
 	@FindBy(xpath = "//a[@id='documentSendTo']")
 	WebElement sendTo;
@@ -118,6 +124,9 @@ public class CV_HomePage extends Utility {
 	@FindBy(id="messageBox42")
 	WebElement mesgBoxDocUpdated;
 	
+	@FindBy(xpath = "//div[@id='progressModel' and @class='cvModel']")
+	WebElement msgInitializing;
+	
 	public WebElement documentToEdit(String linkText)
 	{
 		return driver.findElement(By.xpath("//*[contains(text(), '" + linkText + "')]"));
@@ -127,17 +136,10 @@ public class CV_HomePage extends Utility {
 		CabinateName = currentTime();
 	}
 	
-	
 	public List<WebElement> documentListInFolder() {
 		return docsInFolder;
-		
 	}
 	
-	
-	@FindBy(xpath = "//div[@id='progressModel' and @class='cvModel']")
-	WebElement msgInitializing;
-	
-
 	public void editDocument(String docName) throws InterruptedException
 	{
 		moveToElementAndClick(documentToEdit(docName));
@@ -150,9 +152,7 @@ public class CV_HomePage extends Utility {
 		//isDisaplyedW(mesgBoxDocUpdated, 10);
 		Assert.assertTrue(isDisaplyedW(mesgBoxDocUpdated, 10));
 	}
-	
-	
-	
+
 	public boolean cv_CabinateCreation() throws Exception {
 
 		boolean result = false;
@@ -238,7 +238,8 @@ public void cvCreateDrawer() throws Exception {
 	public boolean documentListTable() throws InterruptedException 
 	{
 		boolean documentListTable = false;
-		isDisaplyedW(documentListInFolder, 5);
+		//isDisaplyedW(documentListInFolder, 5);
+		Thread.sleep(3000);
 			if (documentListInFolder.getText().trim().equalsIgnoreCase("No data available in table")) 
 			{
 				System.out.println(documentListInFolder.getText());
@@ -257,16 +258,23 @@ public void cvCreateDrawer() throws Exception {
 		public void selectAllDocuments() throws InterruptedException 
 		{
 			chkSelectAll.click();
-			isDisaplyedW(documentListBox, 3);
+			//isDisaplyedW(documentListBox, 5);
+			Thread.sleep(5000);
 			moveToElementAndContextClick(documentListBox);
 		}
-
-		public void selectDocument() throws InterruptedException 
+		public WebElement singleDocument(String documentName)
 		{
-			driver.findElement(By.xpath("//td[text()='ODTFILE']/preceding-sibling::td/label/span")).click();
-			isDisaplyedW(txtDocumentName, 2);
-			moveToElementAndContextClick(txtDocumentName);
-			Thread.sleep(2000);
+			return driver.findElement(By.xpath("//td[contains(text(),'"+documentName+"')]/preceding-sibling::td/label/span"));
+		}
+
+		public void selectSingleDocument(String documentName) throws InterruptedException 
+		{
+			WebElement chkbox = singleDocument(documentName);
+			chkbox.click();
+			//chkDocumentName.click();
+			//isDisaplyedW(chkbox, 10);
+			Thread.sleep(5000);
+			moveToElementAndContextClick(chkbox);
 		}
 		public void selectMultipleDocuments(String docName1, String docName2) throws InterruptedException 
 		{
@@ -285,11 +293,15 @@ public void cvCreateDrawer() throws Exception {
 		public boolean exportDocument() throws InterruptedException, IOException {
 			boolean testresult = false;
 			int afterdownload = 0;
-			isDisaplyedW(sendTo,2);
-			moveToElementAndClick(sendTo);
-			if(sendToExport.getAttribute("class").equalsIgnoreCase("enabled"))
+			//Thread.sleep(2000);
+			sendTo.click();
+			//moveToElementAndClick(sendTo);
+			if(sendToExport.getAttribute("class").equalsIgnoreCase("disabled"))
 			{
-				isDisaplyedW(sendToExport,3);
+				System.out.println("Export option is disabled");	
+			}
+			else {
+				//isDisaplyedW(sendToExport,3);
 				sendToExport.click();
 				btnOKToExport.click();
 
@@ -315,9 +327,6 @@ public void cvCreateDrawer() throws Exception {
 						System.out.println("File is not downloaded");
 					}
 				}
-			}
-			else {
-				System.out.println("Export option is disabled");
 			}
 			return testresult;
 		}
