@@ -36,7 +36,8 @@ public class listeners implements ITestListener
 		//WebDriver d = null;
 		try {
 			WebDriver d = (WebDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
-			String st = GetscreenShot.takescreenshots(d, result.getName());
+			String st = GetscreenShot.takescreenshots(d, result.getMethod().getMethodName());
+			System.out.println(st);
 			test.addScreenCaptureFromPath(st);
 			test.log(Status.FAIL, "Test Case Fail");
 		} catch (Exception e) {
@@ -46,7 +47,7 @@ public class listeners implements ITestListener
 	}
 	public void onTestSkipped(ITestResult result) {
 		System.out.println("Test Case Skip = "+result.getName());
-		
+				
 	}
 
 /*
