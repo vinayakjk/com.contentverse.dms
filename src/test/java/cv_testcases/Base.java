@@ -2,8 +2,13 @@ package cv_testcases;
 
 import java.io.File;
 import java.io.FileInputStream;
+
 import java.io.IOException;
+
+import java.lang.reflect.Array;
+
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
@@ -15,10 +20,12 @@ import org.openqa.selenium.TakesScreenshot;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -40,7 +47,12 @@ public class Base {
 	String CabinateName;
 	String DrawerName;
 	String FolderName;
-
+	
+	String[] DocsNameArray = {"DocName1","DocName2"};
+	String DocName;
+	String DocName1;
+	String DocName2;
+	
 	String officeDocs;
 	String officepdf;
 	String Loadcount;
@@ -73,6 +85,9 @@ public class Base {
 		CabinateName = properties.getProperty("CabinateName");
 		DrawerName = properties.getProperty("DrawerName");
 		FolderName = properties.getProperty("FolderName");
+		DocName = properties.getProperty("DocName");
+        DocName1 = properties.getProperty("DocName1");
+		DocName2 = properties.getProperty("DocName2");
 		defaultView = properties.getProperty("defaultView");
 		officeDocs = properties.getProperty("officeDocs");
 		Loadcount = properties.getProperty("Loadcount");
@@ -125,6 +140,19 @@ public class Base {
 		return FolderName;
 	}
 
+	public String getDocName() {
+		return DocName;
+	}
+	public String getDocName1() {
+		return DocName1;
+	}
+	public String getDocName2() {
+		return DocName2;
+	}
+	public String[] getDocsName() {
+		return DocsNameArray;
+	}
+	
 	public String getdefaultView() {
 		return defaultView;
 	}
@@ -207,7 +235,23 @@ public class Base {
 
 		} else if (getBrowser().equalsIgnoreCase("chrome")) {
 
-			driver = new ChromeDriver();
+			WebDriverManager.chromedriver().setup();
+			ChromeOptions options = new ChromeOptions();
+			HashMap<String, Object> prefs = new HashMap<String, Object>();
+			//prefs.put("safebrowsing.enabled", false);
+			//prefs.put("profile.default_content_settings.popups", 0);
+			//prefs.put("download.prompt_for_download", false);
+			prefs.put("download.default_directory",System.getProperty("user.dir")+"\\downloadFiles\\");
+			prefs.put("browser.download.manager.closeWhenDone", true);
+			options.setExperimentalOption("prefs", prefs);
+			options.addArguments("--disable-features=InsecureDownloadWarnings");
+			//options.addArguments("--disable-popup-blocking");
+			//options.addArguments("--disable-notifications");
+			//options.addArguments("--safebrowsing-disable-download-protection");
+			//options.addArguments("safebrowsing-disable-extension-blacklist");
+			//options.addArguments("--allow-running-insecure-content");
+			
+			driver = new ChromeDriver(options);
 
 		} else if (getBrowser().equalsIgnoreCase("edge")) {
 			driver = new EdgeDriver();

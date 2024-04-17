@@ -71,12 +71,16 @@ public class Utility {
 	 
 	 public void moveToElementAndContextClick(WebElement ele)
 	 {
-		 act.moveToElement(ele).contextClick();
+			act.moveToElement(ele).contextClick().build().perform();
 	 }
 	 
 	 public void doubleClick(WebElement ele)
 	 {
 		 act.doubleClick(ele).build().perform();
+	 }
+	 public void contextClick(WebElement ele)
+	 {
+		 act.contextClick(ele).build().perform();
 	 }
 	 
 	 

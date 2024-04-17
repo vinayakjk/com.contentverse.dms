@@ -89,10 +89,6 @@ public class CV_HomePage extends Utility {
 	@FindBy(xpath = "//td[@class=' customDocName']")
 	List<WebElement> listOfAllDocs;
 
-	// @FindBy(xpath = "//td[text()='Image']")
-	@FindBy(xpath = "//td[text()='ODTFILE']")
-	WebElement txtDocumentName;
-
 	@FindBy(xpath = "//a[@id='documentSendTo']")
 	WebElement sendTo;
 
@@ -147,21 +143,22 @@ public class CV_HomePage extends Utility {
 	@FindBy(id = "deleteMessageOk1")
 	WebElement btnOKOnDeleteBox;
 
-	public WebElement documentToEdit(String linkText) {
+	@FindBy(xpath = "//div[@id='progressModel' and @class='cvModel']")
+	WebElement msgInitializing;
+	
+	public WebElement documentToEdit(String linkText)
+	{
 		return driver.findElement(By.xpath("//*[contains(text(), '" + linkText + "')]"));
 	}
 
 	public void cN() {
 		CabinateName = currentTime();
 	}
-
+	
 	public List<WebElement> documentListInFolder() {
 		return docsInFolder;
 
 	}
-
-	@FindBy(xpath = "//div[@id='progressModel' and @class='cvModel']")
-	WebElement msgInitializing;
 
 	public void deleteCabinate() throws InterruptedException {
 		int listOfCabinatebeforedelte = listOfCabinates.size();
@@ -278,81 +275,102 @@ public class CV_HomePage extends Utility {
 
 	public boolean documentListTable() throws InterruptedException {
 		boolean documentListTable = false;
-		isDisaplyedW(documentListInFolder, 5);
-		if (documentListInFolder.getText().trim().equalsIgnoreCase("No data available in table")) {
-			System.out.println(documentListInFolder.getText());
-			Assert.assertEquals(documentListTable, true);
+		//isDisaplyedW(documentListInFolder, 5);
+		Thread.sleep(3000);
+			if (documentListInFolder.getText().trim().equalsIgnoreCase("No data available in table")) 
+			{
+				System.out.println(documentListInFolder.getText());
+				Assert.assertEquals(documentListTable, true);
+				
+			} else 
+			{
+				for (int i = 0; i<docsInFolder.size(); i++)
+				{
+					documentListTable = true;	
+				}		
 
-		} else {
-			for (int i = 0; i < docsInFolder.size(); i++) {
-				documentListTable = true;
 			}
-		}
 		return documentListTable;
 	}
 
-	public void selectAllDocuments() throws InterruptedException {
+	public void selectAllDocuments() throws InterruptedException 
+	{
 		chkSelectAll.click();
-		isDisaplyedW(documentListBox, 3);
+		//isDisaplyedW(documentListBox, 5);
+		Thread.sleep(5000);
 		moveToElementAndContextClick(documentListBox);
 	}
-
-	public void selectDocument() throws InterruptedException {
-		driver.findElement(By.xpath("//td[text()='ODTFILE']/preceding-sibling::td/label/span")).click();
-		isDisaplyedW(txtDocumentName, 2);
-		moveToElementAndContextClick(txtDocumentName);
-		Thread.sleep(2000);
+	public WebElement singleDocument(String documentName)
+	{
+		return driver.findElement(By.xpath("//td[contains(text(),'"+documentName+"')]/preceding-sibling::td/label/span"));
 	}
 
-	public void selectMultipleDocuments(String docName1, String docName2) throws InterruptedException {
-		List<WebElement> DocName1 = driver
-				.findElements(By.xpath("//td[contains(text(),'" + docName1 + "')]/preceding-sibling::td/label/span"));
-		for (int i = 0; i < DocName1.size(); i++) {
-			DocName1.get(i).click();
-			isInvisible(msgInitializing, 10);
-		}
-		List<WebElement> DocName2 = driver
-				.findElements(By.xpath("//td[contains(text(),'" + docName2 + "')]/preceding-sibling::td/label/span"));
-		for (int i = 0; i < DocName2.size(); i++) {
-			DocName2.get(i).click();
-		}
+	public void selectSingleDocument(String documentName) throws InterruptedException 
+	{
+		WebElement chkbox = singleDocument(documentName);
+		chkbox.click();
+		//chkDocumentName.click();
+		//isDisaplyedW(chkbox, 10);
+		Thread.sleep(5000);
+		moveToElementAndContextClick(chkbox);
 	}
-
+	public void selectMultipleDocuments(String docName1, String docName2) throws InterruptedException 
+	{
+			List<WebElement> DocName1 = driver.findElements(By.xpath("//td[contains(text(),'"+docName1+"')]/preceding-sibling::td/label/span"));
+			for(int i=0; i<DocName1.size(); i++)
+			{
+				DocName1.get(i).click();
+				isInvisible(msgInitializing,10);
+			}
+			List<WebElement> DocName2 = driver.findElements(By.xpath("//td[contains(text(),'"+docName2+"')]/preceding-sibling::td/label/span"));
+			for(int i=0; i<DocName2.size(); i++)
+			{
+				DocName2.get(i).click();
+			}
+	}
 	public boolean exportDocument() throws InterruptedException, IOException {
 		boolean testresult = false;
 		int afterdownload = 0;
-		isDisaplyedW(sendTo, 2);
-		moveToElementAndClick(sendTo);
-		if (sendToExport.getAttribute("class").equalsIgnoreCase("enabled")) {
-			isDisaplyedW(sendToExport, 3);
+		//Thread.sleep(2000);
+		sendTo.click();
+		//moveToElementAndClick(sendTo);
+		if(sendToExport.getAttribute("class").equalsIgnoreCase("disabled"))
+		{
+			System.out.println("Export option is disabled");	
+		}
+		else {
+			//isDisaplyedW(sendToExport,3);
 			sendToExport.click();
 			btnOKToExport.click();
 
-			isDisaplyedW(exportInfoMessageBox, 2);
-			if (exportInfoMessageBox.getText().trim().equalsIgnoreCase("Error On Download")) {
+			isDisaplyedW(exportInfoMessageBox,2);
+			if (exportInfoMessageBox.getText().trim().equalsIgnoreCase("Error On Download")) 
+			{
 				System.out.println(exportInfoMessageBox.getText());
 				btnOKInMessageBox.click();
-			} else {
+			}
+			else
+			{
 				int beforedownload = ifFileAvailable();
-				isInvisible(exportInfoMessageBox, 30);
+				isInvisible(exportInfoMessageBox,30);
 				afterdownload = ifFileAvailable();
 				System.out.println(afterdownload);
-				if (beforedownload < afterdownload) {
+				if(beforedownload<afterdownload)
+				{
 					System.out.println("File downloaded successfully");
 					testresult = true;
-				} else {
+				}
+				else
+				{
 					System.out.println("File is not downloaded");
 				}
 			}
-		} else {
-			System.out.println("Export option is disabled");
 		}
 		return testresult;
 	}
-
-	public void advanceSearch() throws InterruptedException {
+	public void advanceSearch() throws InterruptedException
+	{
 		Thread.sleep(3000);
 		btnAdvanceSearch.click();
 	}
-
 }

@@ -37,7 +37,6 @@ public class listeners implements ITestListener
 		try {
 			WebDriver d = (WebDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
 			String st = GetscreenShot.takescreenshots(d, result.getMethod().getMethodName());
-			System.out.println(st);
 			test.addScreenCaptureFromPath(st);
 			test.log(Status.FAIL, "Test Case Fail");
 		} catch (Exception e) {
