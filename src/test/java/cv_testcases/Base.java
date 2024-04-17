@@ -235,7 +235,7 @@ public class Base {
 			//prefs.put("profile.default_content_settings.popups", 0);
 			//prefs.put("download.prompt_for_download", false);
 			prefs.put("download.default_directory",System.getProperty("user.dir")+"\\downloadFiles\\");
-			//prefs.put("browser.download.manager.closeWhenDone", true);
+			prefs.put("browser.download.manager.closeWhenDone", true);
 			options.setExperimentalOption("prefs", prefs);
 			options.addArguments("--disable-features=InsecureDownloadWarnings");
 			//options.addArguments("--disable-popup-blocking");
