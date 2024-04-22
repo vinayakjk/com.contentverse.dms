@@ -1,28 +1,13 @@
 package cv_pages;
 
-//import java.time.Duration;
 
-//import com.example.mypackage.MyClass;
-import java.time.Duration;
-//import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-//import org.testng.annotations.Test;
-//import org.openqa.selenium.WebDriver;
-//import org.openqa.selenium.support.PageFactory;
-//import org.testng.asserts.SoftAssert;
 import org.openqa.selenium.support.PageFactory;
-//<<<<<<< HEAD
 import org.testng.Assert;
-//=======
-import org.openqa.selenium.support.ui.Select;
-
-import com.fasterxml.jackson.databind.deser.Deserializers.Base;
-//>>>>>>> CreateCabinateDrwaer
-
-//import cv_testcases.Base.ConfigReader;
 import cv_resources.Utility;
 
 public class CV_LoginPage extends Utility {
@@ -116,6 +101,7 @@ public class CV_LoginPage extends Utility {
 	public void Check_Valid_Credentials(String uid, String pass, String room) 
 	{
 
+		System.out.println("6.Check_Valid_Credentials");
 		isVisible(txtUsername, 5);
 		txtUsername.clear();
 		
@@ -124,16 +110,20 @@ public class CV_LoginPage extends Utility {
 		txtPassword.sendKeys(pass);
 		Dropdownbytxt(listOfRooms,room);
 		btnSubmit.click();
+		
 
 		if (isDisaplyedW(WindowSesionMgr, 1)) {
 			WindowSesionMgr.click();
 			//System.out.println("Another Session Ended");
 		}
 
-		if (isVisible(HeaderMenu, 5)) {
-			//System.out.println(imgLoggedInUsername.getText().toUpperCase() + " :- Logged in succeesfully.");
 
 
+		String LoggedInUsername=imgLoggedInUsername.getText();
+		
+		if (LoggedInUsername.equals(uid)) 
+		{
+			System.out.println(imgLoggedInUsername.getText().toUpperCase() + " :- Logged in succeesfully.");
 		}
 
 		else {
@@ -143,13 +133,13 @@ public class CV_LoginPage extends Utility {
 	}
 	
 
-	public void Invalid_Username(String uid, String pass) {
+	public void Invalid_Username(String uid, String pass,String room) {
 		System.out.println("1.Login With Invalid Username");
 		txtUsername.clear();
 		txtUsername.sendKeys(uid);
 		txtPassword.clear();
 		txtPassword.sendKeys(pass);
-		//ddRooms.click();
+		Dropdownbytxt(listOfRooms,room);
 		btnSubmit.click();
 
 		String lblInvalidateUser = lbllogin.getText();
@@ -164,12 +154,12 @@ public class CV_LoginPage extends Utility {
         }
 	}
 
-	public void Invalid_Password(String uid, String pass) {
+	public void Invalid_Password(String uid, String pass,String room) {
 		System.out.println("2.Login With Invalid Password");
 		txtUsername.sendKeys(uid);
 		txtPassword.clear();
 		txtPassword.sendKeys(pass);
-		//ddRooms.click();
+		Dropdownbytxt(listOfRooms,room);
 		btnSubmit.click();
 
 		if (isDisaplyedW(WindowSesionMgr, 1)) 
@@ -190,13 +180,13 @@ public class CV_LoginPage extends Utility {
 		
 	}
 
-	public void Blank_Username(String pass) //String uid, 
+	public void Blank_Username(String pass,String room) //String uid, 
 	{
 		System.out.println("3.Blank Username");
 		txtUsername.clear();
 		txtPassword.clear();
 		txtPassword.sendKeys(pass);
-		//ddRooms.click();
+		Dropdownbytxt(listOfRooms,room);
 		btnSubmit.click();
 
 		String lblusernamevalidation = lblnamevalidation.getText();
@@ -210,13 +200,13 @@ public class CV_LoginPage extends Utility {
             Assert.fail("Blank Username failed! Actual text: " + lblusernamevalidation);//", Expected text: " + expectedText);
         }
 	}	
-	public void Blank_Password(String uid) //, String pass
+	public void Blank_Password(String uid,String room) //, String pass
 	{
 		System.out.println("4.Blank Password");
 		txtUsername.clear();
 		txtUsername.sendKeys(uid);
 		txtPassword.clear();
-		//ddRooms.click();
+		Dropdownbytxt(listOfRooms,room);
 		btnSubmit.click();
 
 		String lblpwdvalidation = lblpasswordvalidation.getText();
@@ -251,5 +241,5 @@ public class CV_LoginPage extends Utility {
         {
             Assert.fail("Select a room! Actual text: " + roomselection);//", Expected text: " + expectedText);
         }
-	}
+	 }
 }
