@@ -3,7 +3,7 @@
 <suite name="Suite">
 	
 	<listeners>
-		<listener class-name="cv_resources.Listeners" />
+		<listener class-name="cv_resources.listeners" />
 	</listeners>
 
   <test thread-count="5" name="Test">

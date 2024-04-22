@@ -138,6 +138,46 @@ public class CV_HomePage extends Utility {
 	WebElement msgInitializing;
 	
 
+	public void deleteCabinate(String UserName)
+	{
+		/*for(int i=0;i<listOfCabinates.size();i++)
+		{
+			moveToElementAndClick(listOfCabinates.get(i));
+			if(listOfCabinates.get(i).getText().trim().startsWith("CV_"))
+			{
+				
+				
+				System.out.println(listOfCabinates.get(i).getText());
+				
+				String abc=(listOfCabinates.get(i).getText().trim());
+				System.out.println(abc);
+				WebElement name =driver.findElement(By.linkText(abc));
+				
+				moveToElementAndClick(name);
+				//moveToElementAndClick(listOfCabinates.get(i));
+				break;
+				
+				
+		}
+		}
+		*/
+		
+		for (WebElement cabinates : listOfCabinates) {
+		    moveToElementAndClick(cabinates);
+		    String text = cabinates.getText().trim();
+		    System.out.println(text);
+		    if (text.startsWith("CV")) {
+		        System.out.println(text);
+		        moveToElementAndClick(cabinates);
+		        break;
+		    }
+		}
+		//btnOnCabinateNamefloatButton.click();
+		
+		
+		
+	}
+	
 	public void editDocument(String docName) throws InterruptedException
 	{
 		moveToElementAndClick(documentToEdit(docName));

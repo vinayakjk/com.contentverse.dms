@@ -17,7 +17,7 @@ import io.opentelemetry.exporter.logging.SystemOutLogRecordExporter;
 
 public class CV_NewDocument extends Utility {
 	// Web Elements added in CV_NewDocuments Amol - 04/03/2024
-
+	String file_Name;
 	// Clicked on Sundyne
 	@CacheLookup
 	// Cabinet
@@ -244,6 +244,11 @@ public class CV_NewDocument extends Utility {
 	@FindBy(id="indices_11")
 	WebElement mandatoryPropertiesEmpName;
 	
+	@FindBy(id="indices_5")
+	WebElement mandatoryProperties_CVReportEmpName;
+	
+	//input[@id='indices_5']
+	
 	@FindBy(id="newdocModelCloseTemplate")
 	WebElement btnCloseMessageBox;
 	
@@ -294,20 +299,33 @@ public class CV_NewDocument extends Utility {
 			moveToElementAndClick(ddNewExcelDocumentButton);
 		}
 		Thread.sleep(2000);
-		txtNewDocumentEnterFileName.sendKeys("CV_"+currentTime());
+		
+		String file_Name="CV_"+currentTime();
+		txtNewDocumentEnterFileName.sendKeys(file_Name);
 		btnNewDocumentOk.click();
+		
 		Thread.sleep(5000);
 		if(documentType.equalsIgnoreCase("Word"))
 		{		
 			keypress("Statement type by Selenium Automation script");
+			Thread.sleep(2000);
 		}
 		else if(documentType.equalsIgnoreCase("Excel"))
 		{
 			doubleClick();
 			keypress("Statement type by Selenium Automation script");
+			Thread.sleep(2000);
 		}
-		keypress("Statement type by Selenium Automation script");
-		mandatoryPropertiesEmpName.sendKeys("Document"+currentTime());
+		//keypress("Statement type by Selenium Automation script");
+		try 
+		{
+			mandatoryPropertiesEmpName.sendKeys("Document"+currentTime());
+		}
+		catch (Exception e) 
+		{
+			mandatoryProperties_CVReportEmpName.sendKeys("Document"+currentTime());
+		}
+		
 		btnNewDocCreate.click();
 		Thread.sleep(5000);
 		sf.assertEquals(lblMessage.getText(), "Document created successfully");
