@@ -110,6 +110,7 @@ public class CV_LoginPage extends Utility {
 		txtPassword.sendKeys(pass);
 		Dropdownbytxt(listOfRooms,room);
 		btnSubmit.click();
+		
 
 		if (isDisaplyedW(WindowSesionMgr, 1)) {
 			WindowSesionMgr.click();
@@ -238,5 +239,5 @@ public class CV_LoginPage extends Utility {
         {
             Assert.fail("Select a room! Actual text: " + roomselection);//", Expected text: " + expectedText);
         }
-	}
+	 }
 }
