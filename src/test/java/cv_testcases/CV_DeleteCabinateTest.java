@@ -1,20 +1,16 @@
 package cv_testcases;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import cv_pages.CV_HomePage;
 import cv_pages.CV_LoginPage;
-import cv_resources.GetscreenShot;
+import cv_pages.CV_NewDocument;
 
-public class CV_CreateCabinateDrawerTest extends Base 
+public class CV_DeleteCabinateTest extends Base
 {
-	//WebDriver driver;
-
 	CV_LoginPage cvLP;
 	CV_HomePage cvHP;
-		
+			
 	@BeforeMethod
 	public void initalization() throws Exception
 	{
@@ -24,27 +20,17 @@ public class CV_CreateCabinateDrawerTest extends Base
 	}
 	
 	@Test
-	public void createCabinate() throws Exception
+	public void deleteCabinate() throws Exception
 	{
 		cvLP.Check_Valid_Credentials(getValidUsername(), getValidPassword(),getRoom());
-		Thread.sleep(3000);
-		Assert.assertEquals(cvHP.cv_CabinateCreation(), true);
-	
-	}
-	
-	@Test
-	public void createDrawer() throws Exception
-	{
-		createCabinate();
-		cvHP.cvCreateDrawer();
+		cvHP.deleteCabinate(); 
 	}
 	
 	
 	@AfterMethod
-	public void tearDown()
+	public void teardown()
 	{
 		driver.close();
 	}
-	
 	
 }

@@ -8,7 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-//<<<<<<< HEAD
+
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
@@ -316,7 +316,7 @@ public class CV_NewDocument extends Utility {
 			keypress("Statement type by Selenium Automation script");
 			Thread.sleep(2000);
 		}
-		//keypress("Statement type by Selenium Automation script");
+
 		try 
 		{
 			mandatoryPropertiesEmpName.sendKeys("Document"+currentTime());
@@ -326,6 +326,7 @@ public class CV_NewDocument extends Utility {
 			mandatoryProperties_CVReportEmpName.sendKeys("Document"+currentTime());
 		}
 		
+
 		btnNewDocCreate.click();
 		Thread.sleep(5000);
 		sf.assertEquals(lblMessage.getText(), "Document created successfully");

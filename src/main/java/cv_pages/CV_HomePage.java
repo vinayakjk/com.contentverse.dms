@@ -22,12 +22,14 @@ public class CV_HomePage extends Utility {
 	WebDriver driver;
 	String CabinateName;
 	Actions act;
+	CV_LoginPage cvlp;
 
 	public CV_HomePage(WebDriver driver) {
-		
-		super(driver); 
+
+		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+		cvlp = new CV_LoginPage(driver);
 	}
 
 	@FindBy(id = "navigationMenuBtn")
@@ -77,26 +79,22 @@ public class CV_HomePage extends Utility {
 
 	@FindBy(xpath = "//table[@id='documentListTable']//tbody")
 	WebElement documentListInFolder;
-	
+
 	@FindBy(xpath = "//table[@id='documentListTable']//tbody//td[contains(@class,'customDocName')]")
 	List<WebElement> docsInFolder;
-	
+
 	@FindBy(id = "selectall")
 	WebElement chkSelectAll;
-	
+
 	@FindBy(xpath = "//td[@class=' customDocName']")
 	List<WebElement> listOfAllDocs;
-	
-	//@FindBy(xpath = "//td[text()='Image']")
-	@FindBy(xpath = "//td[text()='ODTFILE']")
-	WebElement txtDocumentName;
-	
+
 	@FindBy(xpath = "//a[@id='documentSendTo']")
 	WebElement sendTo;
 
 	@FindBy(id = "sendToExport")
 	WebElement sendToExport;
-	
+
 	@FindBy(id = "detailsBlock")
 	WebElement exportInfoBox;
 
@@ -105,115 +103,127 @@ public class CV_HomePage extends Utility {
 
 	@FindBy(id = "messageBoxFD")
 	WebElement exportInfoMessageBox;
-	
+
 	@FindBy(id = "messageButtonOKFD")
 	WebElement btnOKInMessageBox;
-	
+
 	@FindBy(xpath = "//a[@id='advSearchMenuBtn']")
 	WebElement btnAdvanceSearch;
-	
-	@FindBy(id="saveAddedPages")
+
+	@FindBy(id = "saveAddedPages")
 	WebElement btndocSave;
-	
-	@FindBy(id="messageBox42")
+
+	@FindBy(id = "messageBox42")
 	WebElement mesgBoxDocUpdated;
+
+	@FindBy(id = "security")
+	WebElement btnSecurity;
+
+	@FindBy(id = "securityAdd")
+	WebElement btnsecurityAddonPermissionWindow;
+
+	@FindBy(linkText = "CVConcurrent")
+	WebElement concurrent;
+
+	@FindBy(xpath = "//a[text()='CVConcurrent']//img[@src=\"images/navArrow.png\"]")
+	WebElement concurrentUserDownArrow;
+
+	@FindBy(id = "imgAssign")
+	WebElement assignPermission;
+
+	@FindBy(id = "applySecurity")
+	WebElement btnapplySecurityONPermissionWindow;
+
+	@FindBy(id = "securityUpdate")
+	WebElement btnOkONPermissionWindow;
+
+	@FindBy(id = "deleteNodeAnchor")
+	WebElement btnDelete;
+
+	@FindBy(id = "deleteMessageOk1")
+	WebElement btnOKOnDeleteBox;
+
+	@FindBy(xpath = "//div[@id='progressModel' and @class='cvModel']")
+	WebElement msgInitializing;
 	
 	public WebElement documentToEdit(String linkText)
 	{
 		return driver.findElement(By.xpath("//*[contains(text(), '" + linkText + "')]"));
 	}
-	
+
 	public void cN() {
 		CabinateName = currentTime();
 	}
 	
-	
 	public List<WebElement> documentListInFolder() {
 		return docsInFolder;
-		
+
 	}
+
+	public void deleteCabinate() throws InterruptedException {
+		int listOfCabinatebeforedelte = listOfCabinates.size();
+		for (int i = 0; i < listOfCabinates.size(); i++) {
+			moveToElementAndClick(listOfCabinates.get(i));
+			if (listOfCabinates.get(i).getText().trim().startsWith("CV_")) {
+				String abc = (listOfCabinates.get(i).getText().trim());
+				WebElement name = driver.findElement(By.linkText(abc));
+				moveToElementAndClick(name);
+				break;
+			}
+		}
+		btnOnCabinateNamefloatButton.click();
+		Thread.sleep(1000);
+		btnSecurity.click();
+		btnsecurityAddonPermissionWindow.click();
+		// Thread.sleep(0);
+		concurrent.click();
+		concurrentUserDownArrow.click();
+		String username = cvlp.imgLoggedInUsername.getText();
+		// System.out.println(username);
+		driver.findElement(By.linkText(username)).click();
+		driver.findElement(By.id("selectedUsersAndGroups")).click();
+		assignPermission.click();
+		assignPermission.click();
+		btnapplySecurityONPermissionWindow.click();
+		btnOkONPermissionWindow.click();
+		btnOnCabinateNamefloatButton.click();
+		btnDelete.click();
+		btnOKOnDeleteBox.click();
+		int listOfCabinateAfterdelete = listOfCabinates.size();		
+		Assert.assertTrue(listOfCabinatebeforedelte > listOfCabinateAfterdelete);
+	}
+
 	
-	
-	@FindBy(xpath = "//div[@id='progressModel' and @class='cvModel']")
-	WebElement msgInitializing;
 	
 
-	public void deleteCabinate(String UserName)
-	{
-		/*for(int i=0;i<listOfCabinates.size();i++)
-		{
-			moveToElementAndClick(listOfCabinates.get(i));
-			if(listOfCabinates.get(i).getText().trim().startsWith("CV_"))
-			{
-				
-				
-				System.out.println(listOfCabinates.get(i).getText());
-				
-				String abc=(listOfCabinates.get(i).getText().trim());
-				System.out.println(abc);
-				WebElement name =driver.findElement(By.linkText(abc));
-				
-				moveToElementAndClick(name);
-				//moveToElementAndClick(listOfCabinates.get(i));
-				break;
-				
-				
-		}
-		}
-		*/
-		
-		for (WebElement cabinates : listOfCabinates) {
-		    moveToElementAndClick(cabinates);
-		    String text = cabinates.getText().trim();
-		    System.out.println(text);
-		    if (text.startsWith("CV")) {
-		        System.out.println(text);
-		        moveToElementAndClick(cabinates);
-		        break;
-		    }
-		}
-		//btnOnCabinateNamefloatButton.click();
-		
-		
-		
-	}
-	
-	public void editDocument(String docName) throws InterruptedException
-	{
+	public void editDocument(String docName) throws InterruptedException {
 		moveToElementAndClick(documentToEdit(docName));
 		Thread.sleep(8000);
 		pressEnter();
 		pressUpKeys();
-		keypress(currentTime()+" Above current time is entered by selenium script ");
+		keypress(currentTime() + " Above current time is entered by selenium script ");
 		Thread.sleep(8000);
 		btndocSave.click();
-		//isDisaplyedW(mesgBoxDocUpdated, 10);
+		// isDisaplyedW(mesgBoxDocUpdated, 10);
 		Assert.assertTrue(isDisaplyedW(mesgBoxDocUpdated, 10));
 	}
-	
-	
-	
+
 	public boolean cv_CabinateCreation() throws Exception {
 
 		boolean result = false;
 		act = new Actions(driver);
 		act.moveToElement(btnDataBaseName).build().perform();
 		Thread.sleep(3000);
-		if (createCabinate.getAttribute("class").equalsIgnoreCase("disabled"))
-		{
+		if (createCabinate.getAttribute("class").equalsIgnoreCase("disabled")) {
 			System.out.println("Disabled");
-		}
-		else
-		{
-			  act.moveToElement(createCabinate).click().build().perform();
-			 cN();
-			 txtEnterCabinateName.sendKeys("CV_" + CabinateName);
-			 btnOKCreateCabinate.click();
-			 //listOfCabinates.siz
-			for (int i = 0; i < listOfCabinates.size(); i++) 
-			{
-				if (listOfCabinates.get(i).getText().trim().equalsIgnoreCase("CV_" + CabinateName)) 
-				{
+		} else {
+			act.moveToElement(createCabinate).click().build().perform();
+			cN();
+			txtEnterCabinateName.sendKeys("CV_" + CabinateName);
+			btnOKCreateCabinate.click();
+			// listOfCabinates.siz
+			for (int i = 0; i < listOfCabinates.size(); i++) {
+				if (listOfCabinates.get(i).getText().trim().equalsIgnoreCase("CV_" + CabinateName)) {
 					{
 						listOfCabinates.get(i).click();
 						result = true;
@@ -226,59 +236,48 @@ public class CV_HomePage extends Utility {
 		return result;
 	}
 
-	
-public void cvCreateDrawer() throws Exception {
+	public void cvCreateDrawer() throws Exception {
 
 		btnOnCabinateNamefloatButton.click();
-		act = new Actions(driver);
-		act.moveToElement(createDrawer).click().build().perform();
+		moveToElementAndClick(createDrawer);
 		txtEnterDrawerName.sendKeys(currentTime());
 		btnOKCreateDrwaer.click();
 		Thread.sleep(2000);
 		Assert.assertEquals(minusbtn.isDisplayed(), true);
 	}
-	
-	public void listOfCabinatesPresentInDataBase(String CabinateName) throws InterruptedException 
-	{
+
+	public void listOfCabinatesPresentInDataBase(String CabinateName) throws InterruptedException {
 		Thread.sleep(5000);
-		for (int i = 0; i < listOfCabinates.size(); i++) 
-		{
-				if (listOfCabinates.get(i).getText().trim().equalsIgnoreCase(CabinateName)) 
-				{
-					moveToElementAndDoubleClick(listOfCabinates.get(i));
-					Thread.sleep(5000);
-				}
+		for (int i = 0; i < listOfCabinates.size(); i++) {
+			if (listOfCabinates.get(i).getText().trim().equalsIgnoreCase(CabinateName)) {
+				moveToElementAndDoubleClick(listOfCabinates.get(i));
+				Thread.sleep(5000);
+			}
 		}
 	}
 
-	public void selectDrawerPresentInCabinet(String DrawerName) throws InterruptedException 
-	{
-		for (int j = 0; j < listOfDrawers.size(); j++) 
-		{
-			if (listOfDrawers.get(j).getText().trim().equalsIgnoreCase(DrawerName)) 
-			{
+	public void selectDrawerPresentInCabinet(String DrawerName) throws InterruptedException {
+		for (int j = 0; j < listOfDrawers.size(); j++) {
+			if (listOfDrawers.get(j).getText().trim().equalsIgnoreCase(DrawerName)) {
 				act = new Actions(driver);
 				act.doubleClick(listOfDrawers.get(j)).build().perform();
 			}
 		}
 	}
-	public void selectFolderPresentInDrawer(String FolderName) throws InterruptedException 
-	{
-		for (int k = 0; k < listOfFolders.size(); k++) 
-		{
-			if (listOfFolders.get(k).getText().trim().equalsIgnoreCase(FolderName)) 
-			{
+
+	public void selectFolderPresentInDrawer(String FolderName) throws InterruptedException {
+		for (int k = 0; k < listOfFolders.size(); k++) {
+			if (listOfFolders.get(k).getText().trim().equalsIgnoreCase(FolderName)) {
 				isDisaplyedW(selectFolder.get(k), 3);
 				moveToElementAndClick(selectFolder.get(k));
 			}
 		}
 	}
 
-	
-	public boolean documentListTable() throws InterruptedException 
-	{
+	public boolean documentListTable() throws InterruptedException {
 		boolean documentListTable = false;
-		isDisaplyedW(documentListInFolder, 5);
+		//isDisaplyedW(documentListInFolder, 5);
+		Thread.sleep(3000);
 			if (documentListInFolder.getText().trim().equalsIgnoreCase("No data available in table")) 
 			{
 				System.out.println(documentListInFolder.getText());
@@ -290,80 +289,89 @@ public void cvCreateDrawer() throws Exception {
 				{
 					documentListTable = true;	
 				}		
+
 			}
 		return documentListTable;
 	}
-	
-		public void selectAllDocuments() throws InterruptedException 
-		{
-			chkSelectAll.click();
-			isDisaplyedW(documentListBox, 3);
-			moveToElementAndContextClick(documentListBox);
-		}
 
-		public void selectDocument() throws InterruptedException 
-		{
-			driver.findElement(By.xpath("//td[text()='ODTFILE']/preceding-sibling::td/label/span")).click();
-			isDisaplyedW(txtDocumentName, 2);
-			moveToElementAndContextClick(txtDocumentName);
-			Thread.sleep(2000);
-		}
-		public void selectMultipleDocuments(String docName1, String docName2) throws InterruptedException 
-		{
-				List<WebElement> DocName1 = driver.findElements(By.xpath("//td[contains(text(),'"+docName1+"')]/preceding-sibling::td/label/span"));
-				for(int i=0; i<DocName1.size(); i++)
-				{
-					DocName1.get(i).click();
-					isInvisible(msgInitializing,10);
-				}
-				List<WebElement> DocName2 = driver.findElements(By.xpath("//td[contains(text(),'"+docName2+"')]/preceding-sibling::td/label/span"));
-				for(int i=0; i<DocName2.size(); i++)
-				{
-					DocName2.get(i).click();
-				}
-		}
-		public boolean exportDocument() throws InterruptedException, IOException {
-			boolean testresult = false;
-			int afterdownload = 0;
-			isDisaplyedW(sendTo,2);
-			moveToElementAndClick(sendTo);
-			if(sendToExport.getAttribute("class").equalsIgnoreCase("enabled"))
+	public void selectAllDocuments() throws InterruptedException 
+	{
+		chkSelectAll.click();
+		//isDisaplyedW(documentListBox, 5);
+		Thread.sleep(5000);
+		moveToElementAndContextClick(documentListBox);
+	}
+	public WebElement singleDocument(String documentName)
+	{
+		return driver.findElement(By.xpath("//td[contains(text(),'"+documentName+"')]/preceding-sibling::td/label/span"));
+	}
+
+	public void selectSingleDocument(String documentName) throws InterruptedException 
+	{
+		WebElement chkbox = singleDocument(documentName);
+		chkbox.click();
+		//chkDocumentName.click();
+		//isDisaplyedW(chkbox, 10);
+		Thread.sleep(5000);
+		moveToElementAndContextClick(chkbox);
+	}
+	public void selectMultipleDocuments(String docName1, String docName2) throws InterruptedException 
+	{
+			List<WebElement> DocName1 = driver.findElements(By.xpath("//td[contains(text(),'"+docName1+"')]/preceding-sibling::td/label/span"));
+			for(int i=0; i<DocName1.size(); i++)
 			{
-				isDisaplyedW(sendToExport,3);
-				sendToExport.click();
-				btnOKToExport.click();
+				DocName1.get(i).click();
+				isInvisible(msgInitializing,10);
+			}
+			List<WebElement> DocName2 = driver.findElements(By.xpath("//td[contains(text(),'"+docName2+"')]/preceding-sibling::td/label/span"));
+			for(int i=0; i<DocName2.size(); i++)
+			{
+				DocName2.get(i).click();
+			}
+	}
+	public boolean exportDocument() throws InterruptedException, IOException {
+		boolean testresult = false;
+		int afterdownload = 0;
+		//Thread.sleep(2000);
+		sendTo.click();
+		//moveToElementAndClick(sendTo);
+		if(sendToExport.getAttribute("class").equalsIgnoreCase("disabled"))
+		{
+			System.out.println("Export option is disabled");	
+		}
+		else {
+			//isDisaplyedW(sendToExport,3);
+			sendToExport.click();
+			btnOKToExport.click();
 
-				isDisaplyedW(exportInfoMessageBox,2);
-				if (exportInfoMessageBox.getText().trim().equalsIgnoreCase("Error On Download")) 
+			isDisaplyedW(exportInfoMessageBox,2);
+			if (exportInfoMessageBox.getText().trim().equalsIgnoreCase("Error On Download")) 
+			{
+				System.out.println(exportInfoMessageBox.getText());
+				btnOKInMessageBox.click();
+			}
+			else
+			{
+				int beforedownload = ifFileAvailable();
+				isInvisible(exportInfoMessageBox,30);
+				afterdownload = ifFileAvailable();
+				System.out.println(afterdownload);
+				if(beforedownload<afterdownload)
 				{
-					System.out.println(exportInfoMessageBox.getText());
-					btnOKInMessageBox.click();
+					System.out.println("File downloaded successfully");
+					testresult = true;
 				}
 				else
 				{
-					int beforedownload = ifFileAvailable();
-					isInvisible(exportInfoMessageBox,30);
-					afterdownload = ifFileAvailable();
-					System.out.println(afterdownload);
-					if(beforedownload<afterdownload)
-					{
-						System.out.println("File downloaded successfully");
-						testresult = true;
-					}
-					else
-					{
-						System.out.println("File is not downloaded");
-					}
+					System.out.println("File is not downloaded");
 				}
 			}
-			else {
-				System.out.println("Export option is disabled");
-			}
-			return testresult;
 		}
-		public void advanceSearch() throws InterruptedException
-		{
-			Thread.sleep(3000);
-			btnAdvanceSearch.click();
-		}
+		return testresult;
+	}
+	public void advanceSearch() throws InterruptedException
+	{
+		Thread.sleep(3000);
+		btnAdvanceSearch.click();
+	}
 }

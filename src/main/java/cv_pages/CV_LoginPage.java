@@ -117,6 +117,8 @@ public class CV_LoginPage extends Utility {
 			//System.out.println("Another Session Ended");
 		}
 
+
+
 		String LoggedInUsername=imgLoggedInUsername.getText();
 		
 		if (LoggedInUsername.equals(uid)) 
