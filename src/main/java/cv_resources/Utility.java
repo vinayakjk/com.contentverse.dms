@@ -1,4 +1,5 @@
 package cv_resources;
+
 import java.io.File;
 //import java.io.File;
 import java.io.IOException;
@@ -24,170 +25,71 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Utility {
 
-	 WebDriver driver;
-	 Actions act;
+	WebDriver driver;
+	Actions act;
 
-	 
-	 
-	 public Utility(WebDriver driver)
-	 {
-		 super();
-		 this.driver = driver;
-		 act = new Actions(driver);
-	 }
+	public Utility(WebDriver driver) {
+		super();
+		this.driver = driver;
+		act = new Actions(driver);
+	}
 
-	 public void pressEnter()
-	 {
-		 act.sendKeys(Keys.ENTER).build().perform();
-	 }
-	 
-	 public void pressUpKeys()
-	 {
-		 act.sendKeys(Keys.UP).build().perform();
-	 }
-	 
+	public void pressEnter() {
+		act.sendKeys(Keys.ENTER).build().perform();
+	}
+
+	public void pressUpKeys() {
+		act.sendKeys(Keys.UP).build().perform();
+	}
+
 	public void moveToElementAndClick(WebElement ele)
 
-	 {
-		 act.moveToElement(ele).click().build().perform();
-		 
-		
-	 }
-	 
-	 public void keypress(String a)
-	 {
-		 act.sendKeys(a).build().perform();
-	 }
-	 
-	 public void doubleClick()
-	 {
-		 act.doubleClick().build().perform();
-	 }
-	 
-	 public void moveToElementAndDoubleClick(WebElement ele)
-	 {
-		 act.moveToElement(ele).doubleClick().build().perform();
-	 }
-	 
-	 public void moveToElementAndContextClick(WebElement ele)
-	 {
-			act.moveToElement(ele).contextClick().build().perform();
-	 }
-	 
-	 public void doubleClick(WebElement ele)
-	 {
-		 act.doubleClick(ele).build().perform();
-	 }
-
-	 public void contextClick(WebElement ele)
-	 {
-		 act.contextClick(ele).build().perform();
-	 }
-	 
-	 public void moveToElement(WebElement ele)
-	 {
-		 act.moveToElement(ele).perform();
-	 }
-
-	 
-
-/*
-	 public static class ConfigReader {
-		    private static String Username ;
-		    private static String defaultView;
-			private static Properties properties;
-		    private static String browser;
-		    public static String url;
-		    private static String Password;
-		    
-		    private static String officeDocs;
-		    private static String officepdf; 
-		    private static String Loadcount;
-
-		    //private static long implicitwait;
-
-		    
-		    //private static int implicitwait;
-
-
-		    static {
-		        properties = new Properties();
-		        try {
-		        	
-		            FileInputStream fis = new FileInputStream((System.getProperty("user.dir")+"\\src\\main\\java\\cv_resources\\Config.properties"));
-		            
-		            properties.load(fis);
-		            browser = properties.getProperty("browser");
-		            url = properties.getProperty("url");
-		            Username = properties.getProperty("Username");
-		            Password= properties.getProperty("Password");
-		            defaultView=properties.getProperty("defaultView");
-		            officeDocs=properties.getProperty("officeDocs");
-		            Loadcount=properties.getProperty("Loadcount");
-		            officepdf=properties.getProperty("officepdf");
-		           
-		           // implicitwait= properties.getProperty("implicitwait");
-		            
-		          //implicitwait=properties.getProperty("implicitwait");
-		            
-		            
-		        } catch (IOException e) 
-		        {
-
-		        }
-		    }
-
-		    public static String getBrowser() {
-		        return browser;
-		    }
-
-		    public static String getUrl() {
-		        return url;
-		    }
-		    
-		    public static String getUsername() {
-		        return Username;
-		    }
-		    
-		    public static String getPassword() {
-		        return Password;
-		    }
-		    
-		    public static String getdefaultView() {
-		        return defaultView;
-		    }
-		    
-		    public static String getofficeDocs() {
-		        return officeDocs;
-		    }
-		    public static String getofficepdf() {
-		        return officepdf;
-		    }
-		    public static String getLoadcount() {
-		        return Loadcount;
-		    }
-		    
-		   
-		    
-		}	
-	*/
-
-	public void Dropdown(By drp_Ele, String visible) 
 	{
+		act.moveToElement(ele).click().build().perform();
+
+	}
+
+	public void keypress(String a) {
+		act.sendKeys(a).build().perform();
+	}
+
+	public void doubleClick() {
+		act.doubleClick().build().perform();
+	}
+
+	public void moveToElementAndDoubleClick(WebElement ele) {
+		act.moveToElement(ele).doubleClick().build().perform();
+	}
+
+	public void moveToElementAndContextClick(WebElement ele) {
+		act.moveToElement(ele).contextClick().build().perform();
+	}
+
+	public void doubleClick(WebElement ele) {
+		act.doubleClick(ele).build().perform();
+	}
+
+	public void contextClick(WebElement ele) {
+		act.contextClick(ele).build().perform();
+	}
+
+	public void moveToElement(WebElement ele) {
+		act.moveToElement(ele).perform();
+	}
+
+	public void Dropdown(By drp_Ele, String visible) {
 		Select dropdown = new Select((WebElement) drp_Ele);
 		dropdown.selectByVisibleText(visible);
 
 	}
 
-	public void Dropdownbytxt(WebElement cat, String visible) 
-	{
+	public void Dropdownbytxt(WebElement cat, String visible) {
 		Select dropdown = new Select(cat);
 		dropdown.selectByVisibleText(visible);
 	}
 
-	public void Dropdownbyindex(WebElement cat, int visible) 
-	{
-		Select dropdown = new Select(cat); 
+	public void Dropdownbyindex(WebElement cat, int visible) {
+		Select dropdown = new Select(cat);
 		dropdown.selectByIndex(visible);
 
 	}
@@ -302,14 +204,14 @@ public class Utility {
 		} catch (Exception e)
 
 		{
-			//e.printStackTrace();
+			// e.printStackTrace();
 		}
 
 		return isVisible;
 
 	}
 
-	public String getScreenshot(String testCaseName ) throws IOException {
+	public String getScreenshot(String testCaseName) throws IOException {
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		File source = ts.getScreenshotAs(OutputType.FILE);
 		File file = new File(System.getProperty("user.dir") + "//reports//" + testCaseName + ".png");
@@ -329,18 +231,14 @@ public class Utility {
 		} catch (Exception e)
 
 		{
-	
+
 		}
 
 		return isDisplayed;
 
 	}
-	/*
-	public void closebrowser() 
-	{
-		driver.close();
-	}
-*/
+
+	
 	public boolean isClickable(WebElement WebElement, long tm) {
 
 		boolean isClickable = false;
@@ -353,7 +251,6 @@ public class Utility {
 		} catch (Exception e)
 
 		{
-
 
 		}
 
@@ -372,39 +269,30 @@ public class Utility {
 		}
 	}
 
-
-	public boolean isAlertPresent(WebDriver wd) 
-	{
+	public boolean isAlertPresent(WebDriver wd) {
 		try {
 			wd.switchTo().alert();
 			return true;
-		} 	catch (Exception e) 
-		{
+		} catch (Exception e) {
 			return false;
 		}
 	}
- public String currentTime()
- {
-	 SimpleDateFormat format = new SimpleDateFormat("HHMMSS");
-	 
-	 Date dt = new Date();
-	 
-	 return format.format(dt).toString();
- }
- 
- public int ifFileAvailable() throws InterruptedException
-	{
-		File downloadedFilePath = new File(System.getProperty("user.dir")+"\\downloadFiles\\");
-	
+
+	public String currentTime() {
+		SimpleDateFormat format = new SimpleDateFormat("HHMMSS");
+
+		Date dt = new Date();
+
+		return format.format(dt).toString();
+	}
+
+	public int ifFileAvailable() throws InterruptedException {
+		File downloadedFilePath = new File(System.getProperty("user.dir") + "\\downloadFiles\\");
+
 		File allFiles[] = downloadedFilePath.listFiles();
-		//boolean ifFileNotAvailable = false;
+		// boolean ifFileNotAvailable = false;
 		int len1 = allFiles.length;
 		return len1;
 	}
-	
-
-
-
 
 }
-
