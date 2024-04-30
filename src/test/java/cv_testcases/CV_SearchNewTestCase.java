@@ -27,7 +27,7 @@ public class CV_SearchNewTestCase extends Base{
 	@Test
 	public void searchDocument() throws Exception
 	{
-		cvLP.Check_Valid_Credentials(getValidUsername(), getValidPassword(),getRoom());
+		cvLP.Check_Valid_Credentials(sheet.getRow(5).getCell(3).getStringCellValue(),sheet.getRow(5).getCell(5).getStringCellValue(), sheet.getRow(1).getCell(7).getStringCellValue());
 		cvHP.advanceSearch();
 		Thread.sleep(3000);
 		cvSN.selectDocumentType("Test");

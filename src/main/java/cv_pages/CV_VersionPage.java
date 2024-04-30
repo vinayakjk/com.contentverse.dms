@@ -13,12 +13,10 @@ import org.openqa.selenium.support.PageFactory;
 
 import cv_resources.Utility;
 
-public class CV_VersionPage extends Utility 
-{
+public class CV_VersionPage extends Utility {
 	WebDriver driver;
 
-	public CV_VersionPage(WebDriver driver) 
-	{
+	public CV_VersionPage(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
@@ -34,13 +32,11 @@ public class CV_VersionPage extends Utility
 	@FindBy(xpath = "(//td[@class=' versionClass'])[1]")
 	WebElement FirstRowVersion;
 
-	public WebElement findVersionInt(int Num) 
-	{
+	public WebElement findVersionInt(int Num) {
 		return driver.findElement(By.xpath("(//td[@class=' versionClass'])[" + Num + "]"));
 	}
 
-	public WebElement findByID(String ID) 
-	{
+	public WebElement findByID(String ID) {
 		return driver.findElement(By.xpath("//div[@id='" + ID + ".docx']"));
 	}
 
@@ -126,7 +122,7 @@ public class CV_VersionPage extends Utility
 		Actions ac = new Actions(driver);
 
 		// Open Docuemnt
-	
+
 		Thread.sleep(5000);
 		FirstDocsInConsole.click();
 		Thread.sleep(5000);
@@ -142,14 +138,11 @@ public class CV_VersionPage extends Utility
 		keypress("Add Comment For Automation Verification Version");
 		Thread.sleep(3000);
 		BtnSaveAddComment.click();
-		if (MsgComment.getText().contains("Comment Added")) 
-			{
-				System.out.println("Comment Added Done");
-			} 
-		else 
-			{
-				System.out.println(MsgComment.getText());
-			}
+		if (MsgComment.getText().contains("Comment Added")) {
+			System.out.println("Comment Added Done");
+		} else {
+			System.out.println(MsgComment.getText());
+		}
 		BtnCloseComment.click();
 		Thread.sleep(2000);
 
@@ -157,8 +150,7 @@ public class CV_VersionPage extends Utility
 		BtnUpdateProperties.click();
 		BtnSaveProperties.click();
 		Thread.sleep(2000);
-		if (MessageToChangeProperties.getText().equals("Updated Successfully")) 
-		{
+		if (MessageToChangeProperties.getText().equals("Updated Successfully")) {
 			System.out.println("Properties Updated Successfully");
 			BtnOkToSAveProperties.click();
 		}
@@ -168,8 +160,7 @@ public class CV_VersionPage extends Utility
 		btnSaveFab.click();
 		Thread.sleep(5000);
 		String msg_First = WindowMsg.getText();
-		if (msg_First.contains("Document updated")) 
-		{
+		if (msg_First.contains("Document updated")) {
 			System.out.println(msg_First);
 			btnOKAfterSaveDocuemnt.click();
 			msg_First = "";
@@ -180,15 +171,13 @@ public class CV_VersionPage extends Utility
 		Thread.sleep(3000);
 		ac.moveToElement(PlusIconAddDocument).build().perform();
 		Thread.sleep(1000);
-		if (documentType.equalsIgnoreCase("Word")) 
-			{
-				ddNewWordDocumentButton.click();
-			}
+		if (documentType.equalsIgnoreCase("Word")) {
+			ddNewWordDocumentButton.click();
+		}
 
-		else if (documentType.equalsIgnoreCase("Excel")) 
-			{
-				ddNewExcelDocumentButton.click();
-			}
+		else if (documentType.equalsIgnoreCase("Excel")) {
+			ddNewExcelDocumentButton.click();
+		}
 		Thread.sleep(2000);
 
 		// For File Name
@@ -202,17 +191,14 @@ public class CV_VersionPage extends Utility
 		findByID(file_Name).click();
 
 		Thread.sleep(5000);
-		if (documentType.equalsIgnoreCase("Word")) 
-			{
-				keypress("Statement type by Selenium Automation script");
-				Thread.sleep(2000);
-			} 
-		else if (documentType.equalsIgnoreCase("Excel")) 
-			{
-				doubleClick();
-				keypress("Statement type by Selenium Automation script");
-				Thread.sleep(2000);
-			}
+		if (documentType.equalsIgnoreCase("Word")) {
+			keypress("Statement type by Selenium Automation script");
+			Thread.sleep(2000);
+		} else if (documentType.equalsIgnoreCase("Excel")) {
+			doubleClick();
+			keypress("Statement type by Selenium Automation script");
+			Thread.sleep(2000);
+		}
 
 		// Drag Drop second document to First
 
@@ -243,8 +229,7 @@ public class CV_VersionPage extends Utility
 				"Version No", "Updated By", "Updated On", "  Comment"));
 
 		// Print data in tabular format
-		for (int i = 1; i <= count; i = i + 4) 
-		{
+		for (int i = 1; i <= count; i = i + 4) {
 			String versionNo = findVersionInt(i).getText();
 			String updatedBy = findVersionInt(i + 1).getText();
 			String updatedOn = findVersionInt(i + 2).getText();

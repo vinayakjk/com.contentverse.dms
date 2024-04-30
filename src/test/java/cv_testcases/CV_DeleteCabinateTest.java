@@ -4,7 +4,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import cv_pages.CV_HomePage;
 import cv_pages.CV_LoginPage;
-import cv_pages.CV_NewDocument;
 
 public class CV_DeleteCabinateTest extends Base
 {
@@ -22,7 +21,7 @@ public class CV_DeleteCabinateTest extends Base
 	@Test
 	public void deleteCabinate() throws Exception
 	{
-		cvLP.Check_Valid_Credentials(getValidUsername(), getValidPassword(),getRoom());
+		cvLP.Check_Valid_Credentials(sheet.getRow(5).getCell(3).getStringCellValue(),sheet.getRow(5).getCell(5).getStringCellValue(), sheet.getRow(1).getCell(7).getStringCellValue());
 		cvHP.deleteCabinate(); 
 	}
 	

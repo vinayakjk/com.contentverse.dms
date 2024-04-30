@@ -29,10 +29,10 @@ public class CV_CreateDocumentTest extends Base
 	@Test
 	public void createWordDocument() throws Exception
 	{
-		cvLP.Check_Valid_Credentials(getValidUsername(), getValidPassword(),getRoom());
-		cvHP.listOfCabinatesPresentInDataBase(getCabinetName());
-		cvHP.selectDrawerPresentInCabinet(getDrawerName());
-		cvHP.selectFolderPresentInDrawer(getFolderName());
+		cvLP.Check_Valid_Credentials(sheet.getRow(5).getCell(3).getStringCellValue(),sheet.getRow(5).getCell(5).getStringCellValue(), sheet.getRow(1).getCell(7).getStringCellValue());
+		cvHP.listOfCabinatesPresentInDataBase(sheet.getRow(3).getCell(3).getStringCellValue());
+		cvHP.selectDrawerPresentInCabinet(sheet.getRow(3).getCell(5).getStringCellValue());
+		cvHP.selectFolderPresentInDrawer(sheet.getRow(3).getCell(7).getStringCellValue());
 		int beforeCreatingfileTotalFiles = cvHP.documentListInFolder().size();
 		cvND.selectTypeToCreateNewDocument("Word");
 		int afterCreatingfileTotalFiles = cvHP.documentListInFolder().size();
@@ -42,12 +42,25 @@ public class CV_CreateDocumentTest extends Base
 	@Test
 	public void creatExcelDocument() throws Exception
 	{
-		cvLP.Check_Valid_Credentials(getValidUsername(), getValidPassword(),getRoom());
-		cvHP.listOfCabinatesPresentInDataBase(getCabinetName());
-		cvHP.selectDrawerPresentInCabinet(getDrawerName());
-		cvHP.selectFolderPresentInDrawer(getFolderName());
+		cvLP.Check_Valid_Credentials(sheet.getRow(5).getCell(3).getStringCellValue(),sheet.getRow(5).getCell(5).getStringCellValue(), sheet.getRow(1).getCell(7).getStringCellValue());
+		cvHP.listOfCabinatesPresentInDataBase(sheet.getRow(3).getCell(3).getStringCellValue());
+		cvHP.selectDrawerPresentInCabinet(sheet.getRow(3).getCell(5).getStringCellValue());
+		cvHP.selectFolderPresentInDrawer(sheet.getRow(3).getCell(7).getStringCellValue());
 		int beforeCreatingfileTotalFiles = cvHP.documentListInFolder().size();
 		cvND.selectTypeToCreateNewDocument("Excel");
+		int afterCreatingfileTotalFiles = cvHP.documentListInFolder().size();
+		Assert.assertTrue(beforeCreatingfileTotalFiles<afterCreatingfileTotalFiles);
+	}
+	
+	@Test
+	public void creatPdfDocument() throws Exception
+	{
+		cvLP.Check_Valid_Credentials(sheet.getRow(5).getCell(3).getStringCellValue(),sheet.getRow(5).getCell(5).getStringCellValue(), sheet.getRow(1).getCell(7).getStringCellValue());
+		cvHP.listOfCabinatesPresentInDataBase(sheet.getRow(3).getCell(3).getStringCellValue());
+		cvHP.selectDrawerPresentInCabinet(sheet.getRow(3).getCell(5).getStringCellValue());
+		cvHP.selectFolderPresentInDrawer(sheet.getRow(3).getCell(7).getStringCellValue());
+		int beforeCreatingfileTotalFiles = cvHP.documentListInFolder().size();
+		cvND.selectTypeToCreateNewDocument("Pdf");
 		int afterCreatingfileTotalFiles = cvHP.documentListInFolder().size();
 		Assert.assertTrue(beforeCreatingfileTotalFiles<afterCreatingfileTotalFiles);
 	}

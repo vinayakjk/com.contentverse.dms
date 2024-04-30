@@ -2,6 +2,7 @@ package cv_pages;
 
 import java.time.Duration;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -9,11 +10,9 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import cv_resources.Utility;
-import io.opentelemetry.exporter.logging.SystemOutLogRecordExporter;
 
 public class CV_NewDocument extends Utility {
 	// Web Elements added in CV_NewDocuments Amol - 04/03/2024
@@ -195,6 +194,9 @@ public class CV_NewDocument extends Utility {
 	
 	@FindBy(xpath = "//div[@id='addExcelFile']") // addWordFile
 	WebElement ddNewExcelDocumentButton;
+	
+	
+	
 	// Enter File Name
 	@FindBy(xpath = "//input[@id='newTemplateFileName']")
 	WebElement txtNewDocumentEnterFileName;
@@ -254,15 +256,19 @@ public class CV_NewDocument extends Utility {
 	
 	@FindBy(id="commentModel")
 	WebElement permissionDenidedMessageBox;
+	
+	@FindBy(xpath = "//span[@id='pdfViewerDiv_annotationIcon']")
+	WebElement ToolAddannotation;
+	
+	@FindBy(xpath = "//div[@ondragover='event.preventDefault()']")
+	WebElement NameOfPDF;
+	
+	@FindBy(xpath = "//span[@id='pdfViewerDiv_annotation_freeTextEditIcon']")
+	WebElement ToolAddannotationAddText;
+	
+	@FindBy(xpath = "//div[@id='pdfViewerDiv0_diagramAdornerLayer']")
+	WebElement txtarea;
 
-	/*
-	 * @FindBy(id="addWordFile")
-	 * 
-	 * WebElement NewWordDocument;
-	 * 
-	 * public void NewWorkDocument() { NewWordDocument.click(); }
-	 */
-	// ------------------------------------------------------------------------------------------------------------------------------------------------
 	WebDriver driver;
 
 	public CV_NewDocument(WebDriver driver) {
@@ -272,11 +278,7 @@ public class CV_NewDocument extends Utility {
 		PageFactory.initElements(driver, this);
 
 	}
-	/*
-	 * public void PlusIcon() { Actions actions = new Actions(driver);
-	 * actions.moveToElement(ddPlusIcon).build().perform(); }
-	 */
-
+	
 	// Following method is added by Ajay Sharma
 	public void selectTypeToCreateNewDocument(String documentType) throws InterruptedException 
 	{
@@ -290,13 +292,23 @@ public class CV_NewDocument extends Utility {
 		}
 		
 		isDisaplyedW(ddNewWordDocumentButton, 10);
+		
+		//Added For Word
 		if(documentType.equalsIgnoreCase("Word"))
 		{		
 			moveToElementAndClick(ddNewWordDocumentButton);
 		}
+		
+		//Added For Excel
 		else if(documentType.equalsIgnoreCase("Excel"))
 		{
 			moveToElementAndClick(ddNewExcelDocumentButton);
+		}
+		
+		//Added For PDF
+		else if(documentType.equalsIgnoreCase("Pdf"))
+		{
+			moveToElementAndClick(ddNewPdfDocumentButton);
 		}
 		Thread.sleep(2000);
 		
@@ -316,14 +328,42 @@ public class CV_NewDocument extends Utility {
 			keypress("Statement type by Selenium Automation script");
 			Thread.sleep(2000);
 		}
+		
+		else if(documentType.equalsIgnoreCase("Pdf"))
+		{
+			
+			Actions ac=new Actions(driver);
+			System.out.println("");
+			
+			String name=NameOfPDF.getAttribute("title");
+			if(name.equals((file_Name)+".pdf"))
+			{
+				System.out.println("pdf Document created Sucessfully");
+			}
+			/*
+			ToolAddannotation.click();
+			ToolAddannotationAddText.click();
+			txtarea.click();
+			ac.moveByOffset(0, 100).perform();
+			ac.sendKeys(Keys.ARROW_DOWN).perform();
+			ac.sendKeys(Keys.ARROW_DOWN).perform();
+			ac.click();
+			keypress("Pdf_Edited");
+			//ActionChains(driver).send_keys(Keys.ARROW_DOWN).perform();
+			
+			doubleClick();
+			keypress("Statement type by Selenium Automation script");
+			Thread.sleep(2000);
+			*/
+		}
 
 		try 
 		{
-			mandatoryPropertiesEmpName.sendKeys("Document"+currentTime());
+			mandatoryProperties_CVReportEmpName.sendKeys("Document_"+currentTime());
 		}
 		catch (Exception e) 
 		{
-			mandatoryProperties_CVReportEmpName.sendKeys("Document"+currentTime());
+			mandatoryPropertiesEmpName.sendKeys("Document_"+currentTime());
 		}
 		
 

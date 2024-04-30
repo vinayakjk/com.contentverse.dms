@@ -31,10 +31,11 @@ public class CV_Version_TestCase extends Base
 	@Test
 	public void creatExcelDocument() throws Exception
 	{
-		cvLP.Check_Valid_Credentials(getValidUsername(), getValidPassword(),getRoom());
-		cvHP.listOfCabinatesPresentInDataBase(getCabinetName());
-		cvHP.selectDrawerPresentInCabinet(getDrawerName());
-		cvHP.selectFolderPresentInDrawer(getFolderName());
+		cvLP.Check_Valid_Credentials(sheet.getRow(5).getCell(3).getStringCellValue(),sheet.getRow(5).getCell(5).getStringCellValue(),
+				sheet.getRow(1).getCell(7).getStringCellValue());
+		cvHP.listOfCabinatesPresentInDataBase(sheet.getRow(3).getCell(3).getStringCellValue());
+		cvHP.selectDrawerPresentInCabinet(sheet.getRow(3).getCell(5).getStringCellValue());
+		cvHP.selectFolderPresentInDrawer(sheet.getRow(3).getCell(7).getStringCellValue());
 		int beforeCreatingfileTotalFiles = cvHP.documentListInFolder().size();
 		cvND.selectTypeToCreateNewDocument("Word");
 		int afterCreatingfileTotalFiles = cvHP.documentListInFolder().size();

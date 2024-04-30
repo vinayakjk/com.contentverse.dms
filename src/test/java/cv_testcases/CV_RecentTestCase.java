@@ -21,20 +21,11 @@ public class CV_RecentTestCase extends Base {
 		 recent = new CV_Recent(driver);
 	}
 	
-	
-	@Test
-	public void login() throws Exception 
-	{
-
-		login_page.Check_Valid_Credentials(getValidUsername(), getValidPassword(),getRoom());
-
-		//login_page.login_cvWeb(getUsername(),getPassword(),getRoom()); //This line creating merging issue so commented and above line is called.
-
-	}
 
 	@Test
-	public void verifyRecentFileFolder() throws Exception {		
-
+	public void verifyRecentFileFolder() throws Exception 
+	{		
+		login_page.Check_Valid_Credentials(sheet.getRow(5).getCell(3).getStringCellValue(),sheet.getRow(5).getCell(5).getStringCellValue(), sheet.getRow(1).getCell(7).getStringCellValue());
 		System.out.println("Verify FOlder Gets started");
 		recent.verifyFolder();
 		recent.verifyFile();
@@ -80,7 +71,7 @@ public class CV_RecentTestCase {
 	@AfterMethod
 	public void teardown() throws Exception
 	{
-		driver.close();
+		driver.quit();
 	}
 
 

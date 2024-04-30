@@ -278,12 +278,14 @@ public class Utility {
 		}
 	}
 
-	public String currentTime() {
-		SimpleDateFormat format = new SimpleDateFormat("HHMMSS");
+	public String currentTime() 
+	{
+		String timestamp = new SimpleDateFormat("yyyy_MM_dd__hh_mm_ss").format(new Date());
+		//SimpleDateFormat format = new SimpleDateFormat("HHMMSS");
 
-		Date dt = new Date();
-
-		return format.format(dt).toString();
+		//Date dt = new Date();
+		return timestamp;
+		//return format.format(dt).toString();
 	}
 
 	public int ifFileAvailable() throws InterruptedException {

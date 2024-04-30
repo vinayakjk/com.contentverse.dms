@@ -15,7 +15,8 @@ public class CV_SearchNew extends Utility {
 	WebDriver driver;
 	Actions act;
 	
-	public CV_SearchNew(WebDriver driver) {
+	public CV_SearchNew(WebDriver driver) 
+	{
 		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);

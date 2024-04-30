@@ -28,10 +28,10 @@ public class CV_UpdateExistingFileTest extends Base
 	@Test
 	public void updateExistingDoc() throws Exception
 	{
-		cvLP.Check_Valid_Credentials(getValidUsername(), getValidPassword(),getRoom());
-		cvHP.listOfCabinatesPresentInDataBase(getCabinetName());
-		cvHP.selectDrawerPresentInCabinet(getDrawerName());
-		cvHP.selectFolderPresentInDrawer(getFolderName());
+		cvLP.Check_Valid_Credentials(sheet.getRow(5).getCell(3).getStringCellValue(),sheet.getRow(5).getCell(5).getStringCellValue(), sheet.getRow(1).getCell(7).getStringCellValue());
+		cvHP.listOfCabinatesPresentInDataBase(sheet.getRow(3).getCell(3).getStringCellValue());
+		cvHP.selectDrawerPresentInCabinet(sheet.getRow(3).getCell(5).getStringCellValue());
+		cvHP.selectFolderPresentInDrawer(sheet.getRow(3).getCell(7).getStringCellValue());
 		Thread.sleep(3000);
 		cvHP.editDocument("Ajay");		
 	}

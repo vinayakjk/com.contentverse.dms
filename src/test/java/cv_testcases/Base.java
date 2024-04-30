@@ -1,11 +1,21 @@
 package cv_testcases;
 
 import java.io.FileInputStream;
-
+import java.io.IOException;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Properties;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -17,199 +27,143 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Base {
 
+	Sheet sheet;
 	public WebDriver driver;
+	/*
+	 * 
+	 * 
+	 * String ValidUsername; String ValidPassword; String Room;
+	 * 
+	 * String defaultView; Properties properties; String browser; FileInputStream
+	 * fis; String url;
+	 * 
+	 * String CabinateName; String DrawerName; String FolderName;
+	 * 
+	 * String[] DocsNameArray = { "DocName1", "DocName2" }; String DocName; String
+	 * DocName1; String DocName2;
+	 * 
+	 * String officeDocs; String officepdf; String Loadcount; String
+	 * InValidUsername; String InValidPassword; String Act_Msg; String Language;
+	 * 
+	 * String WorkflowVerify_F_User; String WorkflowVerify_F_Password; String
+	 * WorkflowVerify_S_User; String WorkflowVerify_S_Password; String
+	 * WorkflowStatus_By_First_User; String WorkflowStatus_By_Second_User; String
+	 * DocumentName; String Name_OF_WF;
+	 * 
+	 * public void ConfigReader() throws Exception { properties = new Properties();
+	 * fis = new FileInputStream( (System.getProperty("user.dir") +
+	 * "\\src\\main\\java\\cv_resources\\Config.properties"));
+	 * 
+	 * properties.load(fis); browser = properties.getProperty("browser"); url =
+	 * properties.getProperty("url");
+	 * 
+	 * ValidUsername = properties.getProperty("Username"); ValidPassword =
+	 * properties.getProperty("Password"); Room = properties.getProperty("Room");
+	 * CabinateName = properties.getProperty("CabinateName"); DrawerName =
+	 * properties.getProperty("DrawerName"); FolderName =
+	 * properties.getProperty("FolderName"); DocName =
+	 * properties.getProperty("DocName"); DocName1 =
+	 * properties.getProperty("DocName1"); DocName2 =
+	 * properties.getProperty("DocName2"); defaultView =
+	 * properties.getProperty("defaultView"); officeDocs =
+	 * properties.getProperty("officeDocs"); Loadcount =
+	 * properties.getProperty("Loadcount"); officepdf =
+	 * properties.getProperty("officepdf"); InValidUsername =
+	 * properties.getProperty("Invalid_User"); InValidPassword =
+	 * properties.getProperty("Invalid_Pass"); Act_Msg =
+	 * properties.getProperty("Act_Msg"); Language =
+	 * properties.getProperty("Language");
+	 * 
+	 * WorkflowVerify_F_User = properties.getProperty("WorkflowVerify_F_User");
+	 * WorkflowVerify_F_Password =
+	 * properties.getProperty("WorkflowVerify_F_Password");
+	 * 
+	 * WorkflowVerify_S_User = properties.getProperty("WorkflowVerify_S_User");
+	 * WorkflowVerify_S_Password =
+	 * properties.getProperty("WorkflowVerify_S_Password");
+	 * WorkflowStatus_By_First_User =
+	 * properties.getProperty("WorkflowStatus_By_First_User");
+	 * WorkflowStatus_By_Second_User =
+	 * properties.getProperty("WorkflowStatus_By_Second_User"); DocumentName =
+	 * properties.getProperty("DocumentName"); Name_OF_WF =
+	 * properties.getProperty("Name_OF_WF"); }
+	 * 
+	 * public String getBrowser() { return browser; }
+	 * 
+	 * public String getUrl() { return url; }
+	 * 
+	 * public String getValidUsername() { return ValidUsername; }
+	 * 
+	 * public String getValidPassword() { return ValidPassword; }
+	 * 
+	 * public String getRoom() { return Room; }
+	 * 
+	 * public String getCabinetName() { return CabinateName; }
+	 * 
+	 * public String getDrawerName() { return DrawerName; }
+	 * 
+	 * public String getFolderName() { return FolderName; }
+	 * 
+	 * public String getDocName() { return DocName; }
+	 * 
+	 * public String getDocName1() { return DocName1; }
+	 * 
+	 * public String getDocName2() { return DocName2; }
+	 * 
+	 * public String[] getDocsName() { return DocsNameArray; }
+	 * 
+	 * public String getdefaultView() { return defaultView; }
+	 * 
+	 * public String getofficeDocs() { return officeDocs; }
+	 * 
+	 * public String getofficepdf() { return officepdf; }
+	 * 
+	 * public String getLoadcount() { return Loadcount; }
+	 * 
+	 * public String getInValidUsername() { return InValidUsername; }
+	 * 
+	 * public String getInvalidPassword() { return InValidPassword; }
+	 * 
+	 * public String getAct_Msg() { return Act_Msg; }
+	 * 
+	 * public String getLanguage() { return Language; }
+	 * 
+	 * public String getWorkflowVerify_F_User() { return WorkflowVerify_F_User; }
+	 * 
+	 * public String getWorkflowVerify_F_Password() { return
+	 * WorkflowVerify_F_Password; }
+	 * 
+	 * public String getWorkflowVerify_S_User() { return WorkflowVerify_S_User; }
+	 * 
+	 * public String getWorkflowVerify_S_Password() { return
+	 * WorkflowVerify_F_Password; }
+	 * 
+	 * public String getWorkflowStatus_By_First_User() { return
+	 * WorkflowStatus_By_First_User; }
+	 * 
+	 * public String getWorkflowStatus_By_Second_User() { return
+	 * WorkflowStatus_By_Second_User; }
+	 * 
+	 * public String getDocumentName() { return DocumentName; }
+	 * 
+	 * public String getName_OF_WF() { return Name_OF_WF; }
+	 */
 
-	String ValidUsername;
-	String ValidPassword;
-	String Room;
+	public void ReadExcel() throws IOException {
+		FileInputStream fis = new FileInputStream(
+				(System.getProperty("user.dir") + "\\src\\main\\java\\cv_resources\\Test_Data.xlsx"));
+		try (XSSFWorkbook wb = new XSSFWorkbook(fis)) {
+			sheet = wb.getSheetAt(0);
+		}
 
-	String defaultView;
-	Properties properties;
-	String browser;
-	FileInputStream fis;
-	String url;
-
-	String CabinateName;
-	String DrawerName;
-	String FolderName;
-
-	String[] DocsNameArray = { "DocName1", "DocName2" };
-	String DocName;
-	String DocName1;
-	String DocName2;
-
-	String officeDocs;
-	String officepdf;
-	String Loadcount;
-	String InValidUsername;
-	String InValidPassword;
-	String Act_Msg;
-	String Language;
-
-	String WorkflowVerify_F_User;
-	String WorkflowVerify_F_Password;
-	String WorkflowVerify_S_User;
-	String WorkflowVerify_S_Password;
-	String WorkflowStatus_By_First_User;
-	String WorkflowStatus_By_Second_User;
-	String DocumentName;
-	String Name_OF_WF;
-
-	public void ConfigReader() throws Exception {
-		properties = new Properties();
-		fis = new FileInputStream(
-				(System.getProperty("user.dir") + "\\src\\main\\java\\cv_resources\\Config.properties"));
-
-		properties.load(fis);
-		browser = properties.getProperty("browser");
-		url = properties.getProperty("url");
-
-		ValidUsername = properties.getProperty("Username");
-		ValidPassword = properties.getProperty("Password");
-		Room = properties.getProperty("Room");
-		CabinateName = properties.getProperty("CabinateName");
-		DrawerName = properties.getProperty("DrawerName");
-		FolderName = properties.getProperty("FolderName");
-		DocName = properties.getProperty("DocName");
-		DocName1 = properties.getProperty("DocName1");
-		DocName2 = properties.getProperty("DocName2");
-		defaultView = properties.getProperty("defaultView");
-		officeDocs = properties.getProperty("officeDocs");
-		Loadcount = properties.getProperty("Loadcount");
-		officepdf = properties.getProperty("officepdf");
-		InValidUsername = properties.getProperty("Invalid_User");
-		InValidPassword = properties.getProperty("Invalid_Pass");
-		Act_Msg = properties.getProperty("Act_Msg");
-		Language = properties.getProperty("Language");
-
-		WorkflowVerify_F_User = properties.getProperty("WorkflowVerify_F_User");
-		WorkflowVerify_F_Password = properties.getProperty("WorkflowVerify_F_Password");
-
-		WorkflowVerify_S_User = properties.getProperty("WorkflowVerify_S_User");
-		WorkflowVerify_S_Password = properties.getProperty("WorkflowVerify_S_Password");
-		WorkflowStatus_By_First_User = properties.getProperty("WorkflowStatus_By_First_User");
-		WorkflowStatus_By_Second_User = properties.getProperty("WorkflowStatus_By_Second_User");
-		DocumentName = properties.getProperty("DocumentName");
-		Name_OF_WF = properties.getProperty("Name_OF_WF");
-	}
-
-	public String getBrowser() {
-		return browser;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public String getValidUsername() {
-		return ValidUsername;
-	}
-
-	public String getValidPassword() {
-		return ValidPassword;
-	}
-
-	public String getRoom() {
-		return Room;
-	}
-
-	public String getCabinetName() {
-		return CabinateName;
-	}
-
-	public String getDrawerName() {
-		return DrawerName;
-	}
-
-	public String getFolderName() {
-		return FolderName;
-	}
-
-	public String getDocName() {
-		return DocName;
-	}
-
-	public String getDocName1() {
-		return DocName1;
-	}
-
-	public String getDocName2() {
-		return DocName2;
-	}
-
-	public String[] getDocsName() {
-		return DocsNameArray;
-	}
-
-	public String getdefaultView() {
-		return defaultView;
-	}
-
-	public String getofficeDocs() {
-		return officeDocs;
-	}
-
-	public String getofficepdf() {
-		return officepdf;
-	}
-
-	public String getLoadcount() {
-		return Loadcount;
-	}
-
-	public String getInValidUsername() {
-		return InValidUsername;
-	}
-
-	public String getInvalidPassword() {
-		return InValidPassword;
-	}
-
-	public String getAct_Msg() {
-		return Act_Msg;
-	}
-
-	public String getLanguage() {
-		return Language;
-	}
-
-	public String getWorkflowVerify_F_User() {
-		return WorkflowVerify_F_User;
-	}
-
-	public String getWorkflowVerify_F_Password() {
-		return WorkflowVerify_F_Password;
-	}
-
-	public String getWorkflowVerify_S_User() {
-		return WorkflowVerify_S_User;
-	}
-
-	public String getWorkflowVerify_S_Password() {
-		return WorkflowVerify_F_Password;
-	}
-
-	public String getWorkflowStatus_By_First_User() {
-		return WorkflowStatus_By_First_User;
-	}
-
-	public String getWorkflowStatus_By_Second_User() {
-		return WorkflowStatus_By_Second_User;
-	}
-
-	public String getDocumentName() {
-		return DocumentName;
-	}
-
-	public String getName_OF_WF() {
-		return Name_OF_WF;
 	}
 
 	public WebDriver launchBrowser() throws Exception {
 
-		ConfigReader();
+		ReadExcel();
+		// ConfigReader();
 
-		if (getBrowser().equalsIgnoreCase("firefox")) {
+		if (sheet.getRow(1).getCell(3).getStringCellValue().equalsIgnoreCase("firefox")) {
 
 			WebDriverManager.firefoxdriver().setup();
 			FirefoxOptions options = new FirefoxOptions();
@@ -221,7 +175,7 @@ public class Base {
 
 			driver = new FirefoxDriver(options);
 
-		} else if (getBrowser().equalsIgnoreCase("chrome")) {
+		} else if (sheet.getRow(1).getCell(3).getStringCellValue().equalsIgnoreCase("chrome")) {
 
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
@@ -241,15 +195,50 @@ public class Base {
 
 			driver = new ChromeDriver(options);
 
-		} else if (getBrowser().equalsIgnoreCase("edge")) {
+		} else if (sheet.getRow(1).getCell(3).getStringCellValue().equalsIgnoreCase("edge")) {
 			driver = new EdgeDriver();
 		}
 
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-		driver.get(url);
+		driver.get(sheet.getRow(1).getCell(5).getStringCellValue());
 		return driver;
+	}
+
+	public void sendEmailWithReport() {
+		final String username = "cmsautomation0@gmail.com";
+		final String password = "Pass@123";
+
+		Properties prop = new Properties();
+		prop.put("mail.smtp.host", "smtp.gmail.com");
+		prop.put("mail.smtp.port", "465");
+		prop.put("mail.smtp.auth", "true");
+		prop.put("mail.smtp.socketFactory.port", "465");
+		prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+
+		Session session = Session.getInstance(prop, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		});
+
+		try {
+
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("cmsautomation0@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO,
+					InternetAddress.parse("rmane565@gmail.com, rmane565@gmail.com"));
+			message.setSubject("Testing Gmail SSL");
+			message.setText("Dear Mail Crawler," + "\n\n Please do not spam my email!");
+
+			Transport.send(message);
+
+			System.out.println("Done");
+
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
