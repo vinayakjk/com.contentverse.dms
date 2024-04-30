@@ -1,8 +1,5 @@
 package cv_pages;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -13,8 +10,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.asserts.Assertion;
-
 import cv_resources.Utility;
 
 public class CV_HomePage extends Utility {

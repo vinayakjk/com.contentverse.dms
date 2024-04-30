@@ -25,8 +25,9 @@ public class CV_SettingsTestCase extends Base
 	@Test
 	public void CV_NewDocumentTest() throws InterruptedException
 	{				
-		login_page.Check_Valid_Credentials(getValidUsername(),getValidPassword(),getRoom());
-		newdoc.profile_Setting( getdefaultView(),getofficeDocs(),getofficepdf(),getLoadcount());
+		login_page.Check_Valid_Credentials(sheet.getRow(5).getCell(3).getStringCellValue(),sheet.getRow(5).getCell(5).getStringCellValue(), sheet.getRow(1).getCell(7).getStringCellValue());
+
+		//newdoc.profile_Setting( getdefaultView(),getofficeDocs(),getofficepdf(),getLoadcount());
 	}
 
 	@AfterMethod

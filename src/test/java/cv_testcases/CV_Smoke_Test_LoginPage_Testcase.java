@@ -25,20 +25,20 @@ public class CV_Smoke_Test_LoginPage_Testcase extends Base
 	@Test(priority = 1)
 	public void ST_Loginpage() 
 	{
-		STL.ST_Loginpage(getAct_Msg(),getLanguage());
+		STL.ST_Loginpage(sheet.getRow(7).getCell(3).getStringCellValue(),sheet.getRow(7).getCell(5).getStringCellValue());
 	}
 
 	@Test(priority = 2)
 	public void ST_SelectectedRoom() 
 	{
-		STL.ST_SelectectedRoom(getValidUsername(),getValidPassword());
+		STL.ST_SelectectedRoom(sheet.getRow(5).getCell(3).getStringCellValue(),sheet.getRow(5).getCell(5).getStringCellValue());
 	}
 	
 	@Test(priority = 3)
 	public void ST_CreateCabinet() 
 	{
 		ST_SelectectedRoom() ;
-		STL.ST_CreateCabinet(getValidUsername());
+		STL.ST_CreateCabinet(sheet.getRow(5).getCell(3).getStringCellValue());
 	}
 	
 	@AfterMethod

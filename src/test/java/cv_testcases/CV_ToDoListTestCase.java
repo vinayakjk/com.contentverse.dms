@@ -26,8 +26,8 @@ public class CV_ToDoListTestCase extends Base {
 	
 	{
 		//For accept Document if present into New Item or Pending Item
-		login_page.Check_Valid_Credentials(getValidUsername(), getValidPassword(),getRoom());
-		CV_ToDo_List.To_Do_List(getDocumentName(),getWorkflowStatus_By_First_User(),getValidUsername());
+		login_page.Check_Valid_Credentials(sheet.getRow(5).getCell(3).getStringCellValue(),sheet.getRow(5).getCell(5).getStringCellValue(), sheet.getRow(1).getCell(7).getStringCellValue());
+		CV_ToDo_List.To_Do_List(sheet.getRow(12).getCell(11).getStringCellValue(),sheet.getRow(12).getCell(15).getStringCellValue(),sheet.getRow(5).getCell(3).getStringCellValue());
 	}
 
 	@AfterMethod

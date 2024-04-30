@@ -16,12 +16,9 @@ public class CV_NewDocumentTestCase extends Base
 		WebDriver driver=launchBrowser();
 		CV_LoginPage login_page= new CV_LoginPage(driver);
 		CV_NewDocument newdoc= new CV_NewDocument(driver);
-		//CV_LoginTestCase.checkValidUser();
-//<<<<<<< HEAD
-		login_page.Check_Valid_Credentials(getValidUsername(), getValidPassword(),getRoom());
-//=======
-	//	login_page.login_cvWeb(getUsername(),getPassword(),getRoom());
-//>>>>>>> CreateCabinateDrwaer
+
+		login_page.Check_Valid_Credentials(sheet.getRow(5).getCell(3).getStringCellValue(),sheet.getRow(5).getCell(5).getStringCellValue(), sheet.getRow(1).getCell(7).getStringCellValue());
+
 		newdoc.NewDocument();
 		
 	}

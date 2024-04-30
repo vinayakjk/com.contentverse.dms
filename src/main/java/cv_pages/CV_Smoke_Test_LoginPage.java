@@ -293,6 +293,13 @@ public class CV_Smoke_Test_LoginPage extends Utility
 					
 			}
 			*/
+			try 
+			{
+				Thread.sleep(2000);
+			} catch (InterruptedException e) 
+			{
+				e.printStackTrace();
+			}
 			FirstPlusICon.click();
 			firstDrawer.click();
 			BtnFloat.click();

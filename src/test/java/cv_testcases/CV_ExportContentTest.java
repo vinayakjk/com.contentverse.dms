@@ -1,6 +1,5 @@
 package cv_testcases;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -23,33 +22,33 @@ public class CV_ExportContentTest extends Base
 
 	@Test
 	public void exportSinDocument() throws Exception {
-		cvLP.Check_Valid_Credentials(getValidUsername(), getValidPassword(), getRoom());
+		cvLP.Check_Valid_Credentials(sheet.getRow(5).getCell(3).getStringCellValue(),sheet.getRow(5).getCell(5).getStringCellValue(), sheet.getRow(1).getCell(7).getStringCellValue());
 		// Thread.sleep(3000);
-		cvHP.listOfCabinatesPresentInDataBase(getCabinetName());
+		cvHP.listOfCabinatesPresentInDataBase(sheet.getRow(3).getCell(3).getStringCellValue());
 		// cv_HP.listOfDrawersPresentInCabinet();
 
-		cvHP.selectDrawerPresentInCabinet(getDrawerName());
+		cvHP.selectDrawerPresentInCabinet(sheet.getRow(3).getCell(5).getStringCellValue());
 		// cv_HP.listOfFoldersPresentInDrawer();
 
 		// Thread.sleep(2000);
-		cvHP.selectFolderPresentInDrawer(getFolderName());
+		cvHP.selectFolderPresentInDrawer(sheet.getRow(3).getCell(7).getStringCellValue());
 		cvHP.documentListTable();
-		cvHP.selectSingleDocument(getDocName());
+		cvHP.selectSingleDocument(sheet.getRow(12).getCell(11).getStringCellValue());
 		Assert.assertEquals(cvHP.exportDocument(), true);
 	}
 
 	@Test
 	public void exportAllDocument() throws Exception {
-		cvLP.Check_Valid_Credentials(getValidUsername(), getValidPassword(), getRoom());
+		cvLP.Check_Valid_Credentials(sheet.getRow(5).getCell(3).getStringCellValue(),sheet.getRow(5).getCell(5).getStringCellValue(), sheet.getRow(1).getCell(7).getStringCellValue());
 		// Thread.sleep(3000);
-		cvHP.listOfCabinatesPresentInDataBase(getCabinetName());
+		cvHP.listOfCabinatesPresentInDataBase(sheet.getRow(3).getCell(3).getStringCellValue());
 		// cv_HP.listOfDrawersPresentInCabinet();
 
-		cvHP.selectDrawerPresentInCabinet(getDrawerName());
+		cvHP.selectDrawerPresentInCabinet(sheet.getRow(3).getCell(5).getStringCellValue());
 		// cv_HP.listOfFoldersPresentInDrawer();
 
 		// Thread.sleep(2000);
-		cvHP.selectFolderPresentInDrawer(getFolderName());
+		cvHP.selectFolderPresentInDrawer(sheet.getRow(3).getCell(7).getStringCellValue());
 		cvHP.documentListTable();
 		cvHP.selectAllDocuments();
 		Assert.assertEquals(cvHP.exportDocument(), true);
@@ -57,18 +56,20 @@ public class CV_ExportContentTest extends Base
 
 	@Test
 	public void exportUserSpecifiedDocument() throws Exception {
-		cvLP.Check_Valid_Credentials(getValidUsername(), getValidPassword(), getRoom());
+		cvLP.Check_Valid_Credentials(sheet.getRow(5).getCell(3).getStringCellValue(),sheet.getRow(5).getCell(5).getStringCellValue(), sheet.getRow(1).getCell(7).getStringCellValue());
 		// Thread.sleep(3000);
-		cvHP.listOfCabinatesPresentInDataBase(getCabinetName());
+		cvHP.listOfCabinatesPresentInDataBase(sheet.getRow(3).getCell(3).getStringCellValue());
 		// cv_HP.listOfDrawersPresentInCabinet();
 
-		cvHP.selectDrawerPresentInCabinet(getDrawerName());
+		cvHP.selectDrawerPresentInCabinet(sheet.getRow(3).getCell(5).getStringCellValue());
 		// cv_HP.listOfFoldersPresentInDrawer();
 
 		// Thread.sleep(2000);
-		cvHP.selectFolderPresentInDrawer(getFolderName());
+		cvHP.selectFolderPresentInDrawer(sheet.getRow(3).getCell(7).getStringCellValue());
 		cvHP.documentListTable();
-		cvHP.selectMultipleDocuments(getDocName1(), getDocName2());
+		
+		//Plz verify this with Excel
+		cvHP.selectMultipleDocuments(sheet.getRow(12).getCell(11).getStringCellValue(), sheet.getRow(12).getCell(11).getStringCellValue());
 		Assert.assertEquals(cvHP.exportDocument(), true);
 	}
 	

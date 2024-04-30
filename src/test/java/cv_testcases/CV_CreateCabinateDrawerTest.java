@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 
 import cv_pages.CV_HomePage;
 import cv_pages.CV_LoginPage;
-import cv_resources.GetscreenShot;
 
 public class CV_CreateCabinateDrawerTest extends Base 
 {
@@ -26,7 +25,8 @@ public class CV_CreateCabinateDrawerTest extends Base
 	@Test
 	public void createCabinate() throws Exception
 	{
-		cvLP.Check_Valid_Credentials(getValidUsername(), getValidPassword(),getRoom());
+		cvLP.Check_Valid_Credentials(sheet.getRow(5).getCell(7).getStringCellValue(),
+				sheet.getRow(5).getCell(9).getStringCellValue(), sheet.getRow(1).getCell(7).getStringCellValue());
 		Thread.sleep(3000);
 		Assert.assertEquals(cvHP.cv_CabinateCreation(), true);
 	

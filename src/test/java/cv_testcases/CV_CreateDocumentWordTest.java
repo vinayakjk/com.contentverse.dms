@@ -1,6 +1,5 @@
 package cv_testcases;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -28,10 +27,10 @@ public class CV_CreateDocumentWordTest extends Base
 	
 	public void createWordDocument() throws Exception
 	{
-		cvLP.Check_Valid_Credentials(getValidUsername(), getValidPassword(),getRoom());
-		cvHP.listOfCabinatesPresentInDataBase(getCabinetName());
-		cvHP.selectDrawerPresentInCabinet(getDrawerName());
-		cvHP.selectFolderPresentInDrawer(getFolderName());
+		cvLP.Check_Valid_Credentials(sheet.getRow(5).getCell(3).getStringCellValue(),sheet.getRow(5).getCell(5).getStringCellValue(), sheet.getRow(1).getCell(7).getStringCellValue());
+		cvHP.listOfCabinatesPresentInDataBase(sheet.getRow(3).getCell(3).getStringCellValue());
+		cvHP.selectDrawerPresentInCabinet(sheet.getRow(3).getCell(5).getStringCellValue());
+		cvHP.selectFolderPresentInDrawer(sheet.getRow(3).getCell(7).getStringCellValue());
 		//cvND.selectTypeToCreateNewDocument();
 		//cvND.NewWorkDocument();
 	}
