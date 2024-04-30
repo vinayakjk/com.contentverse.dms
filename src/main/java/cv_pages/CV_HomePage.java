@@ -10,6 +10,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+
 import cv_resources.Utility;
 
 public class CV_HomePage extends Utility {
@@ -140,6 +141,9 @@ public class CV_HomePage extends Utility {
 
 	@FindBy(xpath = "//div[@id='progressModel' and @class='cvModel']")
 	WebElement msgInitializing;
+
+	@FindBy(xpath = "//a[@id='documentListSubMenu']")
+	WebElement docListMenu;
 	
 	public WebElement documentToEdit(String linkText)
 	{
@@ -312,17 +316,18 @@ public class CV_HomePage extends Utility {
 	}
 	public void selectMultipleDocuments(String docName1, String docName2) throws InterruptedException 
 	{
-			List<WebElement> DocName1 = driver.findElements(By.xpath("//td[contains(text(),'"+docName1+"')]/preceding-sibling::td/label/span"));
+			List<WebElement> DocName1 = driver.findElements(By.xpath("//td[contains(@class,'customDocName') and contains(text(),'"+docName1+"')]/preceding-sibling::td/label/span"));
 			for(int i=0; i<DocName1.size(); i++)
 			{
 				DocName1.get(i).click();
 				isInvisible(msgInitializing,10);
 			}
-			List<WebElement> DocName2 = driver.findElements(By.xpath("//td[contains(text(),'"+docName2+"')]/preceding-sibling::td/label/span"));
+			List<WebElement> DocName2 = driver.findElements(By.xpath("//td[contains(@class,'customDocName') and contains(text(),'"+docName2+"')]/preceding-sibling::td/label/span"));
 			for(int i=0; i<DocName2.size(); i++)
 			{
 				DocName2.get(i).click();
 			}
+			moveToElement(docListMenu);
 	}
 	public boolean exportDocument() throws InterruptedException, IOException {
 		boolean testresult = false;
