@@ -1,5 +1,11 @@
 package cv_pages;
 
-public class CV_Rooms {
+import org.openqa.selenium.WebDriver;
 
+public class CV_Rooms 
+{
+	public CV_Rooms(WebDriver driver) {
+		
+		super();
+	}
 }

@@ -1,6 +1,5 @@
 package cv_pages;
 
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -202,9 +201,7 @@ public class CV_ToDoList extends Utility {
 		return driver.findElement(By.xpath("//*[contains(text(), '" + linkText + "')]"));
 	}
 
-
-	public void openDocs() throws InterruptedException 
-	{
+	public void openDocs() throws InterruptedException {
 		IconPlusCabinet.click();
 		IconPlusDrawer.click();
 		isVisible(FolderNameWord, 15);
@@ -212,59 +209,47 @@ public class CV_ToDoList extends Utility {
 		Thread.sleep(2000);
 	}
 
-	public void To_Do_List(String DocumentName, String Status, String UserName) throws InterruptedException 
-	{
+	public void To_Do_List(String DocumentName, String Status, String UserName) throws InterruptedException {
 		moveToElement(MenuToDoList);
 		SubMenuNewItems.click();
-		 //findDocumentElementtxt(DocumentName).click();
-			try 
-			{
-			  findDocumentElementtxt(DocumentName).click();	
-			} 
-			catch (Exception e) 
-				{
-					moveToElement(MenuToDoList);
-					SubMenupendingItems.click();
-					findDocumentElementtxt(DocumentName).click();
-				}
-			
-		
-		
-		
+		// findDocumentElementtxt(DocumentName).click();
+		try {
+			findDocumentElementtxt(DocumentName).click();
+		} catch (Exception e) {
+			moveToElement(MenuToDoList);
+			SubMenupendingItems.click();
+			findDocumentElementtxt(DocumentName).click();
+		}
+
 		isDisaplyedW(btnacceptworkFlow, 10);
 
-		if (Status.contains("Accept")) 
-		{
+		if (Status.contains("Accept")) {
 			btnacceptworkFlow.click();
 			isDisaplyedW(WindowWorkFLowModel, 10);
 			txtAreaComment.sendKeys("This Done by Automation");
 			btnokworkflowaccept.click();
-		
+
 			Thread.sleep(3000);
 			openDocs();
 			Thread.sleep(2000);
 			clickOnDocument.click();
 			Thread.sleep(2000);
-			
-			if (WinDocumentInWF.isDisplayed() == true) 
-			{
+
+			if (WinDocumentInWF.isDisplayed() == true) {
 				btnOkDocumentInWF.click();
 			}
 			Thread.sleep(3000);
 			tabhistory.click();
 			Thread.sleep(3000);
 			String verifymsghistory = historymsg.getText();
-			if (verifymsghistory.equals("Document has been Approved by " + UserName)) 
-			{
+			if (verifymsghistory.equals("Document has been Approved by " + UserName)) {
 				System.out.println(verifymsghistory);
-			} else 
-			{
+			} else {
 				Assert.fail("Document Not approved by First User! Actual text: " + verifymsghistory);
 			}
-		
+
 		}
-		if (Status.contains("reject"))
-		{
+		if (Status.contains("reject")) {
 			Thread.sleep(3000);
 			btnrejectWorkflow.click();
 			Thread.sleep(4000);
@@ -274,8 +259,7 @@ public class CV_ToDoList extends Utility {
 
 		}
 
-		if (Status.contains("End Workflow")) 
-		{
+		if (Status.contains("End Workflow")) {
 			btnrejectWorkflow.click();
 			txtAreaComment.sendKeys("This Document rejected by Automation");
 			btnokworkflowaccept.click();

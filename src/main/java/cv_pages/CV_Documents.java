@@ -308,8 +308,8 @@ public class CV_Documents extends Utility {
 	    WebElement clickRefresh;
 		
 		public CV_Documents(WebDriver driver) {
+			
 			super(driver);
-			// TODO Auto-generated constructor stub
 		}
 		
 }

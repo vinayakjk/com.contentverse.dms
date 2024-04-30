@@ -43,7 +43,7 @@ public class CV_CreateCabinateDrawerTest extends Base
 	@AfterMethod
 	public void tearDown()
 	{
-		driver.close();
+		driver.quit();
 	}
 	
 	

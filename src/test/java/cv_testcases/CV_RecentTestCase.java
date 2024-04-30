@@ -32,6 +32,13 @@ public class CV_RecentTestCase extends Base {
 		
 	}
 	
+	@AfterMethod
+	public void teardown() throws Exception
+	{
+		driver.quit();
+	}
+
+	
 /*
 
 public class CV_RecentTestCase {
@@ -68,11 +75,6 @@ public class CV_RecentTestCase {
 	}
 */
 	
-	@AfterMethod
-	public void teardown() throws Exception
-	{
-		driver.quit();
-	}
-
+	
 
 }

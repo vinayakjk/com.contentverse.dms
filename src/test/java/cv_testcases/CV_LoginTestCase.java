@@ -20,8 +20,8 @@ public class CV_LoginTestCase extends Base {
 	}
 
 	@AfterMethod
-	public void tearDown() {
-
+	public void tearDown() 
+	{
 		driver.quit();
 	}
 

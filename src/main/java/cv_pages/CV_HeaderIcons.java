@@ -1,5 +1,11 @@
 package cv_pages;
 
-public class CV_HeaderIcons {
+import org.openqa.selenium.WebDriver;
 
+public class CV_HeaderIcons {
+	
+	public CV_HeaderIcons(WebDriver driver) {
+		
+		super();
+	}
 }

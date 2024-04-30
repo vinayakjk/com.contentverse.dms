@@ -9,7 +9,8 @@ import cv_resources.Utility;
 public class CV_MyAccountSettings extends Utility
 {
 
-	public CV_MyAccountSettings(WebDriver driver) {
+	public CV_MyAccountSettings(WebDriver driver) 
+	{
 		super(driver);
 		
 	}

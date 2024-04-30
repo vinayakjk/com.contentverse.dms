@@ -69,6 +69,6 @@ public class CV_CreateDocumentTest extends Base
 	@AfterMethod
 	public void tearDown()
 	{
-		driver.close();
+		driver.quit();
 	}
 }

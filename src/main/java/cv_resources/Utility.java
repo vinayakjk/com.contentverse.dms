@@ -238,7 +238,6 @@ public class Utility {
 
 	}
 
-	
 	public boolean isClickable(WebElement WebElement, long tm) {
 
 		boolean isClickable = false;
@@ -278,14 +277,13 @@ public class Utility {
 		}
 	}
 
-	public String currentTime() 
-	{
+	public String currentTime() {
 		String timestamp = new SimpleDateFormat("yyyy_MM_dd__hh_mm_ss").format(new Date());
-		//SimpleDateFormat format = new SimpleDateFormat("HHMMSS");
+		// SimpleDateFormat format = new SimpleDateFormat("HHMMSS");
 
-		//Date dt = new Date();
+		// Date dt = new Date();
 		return timestamp;
-		//return format.format(dt).toString();
+		// return format.format(dt).toString();
 	}
 
 	public int ifFileAvailable() throws InterruptedException {

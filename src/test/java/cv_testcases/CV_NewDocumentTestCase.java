@@ -2,7 +2,6 @@ package cv_testcases;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import cv_pages.CV_LoginPage;
@@ -24,8 +23,6 @@ public class CV_NewDocumentTestCase extends Base
 	}
 
 	@AfterMethod
-	@AfterTest
-	//@Test
 	public void quit()
 	{				
 		driver.quit();

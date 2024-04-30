@@ -238,6 +238,7 @@ public class CV_VersionPage extends Utility {
 			System.out.println(String.format(
 					"%-" + columnWidth + "s | %-" + columnWidth + "s | %-" + columnWidth + "s | %-" + columnWidth + "s",
 					versionNo, updatedBy, updatedOn, comment));
+
 		}
 	}
 

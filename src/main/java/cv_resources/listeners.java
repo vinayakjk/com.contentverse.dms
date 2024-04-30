@@ -48,8 +48,7 @@ public class listeners implements ITestListener {
 	}
 
 	// Helper method to capture console logs
-	private String getStackTrace(Throwable throwable) 
-	{
+	private String getStackTrace(Throwable throwable) {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		PrintWriter pw = new PrintWriter(baos);
 		throwable.printStackTrace(pw);
@@ -57,26 +56,22 @@ public class listeners implements ITestListener {
 		return baos.toString();
 	}
 
-	public void onTestSkipped(ITestResult result) 
-	{
+	public void onTestSkipped(ITestResult result) {
 		System.out.println("Test Case Skip = " + result.getName());
 	}
 
 	@Override
-	public void onTestFailedButWithinSuccessPercentage(ITestResult result) 
-	{
+	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
 		ITestListener.super.onTestFailedButWithinSuccessPercentage(result);
 	}
 
 	@Override
-	public void onTestFailedWithTimeout(ITestResult result) 
-	{
+	public void onTestFailedWithTimeout(ITestResult result) {
 		ITestListener.super.onTestFailedWithTimeout(result);
 	}
 
 	@Override
-	public void onStart(ITestContext context) 
-	{
+	public void onStart(ITestContext context) {
 		ITestListener.super.onStart(context);
 	}
 

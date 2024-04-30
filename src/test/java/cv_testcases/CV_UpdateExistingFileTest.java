@@ -39,7 +39,7 @@ public class CV_UpdateExistingFileTest extends Base
 	@AfterMethod
 	public void tearDown()
 	{
-		driver.close();
+		driver.quit();
 	}
 	
 	

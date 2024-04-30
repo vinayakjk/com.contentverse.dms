@@ -23,7 +23,6 @@ public class CV_SendToWorkflowTestcase extends Base {
 
 	@AfterMethod
 	public void tearDown() {
-		// Webdriver End
 		driver.quit();
 	}
 

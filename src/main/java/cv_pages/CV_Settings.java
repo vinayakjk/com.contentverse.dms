@@ -9,7 +9,7 @@ import org.testng.Assert;
 
 import cv_resources.Utility;
 
-public class CV_Settings extends Utility{
+public class CV_Settings extends Utility {
 	// ClickimgSettings
 	@FindBy(xpath = "//img[@id='imgSettings']")
 	WebElement imgSettings;
@@ -203,47 +203,44 @@ public class CV_Settings extends Utility{
 
 	@FindBy(xpath = "//div[@id='commentModel50']")
 	WebElement windowdefaultdocs;
-	
+
 	@FindBy(xpath = "//button[@id='cvModel50Ok']")
 	WebElement btnokwindowdefaultdocs;
-	
+
 	@FindBy(xpath = "//div[@id='toastMessage']")
 	WebElement msgtoast;
-	
+
 	WebDriver driver;
 
 	// Declare Constructor
-	public CV_Settings(WebDriver driver)
-	{
+	public CV_Settings(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		PageFactory.initElements(driver, this);
 	}
 
-	public void profile_Setting(String getdefaultView, String getofficeDocs,String getofficepdf, String getLoadcount) 
-	{
+	public void profile_Setting(String getdefaultView, String getofficeDocs, String getofficepdf, String getLoadcount) {
 		imgSettings.click();
 		lblMyPreferences.click();
 
 		isVisible(windowMyprefernce, 5);
-		//System.out.println(ConfigReader.getdefaultView());
-		Dropdownbytxt(ddDefaultViewListNo,getdefaultView);
+		// System.out.println(ConfigReader.getdefaultView());
+		Dropdownbytxt(ddDefaultViewListNo, getdefaultView);
 		Dropdownbytxt(ddOfficeDocuments, getofficeDocs);
 		Dropdownbytxt(ddPdfDocuments, getofficepdf);
 		txtLoadMoreCount.clear();
 		txtLoadMoreCount.sendKeys(getLoadcount);
-		
+
 		btnApplyMyPreferences.click();
-		String Settingapplymsg=msgtoast.getText();
+		String Settingapplymsg = msgtoast.getText();
 
-		if(isDisaplyedW(windowdefaultdocs, 1)==true)
+		if (isDisaplyedW(windowdefaultdocs, 1) == true)
 
-		
 		{
 			btnokwindowdefaultdocs.click();
 		}
-		
+
 		System.out.println(Settingapplymsg);
 		Assert.assertTrue(Settingapplymsg.contains("Saved Successfully!"));
 	}

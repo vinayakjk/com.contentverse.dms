@@ -21,7 +21,6 @@ public class CV_Smoke_Test_LoginPage_Testcase extends Base
 		STL= new CV_Smoke_Test_LoginPage(driver);
 	}
 	
-	 
 	@Test(priority = 1)
 	public void ST_Loginpage() 
 	{

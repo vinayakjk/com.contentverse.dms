@@ -114,7 +114,6 @@ public class CV_LoginPage extends Utility {
 
 		if (isDisaplyedW(WindowSesionMgr, 1)) {
 			WindowSesionMgr.click();
-			//System.out.println("Another Session Ended");
 		}
 
 

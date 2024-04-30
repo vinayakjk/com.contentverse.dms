@@ -149,7 +149,8 @@ public class Base {
 	 * public String getName_OF_WF() { return Name_OF_WF; }
 	 */
 
-	public void ReadExcel() throws IOException {
+	public void ReadExcel() throws IOException 
+	{
 		FileInputStream fis = new FileInputStream(
 				(System.getProperty("user.dir") + "\\src\\main\\java\\cv_resources\\Test_Data.xlsx"));
 		try (XSSFWorkbook wb = new XSSFWorkbook(fis)) {

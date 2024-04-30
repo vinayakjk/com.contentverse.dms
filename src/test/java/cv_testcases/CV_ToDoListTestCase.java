@@ -8,7 +8,8 @@ import org.testng.annotations.Test;
 import cv_pages.CV_LoginPage;
 import cv_pages.CV_ToDoList;
 
-public class CV_ToDoListTestCase extends Base {
+public class CV_ToDoListTestCase extends Base 
+{
 	CV_LoginPage login_page;
 	CV_ToDoList CV_ToDo_List;
 	WebDriver driver;

@@ -10,12 +10,7 @@ import cv_resources.Utility;
 
 public class CV_Recent extends Utility{
 
-	/*
- 		Elements from this form are dynamic so we need to provide from config or text data .
-   		Text changes as per user login and visited files and folders 
-     		so do changes accordingly with below locators.
-   	
- 	*/
+	
 	//RecentTab
 	@FindBy(xpath = "//*[@id='recentMenus']")
 	WebElement  SubMenuRecent;

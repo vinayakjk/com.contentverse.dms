@@ -29,7 +29,7 @@ public class CV_DeleteCabinateTest extends Base
 	@AfterMethod
 	public void teardown()
 	{
-		driver.close();
+		driver.quit();
 	}
 	
 }

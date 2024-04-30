@@ -225,10 +225,6 @@ public class CV_Search extends Utility {
 		imgSearchDocumentLocation.click();
 		listIndexOption.click();
 		
-		
-		
-		
-		
 	}		
 
 }
