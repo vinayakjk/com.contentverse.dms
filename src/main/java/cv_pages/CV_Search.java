@@ -1,26 +1,14 @@
 package cv_pages;
 
-import java.util.List;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 
 import cv_resources.Utility;
 
 public class CV_Search extends Utility {
 	
 	WebDriver driver;
-	Actions act;
-	
-	public CV_Search(WebDriver driver) {
-		super(driver);
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
-	}
 
 	//WebElement Added in CV_Search_Page on 28/02/2024 - Suresh
 	// Click on "Search"
@@ -180,8 +168,8 @@ public class CV_Search extends Utility {
 	WebElement imgRefreshSearchName;
 
 	// Select Find Button
-	//@FindBy(xpath = "//button[@id='advFindBtnLabel']")
-	//WebElement btnFind;
+	@FindBy(xpath = "//button[@id='advFindBtnLabel']")
+	WebElement btnFind;
 
 	// Select Clear Button
 	@FindBy(xpath = "//button[@id='clearSearchBtnLabel']")
@@ -219,53 +207,12 @@ public class CV_Search extends Utility {
 	@FindBy(xpath = "//button[@id='resetColumsOk']")
 	WebElement dd2ResetColums;
 	
-	@FindBy(xpath = "//div[@class='e-content e-dropdownbase']/ul/li")
-	List<WebElement> ddDocumentTypeOptions;
-
-	@FindBy(xpath = "//ul[@id='docCreatorSpan_options']/li")
-	List<WebElement> ddDocumentCreatorOptions;
-	
-	@FindBy(xpath = "//input[@id='createdDateFrom']")
-	WebElement ddCreatedDateFrom;
-
-	@FindBy(xpath = "//input[@id='createdDateTo']")
-	WebElement ddCreatedDateTo;
-
-	@FindBy(xpath = "//div[@id='mc-current--year']")
-	WebElement currentYear;
-
-	@FindBy(xpath = "//div[@class='mc-calendar mc-calendar--modal mc-calendar--opened']//div[5]")
-	WebElement selectYearFrom;
-	
-	@FindBy(xpath = "//div[@class='mc-calendar mc-calendar--modal mc-calendar--opened']//div[5]")
-	WebElement selectYearTo;
-
-	@FindBy(xpath = "//div[@id='mc-current--month']")
-	WebElement currentMonth;
-
-	@FindBy(xpath = "//div[@aria-label='March']")
-	WebElement selectMonthFrom;
-	
-	@FindBy(xpath = "//div[@aria-label='April']")
-	WebElement selectMonthTo;
-
-	@FindBy(xpath = "//td[@aria-label='Fri Mar 01 2024']")
-	WebElement selectDateFrom;
-
-	@FindBy(xpath = "//td[@aria-label='Wed Apr 17 2024']")
-	WebElement selectDateTo;
-
-	@FindBy(xpath = "//button[@id='mc-btn__ok']")
-	WebElement btnOKCalender;
-
-	@FindBy(xpath = "//button[@id='advFindBtnLabel']")
-	WebElement btnFind;
-	
-	@FindBy(xpath = "//button[@class='cv-btn-loadmore']")
-	WebElement btnLoadMore;
-	
-	@FindBy(xpath = "//table[@id='searchListTable']//tbody")
-	WebElement searchListTable;
+	public CV_Search(WebDriver driver )
+	{
+		super(driver);
+		this.driver=driver;
+		
+	}
 	
 	public void Search_CV()
 	{
@@ -276,101 +223,12 @@ public class CV_Search extends Utility {
 		btnCloseSearchLocation.click();
 		imgRefreshSearchLocation.click();
 		imgSearchDocumentLocation.click();
-		listIndexOption.click();	
-	}
-	
-	public void advanceSearch() throws InterruptedException
-	{
-		Thread.sleep(3000);
-		clickSearchMenu.click();
-	}
-	
-	public void selectDocumentType(String DocumentType) throws InterruptedException 
-	{	
-		ddDocumentType.click();
-		for (int i=0; i<ddDocumentTypeOptions.size(); i++) 
-		{
-			try {	
-				if (ddDocumentTypeOptions.get(i).getText().trim().equalsIgnoreCase(DocumentType)) 
-					{
-					ddDocumentTypeOptions.get(i).click();
-					}
-				}
-			catch(Exception e)
-			{
-				System.out.println(e);
-			}
-		}
-		ddDocumentType.click();
-	}
-	
-	public void selectDocumentCreator(String DocumentCreator) throws InterruptedException 
-	{	
-		ddDocumentCreator.click();
-		for (int i=0; i<ddDocumentCreatorOptions.size(); i++) 
-		{
-			try {	
-				if (ddDocumentCreatorOptions.get(i).getText().trim().equalsIgnoreCase(DocumentCreator)) 
-					{
-					ddDocumentCreatorOptions.get(i).click();
-					}
-				}
-			catch(Exception e)
-			{
-				System.out.println(e);
-			}
-		}
-		ddDocumentCreator.click();
-	}
-	
-	public void selectDate() throws InterruptedException 
-	{
-		ddCreatedDateFrom.click();
-		currentYear.click();
-		selectYearFrom.click();
-		currentMonth.click();
-		selectMonthFrom.click();
-		selectDateFrom.click();
-		btnOKCalender.click();
-		Thread.sleep(1000);
-		ddCreatedDateTo.click();
-		currentYear.click();
-		selectYearTo.click();
-		currentMonth.click();
-		selectMonthTo.click();
-		selectDateTo.click();
-		btnOKCalender.click();
-	}
+		listIndexOption.click();
+		
+		
+		
+		
+		
+	}		
 
-	public void findBtnCustom() 
-	{
-		btnFind.click();
-	}
-	
-	public boolean customSearchListTable() throws InterruptedException {
-		boolean customSearchListTable = false;
-		Thread.sleep(3000);
-			if (searchListTable.getText().trim().equalsIgnoreCase("No data available in table")) 
-			{
-				System.out.println(searchListTable.getText());
-				Assert.assertEquals(customSearchListTable, true);
-				
-			} else 
-			{
-				Assert.assertEquals(customSearchListTable, false);
-			}
-			return customSearchListTable;
-	}
-	
-	public void loadMore() 
-	{
-		if(btnLoadMore.isDisplayed())
-		{
-			btnLoadMore.click();
-		}
-		else
-		{
-			System.out.println("Load More button is not available");
-		}
-	}
 }
