@@ -12,67 +12,29 @@ public class CV_RecentTestCase extends Base {
 	WebDriver driver;
 	CV_LoginPage login_page;
 	CV_Recent recent;
-	
+
 	@BeforeMethod
-	public void ini() throws Exception
-	{
-		 driver = launchBrowser();
-		 login_page= new CV_LoginPage(driver);
-		 recent = new CV_Recent(driver);
+	public void ini() throws Exception {
+		driver = launchBrowser();
+		login_page = new CV_LoginPage(driver);
+		recent = new CV_Recent(driver);
 	}
-	
 
 	@Test
-	public void verifyRecentFileFolder() throws Exception 
-	{		
-		login_page.Check_Valid_Credentials(sheet.getRow(5).getCell(3).getStringCellValue(),sheet.getRow(5).getCell(5).getStringCellValue(), sheet.getRow(1).getCell(7).getStringCellValue());
-		System.out.println("Verify FOlder Gets started");
-		recent.verifyFolder();
-		recent.verifyFile();
-		
-	}
-	
-/*
-
-public class CV_RecentTestCase {
-
-	// WebDriver driver;
-
-	WebDriver driver = Utility.startBrowser();// "chrome", "http://192.168.1.15:8080/CVWeb/cvLgn"
-	// CV_LoginPage login_page = new CV_LoginPage(driver);
-
-	// CV_Recent recent = new CV_Recent(driver);
-
-	CV_Recent recent = new CV_Recent(driver);
-
-	@Test
-	public void login() {
-		CV_LoginPage login_page = new CV_LoginPage(driver);
-		login_page.login_cvWeb();// "shraddha" , "root@123"
+	public void verifyRecentFileFolder() throws Exception {
+		login_page.Check_Valid_Credentials(sheet.getRow(5).getCell(3).getStringCellValue(),
+				sheet.getRow(5).getCell(5).getStringCellValue(), sheet.getRow(1).getCell(7).getStringCellValue());
+		System.out.println("Verify Recent Folder Gets started");
+		recent.verifyFolder(sheet.getRow(14).getCell(3).getStringCellValue(),
+				sheet.getRow(14).getCell(5).getStringCellValue(), sheet.getRow(14).getCell(7).getStringCellValue());
+		System.out.println("Verify Recent Document Gets started");
+		recent.verifyFile(sheet.getRow(14).getCell(7).getStringCellValue());
 
 	}
 
-	// calling methods to open and verify documents and files 
-
-	@Test
-	public void verifyRecentFileFolder() {
-		// CV_LoginTestCase.checkValidUser();
-		System.out.println("Verify FOlder Gets started");
-
-		recent.verifyFolder();
-		recent.verifyFile();
-
-		// Calling logout method
-
-		recent.logout();
-	}
-*/
-	
 	@AfterMethod
-	public void teardown() throws Exception
-	{
+	public void teardown() throws Exception {
 		driver.quit();
 	}
-
 
 }

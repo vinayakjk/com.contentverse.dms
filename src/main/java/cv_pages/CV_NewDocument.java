@@ -2,7 +2,6 @@ package cv_pages;
 
 import java.time.Duration;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -332,7 +331,7 @@ public class CV_NewDocument extends Utility {
 		else if(documentType.equalsIgnoreCase("Pdf"))
 		{
 			
-			Actions ac=new Actions(driver);
+			//Actions ac=new Actions(driver);
 			System.out.println("");
 			
 			String name=NameOfPDF.getAttribute("title");

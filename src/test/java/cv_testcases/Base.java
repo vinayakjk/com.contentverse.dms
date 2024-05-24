@@ -1,18 +1,22 @@
 package cv_testcases;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Properties;
-
+import javax.mail.Authenticator;
 import javax.mail.Message;
-import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -29,139 +33,38 @@ public class Base {
 
 	Sheet sheet;
 	public WebDriver driver;
-	/*
-	 * 
-	 * 
-	 * String ValidUsername; String ValidPassword; String Room;
-	 * 
-	 * String defaultView; Properties properties; String browser; FileInputStream
-	 * fis; String url;
-	 * 
-	 * String CabinateName; String DrawerName; String FolderName;
-	 * 
-	 * String[] DocsNameArray = { "DocName1", "DocName2" }; String DocName; String
-	 * DocName1; String DocName2;
-	 * 
-	 * String officeDocs; String officepdf; String Loadcount; String
-	 * InValidUsername; String InValidPassword; String Act_Msg; String Language;
-	 * 
-	 * String WorkflowVerify_F_User; String WorkflowVerify_F_Password; String
-	 * WorkflowVerify_S_User; String WorkflowVerify_S_Password; String
-	 * WorkflowStatus_By_First_User; String WorkflowStatus_By_Second_User; String
-	 * DocumentName; String Name_OF_WF;
-	 * 
-	 * public void ConfigReader() throws Exception { properties = new Properties();
-	 * fis = new FileInputStream( (System.getProperty("user.dir") +
-	 * "\\src\\main\\java\\cv_resources\\Config.properties"));
-	 * 
-	 * properties.load(fis); browser = properties.getProperty("browser"); url =
-	 * properties.getProperty("url");
-	 * 
-	 * ValidUsername = properties.getProperty("Username"); ValidPassword =
-	 * properties.getProperty("Password"); Room = properties.getProperty("Room");
-	 * CabinateName = properties.getProperty("CabinateName"); DrawerName =
-	 * properties.getProperty("DrawerName"); FolderName =
-	 * properties.getProperty("FolderName"); DocName =
-	 * properties.getProperty("DocName"); DocName1 =
-	 * properties.getProperty("DocName1"); DocName2 =
-	 * properties.getProperty("DocName2"); defaultView =
-	 * properties.getProperty("defaultView"); officeDocs =
-	 * properties.getProperty("officeDocs"); Loadcount =
-	 * properties.getProperty("Loadcount"); officepdf =
-	 * properties.getProperty("officepdf"); InValidUsername =
-	 * properties.getProperty("Invalid_User"); InValidPassword =
-	 * properties.getProperty("Invalid_Pass"); Act_Msg =
-	 * properties.getProperty("Act_Msg"); Language =
-	 * properties.getProperty("Language");
-	 * 
-	 * WorkflowVerify_F_User = properties.getProperty("WorkflowVerify_F_User");
-	 * WorkflowVerify_F_Password =
-	 * properties.getProperty("WorkflowVerify_F_Password");
-	 * 
-	 * WorkflowVerify_S_User = properties.getProperty("WorkflowVerify_S_User");
-	 * WorkflowVerify_S_Password =
-	 * properties.getProperty("WorkflowVerify_S_Password");
-	 * WorkflowStatus_By_First_User =
-	 * properties.getProperty("WorkflowStatus_By_First_User");
-	 * WorkflowStatus_By_Second_User =
-	 * properties.getProperty("WorkflowStatus_By_Second_User"); DocumentName =
-	 * properties.getProperty("DocumentName"); Name_OF_WF =
-	 * properties.getProperty("Name_OF_WF"); }
-	 * 
-	 * public String getBrowser() { return browser; }
-	 * 
-	 * public String getUrl() { return url; }
-	 * 
-	 * public String getValidUsername() { return ValidUsername; }
-	 * 
-	 * public String getValidPassword() { return ValidPassword; }
-	 * 
-	 * public String getRoom() { return Room; }
-	 * 
-	 * public String getCabinetName() { return CabinateName; }
-	 * 
-	 * public String getDrawerName() { return DrawerName; }
-	 * 
-	 * public String getFolderName() { return FolderName; }
-	 * 
-	 * public String getDocName() { return DocName; }
-	 * 
-	 * public String getDocName1() { return DocName1; }
-	 * 
-	 * public String getDocName2() { return DocName2; }
-	 * 
-	 * public String[] getDocsName() { return DocsNameArray; }
-	 * 
-	 * public String getdefaultView() { return defaultView; }
-	 * 
-	 * public String getofficeDocs() { return officeDocs; }
-	 * 
-	 * public String getofficepdf() { return officepdf; }
-	 * 
-	 * public String getLoadcount() { return Loadcount; }
-	 * 
-	 * public String getInValidUsername() { return InValidUsername; }
-	 * 
-	 * public String getInvalidPassword() { return InValidPassword; }
-	 * 
-	 * public String getAct_Msg() { return Act_Msg; }
-	 * 
-	 * public String getLanguage() { return Language; }
-	 * 
-	 * public String getWorkflowVerify_F_User() { return WorkflowVerify_F_User; }
-	 * 
-	 * public String getWorkflowVerify_F_Password() { return
-	 * WorkflowVerify_F_Password; }
-	 * 
-	 * public String getWorkflowVerify_S_User() { return WorkflowVerify_S_User; }
-	 * 
-	 * public String getWorkflowVerify_S_Password() { return
-	 * WorkflowVerify_F_Password; }
-	 * 
-	 * public String getWorkflowStatus_By_First_User() { return
-	 * WorkflowStatus_By_First_User; }
-	 * 
-	 * public String getWorkflowStatus_By_Second_User() { return
-	 * WorkflowStatus_By_Second_User; }
-	 * 
-	 * public String getDocumentName() { return DocumentName; }
-	 * 
-	 * public String getName_OF_WF() { return Name_OF_WF; }
-	 */
 
 	public void ReadExcel() throws IOException {
-		FileInputStream fis = new FileInputStream(
-				(System.getProperty("user.dir") + "\\src\\main\\java\\cv_resources\\Test_Data.xlsx"));
-		try (XSSFWorkbook wb = new XSSFWorkbook(fis)) {
-			sheet = wb.getSheetAt(0);
-		}
+		FileInputStream fis = new FileInputStream((System.getProperty("user.dir") + "\\src\\main\\java\\cv_resources\\Test_Data.xlsx"));
+		
+		@SuppressWarnings("resource")
+		XSSFWorkbook wb = new XSSFWorkbook(fis);
+		sheet = wb.getSheetAt(0);
+		
+		/*
+		
+		StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+		
+		for (StackTraceElement element : stackTrace) 
+        {
+            String className = element.getClassName();
+           
+            if (className.contains("LoginTestCase"))
+            {
+            	sheet = wb.getSheetAt(0);
+                break;
+            }
+            
+        }*/
+
+    	//sheet = wb.getSheetAt(1);
+        
 
 	}
 
 	public WebDriver launchBrowser() throws Exception {
 
 		ReadExcel();
-		// ConfigReader();
 
 		if (sheet.getRow(1).getCell(3).getStringCellValue().equalsIgnoreCase("firefox")) {
 
@@ -180,19 +83,10 @@ public class Base {
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
 			HashMap<String, Object> prefs = new HashMap<String, Object>();
-			// prefs.put("safebrowsing.enabled", false);
-			// prefs.put("profile.default_content_settings.popups", 0);
-			// prefs.put("download.prompt_for_download", false);
 			prefs.put("download.default_directory", System.getProperty("user.dir") + "\\downloadFiles\\");
 			prefs.put("browser.download.manager.closeWhenDone", true);
 			options.setExperimentalOption("prefs", prefs);
 			options.addArguments("--disable-features=InsecureDownloadWarnings");
-			// options.addArguments("--disable-popup-blocking");
-			// options.addArguments("--disable-notifications");
-			// options.addArguments("--safebrowsing-disable-download-protection");
-			// options.addArguments("safebrowsing-disable-extension-blacklist");
-			// options.addArguments("--allow-running-insecure-content");
-
 			driver = new ChromeDriver(options);
 
 		} else if (sheet.getRow(1).getCell(3).getStringCellValue().equalsIgnoreCase("edge")) {
@@ -207,38 +101,83 @@ public class Base {
 	}
 
 	public void sendEmailWithReport() {
-		final String username = "cmsautomation0@gmail.com";
-		final String password = "Pass@123";
+        // Your Gmail credentials
+        String from = "cmsautomation0@gmail.com";
+        String appPassword = "zixw ibsb iafh wqdu"; // Use the App Password here
+        String to = "rajendra.mane@sundynetech.com";
+        String subject = "Report";
+        String body = "This is Auto Send Mail";
 
-		Properties prop = new Properties();
-		prop.put("mail.smtp.host", "smtp.gmail.com");
-		prop.put("mail.smtp.port", "465");
-		prop.put("mail.smtp.auth", "true");
-		prop.put("mail.smtp.socketFactory.port", "465");
-		prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        // Get the latest file from the reports folder
+        String reportsFolder = System.getProperty("user.dir") + "//reports";
+        File latestFile = getLatestFile(reportsFolder);
+        
+        String reportsFolder_V = System.getProperty("user.dir") + "//Recording";
+        File latestFile_V = getLatestFile(reportsFolder_V);
+        
+        if (latestFile != null || latestFile_V != null) 
+        {
+            // File to be attached
+            String attachmentPath = latestFile.getAbsolutePath();
 
-		Session session = Session.getInstance(prop, new javax.mail.Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(username, password);
-			}
-		});
+            Properties props = new Properties();
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.put("mail.smtp.port", "587");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.enable", "true");
 
-		try {
+            Session session = Session.getInstance(props, new Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(from, appPassword);
+                }
+            });
 
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("cmsautomation0@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO,
-					InternetAddress.parse("rmane565@gmail.com, rmane565@gmail.com"));
-			message.setSubject("Testing Gmail SSL");
-			message.setText("Dear Mail Crawler," + "\n\n Please do not spam my email!");
+            try {
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(from));
+                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+                message.setSubject(subject);
 
-			Transport.send(message);
+                // Create the email body part
+                MimeBodyPart messageBodyPart = new MimeBodyPart();
+                messageBodyPart.setText(body);
 
-			System.out.println("Done");
+                // Create the attachment
+                MimeBodyPart attachmentPart = new MimeBodyPart();
+                attachmentPart.attachFile(new File(attachmentPath));
+                
+                // Add the parts to the message
+                Multipart multipart = new MimeMultipart();
+                multipart.addBodyPart(messageBodyPart);
+                multipart.addBodyPart(attachmentPart);
+                
+                // Set the multipart content to the message
+                message.setContent(multipart);
 
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		}
-	}
+                // Send the message
+                Transport.send(message);
+                System.out.println("Email sent successfully!");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } 
+        else 
+        {
+            System.out.println("No files found in the reports folder.");
+        }
+    }
+	
+	private File getLatestFile(String folderPath) {
+        File folder = new File(folderPath);
+        File[] files = folder.listFiles();
+
+        if (files != null && files.length > 0) {
+            // Sort files by last modified timestamp
+            Arrays.sort(files, (f1, f2) -> Long.compare(f2.lastModified(), f1.lastModified()));
+            return files[0]; // Return the latest file
+        } else {
+            return null; // No files found
+        }
+    }
 
 }

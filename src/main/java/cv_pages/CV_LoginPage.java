@@ -89,12 +89,14 @@ public class CV_LoginPage extends Utility {
 	@FindBy(xpath = "//div[@class='passwordValidation']")
 	WebElement lblpasswordvalidation;
 
+	
 	public CV_LoginPage(WebDriver driver)
 
 	{
 		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+		
 
 	}
 
@@ -108,9 +110,24 @@ public class CV_LoginPage extends Utility {
 		txtUsername.sendKeys(uid);
 		txtPassword.clear();
 		txtPassword.sendKeys(pass);
-		Dropdownbytxt(listOfRooms,room);
-		btnSubmit.click();
-		
+		/*
+		try 
+		{
+			
+		} catch (Exception e) 
+		{
+			
+		}
+		*/
+		if(driver.getCurrentUrl().contains("192.168.3.17"))
+		{
+			btnSubmit.click();
+		}
+		else 
+		{
+			Dropdownbytxt(listOfRooms,room);
+			btnSubmit.click();
+		}
 
 		if (isDisaplyedW(WindowSesionMgr, 1)) {
 			WindowSesionMgr.click();
@@ -221,7 +238,8 @@ public class CV_LoginPage extends Utility {
         }
 	}
 
-	public void Select_Room(String uid, String pass) {
+	public void Select_Room(String uid, String pass) 
+	{
 		System.out.println("5.Select_Room");
 		isVisible(txtUsername, 10);
 		txtUsername.clear();
