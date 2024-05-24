@@ -334,7 +334,7 @@ public class CV_SendToWorkflowPage extends Utility
 		{
 			System.out.println("Document Not uploaded");
 		}
-		System.out.println("Set Sucescss To :- ShradhaWorkflow");
+		System.out.println("Set Sucescss To :- "+ WFName);
 	}
 
 	public void WorflowVerify_By_First_User(String Status,String DocumentName,String UserName) throws InterruptedException

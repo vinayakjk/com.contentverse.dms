@@ -2,21 +2,25 @@ package cv_testcases;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import cv_pages.CV_LoginPage;
+import cv_resources.CV_SendEmailViaSMTP;
 
 public class CV_LoginTestCase extends Base {
 
 	CV_LoginPage login_page;
+	CV_SendEmailViaSMTP CVs;
 	WebDriver driver;
 
 	@BeforeMethod
-	public void initalization() throws Exception {
-
+	public void initalization() throws Exception 
+	{
 		driver = launchBrowser();
 		login_page = new CV_LoginPage(driver);
-
+		//CVs =new CV_SendEmailViaSMTP();
+		 
 	}
 
 	@AfterMethod
@@ -25,9 +29,12 @@ public class CV_LoginTestCase extends Base {
 		driver.quit();
 	}
 
-	// @AfterSuite
-	public void SendMail() {
+	@AfterSuite
+	public void SendMail() throws InterruptedException 
+	{
+		Thread.sleep(5000);
 		sendEmailWithReport();
+		//CVs.SendEmail();
 	}
 
 	@Test(priority = 1)
