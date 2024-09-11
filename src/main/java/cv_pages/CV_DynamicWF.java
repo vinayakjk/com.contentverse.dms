@@ -543,7 +543,7 @@ public class CV_DynamicWF extends Utility {
 		
 		isDisaplyedW(btnacceptworkFlow, 10);
 		
-		if(NextUserNAme.equals("Current User is last"))
+		if(NextUserNAme.equals("Current User is last")|| Status.equals("End Workflow"))
 		//if (NextUserNAme == null || NextUserNAme.trim().isEmpty())
 		{
 			System.out.println("This is Last User");
@@ -697,9 +697,42 @@ public class CV_DynamicWF extends Utility {
 		}
 
 		if (Status.contains("End Workflow")) {
-			btnrejectWorkflow.click();
-			txtAreaComment.sendKeys("This Document rejected by Automation");
+			//btnrejectWorkflow.click();
+			btnEndWorkflow.click();
+			txtAreaComment.sendKeys("This WF End by" +UserName+ "Automation");
 			btnokworkflowaccept.click();
+			Thread.sleep(2000);
+			/*
+			openDocs(CabinetName, DrawerName, FolderName);
+			
+			Thread.sleep(2000);
+			clickOnDocument.click();
+			Thread.sleep(2000);
+
+			if (WinDocumentInWF.isDisplayed() == true) 
+			{
+				btnOkDocumentInWF.click();
+			}
+			Thread.sleep(3000);
+			tabhistory.click();
+			Thread.sleep(3000);
+			String verifymsghistory_03 = historymsg_03.getText();
+			String verifymsghistory_09 = historymsg_09.getText();
+			if (verifymsghistory_03.equals("Document has been Workflow Ended by " + UserName)||verifymsghistory_09.equals("Document has been Workflow Ended by " + UserName)) 
+			{
+				if(verifymsghistory_03.equals("Document has been Workflow Ended by " + UserName))
+				{
+					System.out.println(verifymsghistory_03);
+				}
+				else 
+				{
+					System.out.println(verifymsghistory_09);
+				}
+				
+			} else {
+				Assert.fail("Document Not approved by First User! Actual text: ");
+			}
+
 			
 			/*
 			if (verifyDOcument.isDisplayed() == false) 

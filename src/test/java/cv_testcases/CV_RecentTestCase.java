@@ -33,7 +33,8 @@ public class CV_RecentTestCase extends Base {
 	}
 
 	@AfterMethod
-	public void teardown() throws Exception {
+	public void teardown() throws Exception 
+	{
 		driver.quit();
 	}
 

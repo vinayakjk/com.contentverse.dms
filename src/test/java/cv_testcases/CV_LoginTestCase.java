@@ -13,7 +13,15 @@ public class CV_LoginTestCase extends Base {
 	CV_LoginPage login_page;
 	CV_SendEmailViaSMTP CVs;
 	WebDriver driver;
-
+/*
+	//Extra
+	@DataProvider(name = "excelData")
+    public Object[][] excelDataProvider() throws IOException {
+        String filePath = System.getProperty("user.dir") + "\\src\\main\\java\\cv_resources\\Test_Data.xlsx";
+        String sheetName = "CV_LoginTestCase";
+        return ExcelUtils.getExcelData(filePath, sheetName);
+    }
+	*/
 	@BeforeMethod
 	public void initalization() throws Exception 
 	{
@@ -37,11 +45,15 @@ public class CV_LoginTestCase extends Base {
 		//CVs.SendEmail();
 	}
 
+	//@Test(priority = 1)
+	
 	@Test(priority = 1)
+    //public void testWithExcelData(String UserName, String Password) {
 	public void check_InValid_UserName()
 
 	{
 		login_page.Invalid_Username(sheet.getRow(5).getCell(7).getStringCellValue(),sheet.getRow(5).getCell(9).getStringCellValue(), sheet.getRow(1).getCell(7).getStringCellValue());
+		//login_page.Invalid_Username(UserName,Password,"");
 	}
 
 	@Test(priority = 2) // , groups = "smoke"

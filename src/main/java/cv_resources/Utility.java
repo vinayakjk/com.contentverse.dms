@@ -1,6 +1,7 @@
 package cv_resources;
 
 import java.io.File;
+import java.io.FileInputStream;
 //import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -12,6 +13,11 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
@@ -28,17 +34,20 @@ public class Utility {
 	WebDriver driver;
 	Actions act;
 
-	public Utility(WebDriver driver) {
+	public Utility(WebDriver driver) 
+	{
 		super();
 		this.driver = driver;
 		act = new Actions(driver);
 	}
 
-	public void pressEnter() {
+	public void pressEnter() 
+	{
 		act.sendKeys(Keys.ENTER).build().perform();
 	}
 
-	public void pressUpKeys() {
+	public void pressUpKeys() 
+	{
 		act.sendKeys(Keys.UP).build().perform();
 	}
 
@@ -46,25 +55,28 @@ public class Utility {
 
 	{
 		act.moveToElement(ele).click().build().perform();
-
 	}
 
-	public void keypress(String a) {
+	public void keypress(String a) 
+	{
 		act.sendKeys(a).build().perform();
 	}
 
-	public void doubleClick() {
+	public void doubleClick() 
+	{
 		act.doubleClick().build().perform();
 	}
 
-	public void moveToElementAndDoubleClick(WebElement ele) {
+	public void moveToElementAndDoubleClick(WebElement ele) 
+	{
 		act.moveToElement(ele).doubleClick().build().perform();
 	}
 
-	public void moveToElementAndContextClick(WebElement ele) {
+	public void moveToElementAndContextClick(WebElement ele) 
+	{
 		act.moveToElement(ele).contextClick().build().perform();
 	}
-
+	
 	public void doubleClick(WebElement ele) {
 		act.doubleClick(ele).build().perform();
 	}
@@ -296,5 +308,30 @@ public class Utility {
 		int len1 = allFiles.length;
 		return len1;
 	}
+	/*
+	//Extra
+	public static  class ExcelUtils 
+	{
 
+	    public static Object[][] getExcelData(String filePath, String sheetName) throws IOException {
+	        FileInputStream fis = new FileInputStream(filePath);
+	        Workbook workbook = new XSSFWorkbook(fis);
+	        Sheet sheet = workbook.getSheet(sheetName);
+	        int rowCount = sheet.getPhysicalNumberOfRows();
+	        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+
+	        Object[][] data = new Object[rowCount - 1][colCount];
+
+	        for (int i = 1; i < rowCount; i++) {
+	            Row row = sheet.getRow(i);
+	            for (int j = 0; j < colCount; j++) {
+	                Cell cell = row.getCell(j);
+	                data[i - 1][j] = cell.toString();
+	            }
+	        }
+	        workbook.close();
+	        return data;
+	    }
+	}
+*/
 }

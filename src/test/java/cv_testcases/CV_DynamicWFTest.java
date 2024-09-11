@@ -1,25 +1,21 @@
 package cv_testcases;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-import atu.testrecorder.ATUTestRecorder;
 import atu.testrecorder.exceptions.ATUTestRecorderException;
-import cv_pages.CV_DynamicWF;
+import cv_pages.CV_DynamicWF_With_OTP;
 import cv_pages.CV_LoginPage;
 
 public class CV_DynamicWFTest extends Base 
 {
 
 	CV_LoginPage cvLP; //Login Page
-	CV_DynamicWF cvDF; //Dynamic WF
-	ATUTestRecorder recorder;
-	String className = this.getClass().getSimpleName();
-	String timestamp = new SimpleDateFormat("yyyy_MM_dd__hh_mm_ss").format(new Date());
+	CV_DynamicWF_With_OTP cvDF; //Dynamic WF
+	//ATUTestRecorder recorder;
+	//String className = this.getClass().getSimpleName();
+	//String timestamp = new SimpleDateFormat("yyyy_MM_dd__hh_mm_ss").format(new Date());
 	
 		
 	//@BeforeMethod
@@ -28,21 +24,21 @@ public class CV_DynamicWFTest extends Base
 		System.out.println(">>- - - - - - - - - - - - - - - - - - - - - - - - - ->>");
 		 launchBrowser(); //Launching Browser
 		 cvLP = new CV_LoginPage(driver); //Login Page Object
-		 cvDF = new CV_DynamicWF(driver); //Dynamic Page Object
+		 cvDF = new CV_DynamicWF_With_OTP(driver); //Dynamic Page Object
 	}
 
 		@BeforeSuite
 		public void StartRecord() throws ATUTestRecorderException 
 		{
-			recorder = new ATUTestRecorder(System.getProperty("user.dir") + "\\Recording\\", "" +className+ "" + timestamp +"", false);
-			recorder.start();
+			//recorder = new ATUTestRecorder(System.getProperty("user.dir") + "\\Recording\\", "" +className+ "" + timestamp +"", false);
+			//recorder.start();
 		}
 	
 	@AfterSuite
 	public void StopRecord() throws ATUTestRecorderException 
 	{
 		driver.quit();
-		recorder.stop();
+		//recorder.stop();
 		sendEmailWithReport();
 		
 	}
@@ -61,7 +57,7 @@ public class CV_DynamicWFTest extends Base
 		System.out.println(">>- - - - - - - - - - - - - - - - - - - - - - - - - ->>");
 		 launchBrowser(); //Launching Browser
 		 cvLP = new CV_LoginPage(driver); //Login Page Object
-		 cvDF = new CV_DynamicWF(driver); //Dynamic Page Object
+		 cvDF = new CV_DynamicWF_With_OTP(driver); //Dynamic Page Object
 		
 	
 		cvLP.Check_Valid_Credentials(sheet.getRow(5).getCell(3).getStringCellValue(), //User Name
@@ -83,12 +79,12 @@ public class CV_DynamicWFTest extends Base
 	@Test(priority = 2) //To Verify first User 
 	public void Verify_WF_First_User() throws Exception {
 
-		for (int i = sheet.getRow(26).getCell(5).getRowIndex(); i <= (sheet.getRow(26).getCell(5).getRowIndex())+ 15; i++) 
+		for (int i = sheet.getRow(26).getCell(5).getRowIndex(); i <= sheet.getRow(31).getCell(5).getRowIndex(); i++) 
 		{
 			System.out.println(">>- - - - - - - - - - - - - - - - - - - - - - - - - ->>");
 			launchBrowser(); // Launching Browser
 			cvLP = new CV_LoginPage(driver); // Login Page Object
-			cvDF = new CV_DynamicWF(driver); // Dynamic Page Object
+			cvDF = new CV_DynamicWF_With_OTP(driver); // Dynamic Page Object
 
 			cvLP.Check_Valid_Credentials(sheet.getRow(i).getCell(5).getStringCellValue(), // User Name -Change
 					sheet.getRow(i).getCell(7).getStringCellValue(), // Password -Change
@@ -124,7 +120,7 @@ public class CV_DynamicWFTest extends Base
 			System.out.println(">>- - - - - - - - - - - - - - - - - - - - - - - - - ->>");
 	   		 launchBrowser(); //Launching Browser
 	   		 cvLP = new CV_LoginPage(driver); //Login Page Object
-	   		 cvDF = new CV_DynamicWF(driver); //Dynamic Page Object
+	   		 cvDF = new CV_DynamicWF_With_OTP(driver); //Dynamic Page Object
 			
 			cvLP.Check_Valid_Credentials(sheet.getRow(5).getCell(3).getStringCellValue(), //Originator User Username
 										 sheet.getRow(5).getCell(5).getStringCellValue(), //Originator User Password
