@@ -307,9 +307,9 @@ public class CV_Documents extends Utility {
 		@FindBy(xpath ="//a[@id='refreshDocuments']")
 	    WebElement clickRefresh;
 		
-		public CV_Documents(WebDriver driver) {
+		public CV_Documents(WebDriver driver) 
+		{
 			super(driver);
-			// TODO Auto-generated constructor stub
 		}
 		
 }

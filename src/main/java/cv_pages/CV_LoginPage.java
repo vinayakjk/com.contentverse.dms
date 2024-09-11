@@ -96,8 +96,6 @@ public class CV_LoginPage extends Utility {
 		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		
-
 	}
 
 	public void Check_Valid_Credentials(String uid, String pass, String room) 
@@ -119,7 +117,7 @@ public class CV_LoginPage extends Utility {
 			
 		}
 		*/
-		if(driver.getCurrentUrl().contains("192.168.3.17"))
+		if(driver.getCurrentUrl().contains("192.168.3.17") || driver.getCurrentUrl().contains("192.168.3.8"))
 		{
 			btnSubmit.click();
 		}
@@ -129,12 +127,12 @@ public class CV_LoginPage extends Utility {
 			btnSubmit.click();
 		}
 
-		if (isDisaplyedW(WindowSesionMgr, 1)) {
+		if (isDisaplyedW(WindowSesionMgr, 5)) {
 			WindowSesionMgr.click();
 			//System.out.println("Another Session Ended");
 		}
 
-
+		isVisible(imgLoggedInUsername, 10);
 
 		String LoggedInUsername=imgLoggedInUsername.getText();
 		
